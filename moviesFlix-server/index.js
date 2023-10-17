@@ -31,15 +31,28 @@ async function run() {
         await client.connect();
 
         const moviesFlixDb = client.db('moviesFlix');
+        const icon = moviesFlixDb.collection('icon');
+        const navBar = moviesFlixDb.collection('navBar');
 
-        app.get('/', (request, response) => {
-            response.send('this is testing server');
+        app.get('/header', async (request, response) => {
+            const cursor = icon.find();
+            const cursorNav = icon.find();
+
+            const resultIcon = await cursor.toArray();
+            const resultNav = await cursorNav.toArray();
+            response.json({ resultIcon, resultNav });
         });
 
         app.post('/data', async (request, response) => {
             const moviesFlix = request.body;
-            const icon = moviesFlixDb.collection('icon');
+
             const result = await icon.insertOne(moviesFlix);
+            response.send(result);
+        });
+        app.post('/navbar', async (request, response) => {
+            const moviesFlix = request.body;
+
+            const result = await navBar.insertOne(moviesFlix);
             response.send(result);
         });
     } finally {
