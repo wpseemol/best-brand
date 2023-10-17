@@ -29,20 +29,24 @@ async function run() {
     try {
         // Connect the client to the server	(optional starting in v4.7)
         await client.connect();
-        // Send a ping to confirm a successful connection
-        await client.db('admin').command({ ping: 1 });
-        console.log(
-            'Pinged your deployment. You successfully connected to MongoDB!'
-        );
+
+        const moviesFlixDb = client.db('moviesFlix');
+
+        app.get('/', (request, response) => {
+            response.send('this is testing server');
+        });
+
+        app.post('/data', async (request, response) => {
+            const moviesFlix = request.body;
+            const icon = moviesFlixDb.collection('icon');
+            const result = await icon.insertOne(moviesFlix);
+            response.send(result);
+        });
     } finally {
     }
 }
 run().catch(console.dir);
 
-app.get('/', (request, response) => {
-    response.send('this is testing server');
-});
-
 app.listen(port, () => {
-    console.log('Server is running on Port' + port );
+    console.log('Server is running on Port' + port);
 });
