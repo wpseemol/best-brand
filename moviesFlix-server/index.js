@@ -34,7 +34,8 @@ async function run() {
         const icon = moviesFlixDb.collection('icon');
         const navBar = moviesFlixDb.collection('navBar');
         const errorPage = moviesFlixDb.collection('errorPage');
-
+        const homeHeroBanar = moviesFlixDb.collection('homeHeroBanar');
+        // data get
         app.get('/header', async (request, response) => {
             const cursor = icon.find();
             const cursorNav = navBar.find();
@@ -44,12 +45,19 @@ async function run() {
             response.json({ resultIcon, resultNav });
         });
         app.get('/error', async (request, response) => {
-            const errorPageCursor  = errorPage.find();
+            const errorPageCursor = errorPage.find();
 
             const result = await errorPageCursor.toArray();
             response.send(result);
         });
+        app.get('/top-collection-movies', async (request, response) => {
+            const topCollectionMovies = homeHeroBanar.find();
 
+            const result = await topCollectionMovies.toArray();
+            response.send(result);
+        });
+
+        // data post
         app.post('/data', async (request, response) => {
             const moviesFlix = request.body;
 
@@ -60,6 +68,13 @@ async function run() {
             const moviesFlix = request.body;
 
             const result = await navBar.insertOne(moviesFlix);
+            response.send(result);
+        });
+
+        app.post('/top-collection', async (request, response) => {
+            const moviesFlix = request.body;
+
+            const result = await homeHeroBanar.insertOne(moviesFlix);
             response.send(result);
         });
     } finally {
