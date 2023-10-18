@@ -1,33 +1,105 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { Link, NavLink } from 'react-router-dom';
+import TogolIcon from '../togolIcon/TogolIcon';
 
 const Nav = () => {
-    const [iconUrl, setIconUrl] = useState('');
-    const [navBar, setNavBar] = useState([]);
-    axios
-        .get('http://localhost:5000/icon')
-        .then(function (response) {
-            setIconUrl(response?.data[2]?.url);
-        })
-        .catch(function (error) {
-            console.log(error);
+    const [navBar, setNavBar] = useState(null);
+    const [click, setClick] = useState(true);
+    useEffect(() => {
+        AOS.init({
+            duration: 1200,
         });
 
-    axios
-        .get('http://localhost:5000/navbar')
-        .then(function (response) {
-            setNavBar([...navBar,]);
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+        axios
+            .get('http://localhost:5000/header')
+            .then(function (response) {
+                setNavBar(response?.data);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }, []);
+
+    console.log(navBar);
 
     return (
         <>
-            <div className="w-80">
-                <p className="demo">nav section</p>
-                <img src={iconUrl} alt="" />
-            </div>
+            <section className="flex justify-between items-center bg-black/30 xl:px-16 lg:px-10 sm:px-6 px-2 py-4 relative">
+                <div className="flex items-center sm:gap-5 gap-1 duration-300">
+                    <div
+                        onClick={() => {
+                            setClick(!click);
+                        }}
+                        className="lg:hidden text-2xl">
+                        <TogolIcon isClick={click} />{' '}
+                        {/* TogolIcon come from "../../components/togolIcon/TogolIcon.jsx"  */}
+                    </div>
+                    <div className="md:w-[15rem] w-40 " data-aos="zoom-in-up">
+                        <Link to="/">
+                            <img src={navBar?.resultIcon[2]?.url} alt="" />
+                        </Link>
+                    </div>
+                </div>
+
+                <div
+                    className={`${
+                        click || 'absolute  md:top-[6rem] top-20 left-0 w-full'
+                    }`}>
+                    <ul
+                        className={`relative lg:block text-xl font-bold text-white ${
+                            click ? 'hidden' : 'block w-full'
+                        }`}>
+                        <div
+                            className={`flex gap-3 py-4 ${
+                                click
+                                    ? ' items-center'
+                                    : 'flex-col bg-primaryColor/50 justify-start'
+                            }`}>
+                            {navBar?.resultNav.map((element, inx) => {
+                                return (
+                                    <li
+                                        key={`navKey-${inx}`}
+                                        className="lg:border-none border-b-2 pl-5 border-primaryColor">
+                                        {' '}
+                                        <NavLink
+                                            to={element?.link || '#'}
+                                            className={`hover:active ${({
+                                                isActive,
+                                                isPending,
+                                            }) =>
+                                                isPending
+                                                    ? 'pending'
+                                                    : isActive
+                                                    ? 'active'
+                                                    : ''}`}>
+                                            {element.nav}
+                                        </NavLink>{' '}
+                                    </li>
+                                );
+                            })}
+
+                            <li className="primaryBtn bg-primaryColor sm:w-[6rem] w-fit text-center hidden lg:block mr-2">
+                                <NavLink to="/login">
+                                    <span>Sign In</span>
+                                </NavLink>
+                            </li>
+                        </div>
+                    </ul>
+                </div>
+
+                <div className="lg:hidden">
+                    <ul className="relative lg:block text-xl font-bold text-white">
+                        <li className="primaryBtn bg-primaryColor w-[6rem] text-center">
+                            <NavLink to="/login">
+                                <span>Sign In</span>
+                            </NavLink>
+                        </li>
+                    </ul>
+                </div>
+            </section>
         </>
     );
 };

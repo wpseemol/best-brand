@@ -4,6 +4,16 @@
 
 @layer components {
     .demo {
+        /* style for testing  */
         @apply text-center text-4xl font-bold mt-10;
+    }
+    .myContainer {
+        @apply container sm:container md:container lg:container xl:container 2xl:container mx-auto;
+    }
+    .primaryBtn {
+        @apply mb-2 inline-block rounded px-6 py-2.5 text-xs font-medium uppercase leading-normal text-white shadow-md transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg;
+    }
+    .active {
+        @apply border-b-[3px] border-primaryColor duration-75;
     }
 }
