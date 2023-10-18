@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import Header from '../components/header/Header';
-import Nav from '../components/nav/Nav';
+
 import Footer from '../components/footer/Footer';
 
 const Root = () => {
@@ -9,9 +9,6 @@ const Root = () => {
             <header className="font-Assistant">
                 <Header />{' '}
                 {/* Header come from '../components/header/Header'  */}
-                <nav>
-                    <Nav /> {/* Nav come from '../components/nav/Nav'  */}
-                </nav>
             </header>
 
             <main className="font-Assistant">

@@ -19,15 +19,13 @@ const Nav = () => {
                 setNavBar(response?.data);
             })
             .catch(function (error) {
-                console.log(error);
+                // console.log(error);
             });
     }, []);
 
-    console.log(navBar);
-
     return (
         <>
-            <section className="flex justify-between items-center bg-black/30 xl:px-16 lg:px-10 sm:px-6 px-2 py-4 relative">
+            <section className="flex justify-between items-center bg-black/30 xl:px-16 lg:px-10 sm:px-6 px-2 relative py-2">
                 <div className="flex items-center sm:gap-5 gap-1 duration-300">
                     <div
                         onClick={() => {
@@ -37,7 +35,7 @@ const Nav = () => {
                         <TogolIcon isClick={click} />{' '}
                         {/* TogolIcon come from "../../components/togolIcon/TogolIcon.jsx"  */}
                     </div>
-                    <div className="md:w-[15rem] w-40 " data-aos="zoom-in-up">
+                    <div className="md:w-[12rem] w-40 " data-aos="zoom-in-up">
                         <Link to="/">
                             <img src={navBar?.resultIcon[2]?.url} alt="" />
                         </Link>
@@ -46,23 +44,24 @@ const Nav = () => {
 
                 <div
                     className={`${
-                        click || 'absolute  md:top-[6rem] top-20 left-0 w-full'
+                        click ||
+                        'absolute  md:top-[4.5rem] top-16 left-0 w-full'
                     }`}>
                     <ul
-                        className={`relative lg:block text-xl font-bold text-white ${
+                        className={`relative lg:block text-lg font-semibold text-white ${
                             click ? 'hidden' : 'block w-full'
                         }`}>
                         <div
-                            className={`flex gap-3 py-4 ${
+                            className={`flex gap-3 ${
                                 click
-                                    ? ' items-center'
+                                    ? ' items-center justify-center'
                                     : 'flex-col bg-primaryColor/50 justify-start'
                             }`}>
                             {navBar?.resultNav.map((element, inx) => {
                                 return (
                                     <li
                                         key={`navKey-${inx}`}
-                                        className="lg:border-none border-b-2 pl-5 border-primaryColor">
+                                        className="lg:border-none border-b-2 pl-5 border-primaryColor ">
                                         {' '}
                                         <NavLink
                                             to={element?.link || '#'}
@@ -81,7 +80,7 @@ const Nav = () => {
                                 );
                             })}
 
-                            <li className="primaryBtn bg-primaryColor sm:w-[6rem] w-fit text-center hidden lg:block mr-2">
+                            <li className="primaryBtn bg-primaryColor sm:w-[6rem] w-fit text-center hidden lg:block ml-16 mt-2">
                                 <NavLink to="/login">
                                     <span>Sign In</span>
                                 </NavLink>

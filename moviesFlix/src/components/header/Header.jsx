@@ -1,12 +1,14 @@
-
+import Nav from '../../components/nav/Nav';
+import HeroSlider from '../heroSlider/HeroSlider';
 
 const Header = () => {
-    
-    
     return (
         <>
-            <p className="demo">this is header</p>
-           
+            <HeroSlider>
+                <nav>
+                    <Nav /> {/* Nav come from '../components/nav/Nav'  */}
+                </nav>
+            </HeroSlider>
         </>
     );
 };
