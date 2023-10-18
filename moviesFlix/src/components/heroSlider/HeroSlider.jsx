@@ -5,6 +5,7 @@ import 'swiper/css';
 import { useEffect, useState } from 'react';
 import Aos from 'aos';
 import axios from 'axios';
+import HeaderText from '../headerText/HeaderText';
 
 const HeroSlider = ({ children }) => {
     const [homeBanner, setHomeBanner] = useState([]);
@@ -39,7 +40,7 @@ const HeroSlider = ({ children }) => {
                     return '00';
                 }
             });
-        }, 220);
+        }, 200);
 
         return () => {
             clearInterval(interval);
@@ -66,7 +67,7 @@ const HeroSlider = ({ children }) => {
                 {homeBanner.map((element, inx) => {
                     return (
                         <SwiperSlide key={'banner-' + inx}>
-                            <div className="w-full h-screen">
+                            <div className="w-full xl:h-screen">
                                 <div className=" overflow-hidden relative">
                                     <img
                                         src={element?.ImageUrl}
@@ -78,16 +79,23 @@ const HeroSlider = ({ children }) => {
                                         }}
                                     />
 
-                                    <div className="absolute bg-black/30 w-full h-full z-30 top-0 left-0"></div>
+                                    <div className="absolute bg-black/30 w-full h-full z-30 top-0 left-0">
+                                        <div className="flex items-center lg:ml-16 md:ml-8 ml-2 h-full ">
+                                            <div className="demo">
+                                                <HeaderText />
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </SwiperSlide>
                     );
                 })}
-                ...
             </Swiper>
 
-            <div className="fixed top-1 z-50 w-full">{children}</div>
+            <div className="fixed top-1 z-50 w-full overflow-hidden">
+                {children}
+            </div>
         </>
     );
 };

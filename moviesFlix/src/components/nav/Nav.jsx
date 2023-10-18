@@ -81,7 +81,7 @@ const Nav = () => {
                             })}
 
                             <li
-                                data-aos="fade-up"
+                                data-aos="zoom-in-left"
                                 className="primaryBtn bg-primaryColor sm:w-[6rem] w-fit text-center hidden lg:block ml-16 mt-2">
                                 <NavLink to="/login">
                                     <span>Sign In</span>
@@ -91,7 +91,7 @@ const Nav = () => {
                     </ul>
                 </div>
 
-                <div className="lg:hidden" data-aos="fade-up">
+                <div className="lg:hidden" data-aos="zoom-in-left">
                     <ul className="relative lg:block text-xl font-bold text-white">
                         <li className="primaryBtn bg-primaryColor w-[6rem] text-center">
                             <NavLink to="/login">

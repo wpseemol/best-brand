@@ -4,7 +4,7 @@ import HeroSlider from '../heroSlider/HeroSlider';
 
 const Header = () => {
     const crentlocaLocation = useLocation();
-    console.log(crentlocaLocation.pathname === '/');
+
     return (
         <>
             {crentlocaLocation.pathname === '/' ? (

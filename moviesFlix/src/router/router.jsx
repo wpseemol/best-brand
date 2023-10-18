@@ -22,7 +22,7 @@ const router = createBrowserRouter([
                 path: '/',
                 element: <Home />, //Home come from 'pages/home/Home'
                 loader: () => {
-                    return axios.get('https://www.boredapi.com/api/activity');
+                    return axios.get('http://localhost:5000/home');
                 },
             },
             {
