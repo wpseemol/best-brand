@@ -1,11 +1,11 @@
 import { useLoaderData } from 'react-router-dom';
 
 const Home = () => {
-    const data = useLoaderData();
-    console.log(data.data);
+    const data = useLoaderData(); // home data fetch
+    // console.log(data.data);
 
     return (
-        <div className="text-center text-4xl font-bold">
+        <div className="demo">
             this is home page it
             <br />
             {data.data.activity}
