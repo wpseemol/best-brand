@@ -25,13 +25,13 @@ const Nav = () => {
 
     return (
         <>
-            <section className="flex justify-between items-center bg-black/30 xl:px-16 lg:px-10 sm:px-6 px-2 relative py-2">
+            <section className=" flex justify-between items-center bg-black/30 xl:px-16 lg:px-10 sm:px-6 px-2 relative py-2">
                 <div className="flex items-center sm:gap-5 gap-1 duration-300">
                     <div
                         onClick={() => {
                             setClick(!click);
                         }}
-                        className="lg:hidden text-2xl">
+                        className="lg:hidden text-2xl text-primaryColor">
                         <TogolIcon isClick={click} />{' '}
                         {/* TogolIcon come from "../../components/togolIcon/TogolIcon.jsx"  */}
                     </div>
@@ -80,7 +80,9 @@ const Nav = () => {
                                 );
                             })}
 
-                            <li className="primaryBtn bg-primaryColor sm:w-[6rem] w-fit text-center hidden lg:block ml-16 mt-2">
+                            <li
+                                data-aos="fade-up"
+                                className="primaryBtn bg-primaryColor sm:w-[6rem] w-fit text-center hidden lg:block ml-16 mt-2">
                                 <NavLink to="/login">
                                     <span>Sign In</span>
                                 </NavLink>
@@ -89,7 +91,7 @@ const Nav = () => {
                     </ul>
                 </div>
 
-                <div className="lg:hidden">
+                <div className="lg:hidden" data-aos="fade-up">
                     <ul className="relative lg:block text-xl font-bold text-white">
                         <li className="primaryBtn bg-primaryColor w-[6rem] text-center">
                             <NavLink to="/login">

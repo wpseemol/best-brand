@@ -3,8 +3,28 @@ import { Autoplay, EffectFade } from 'swiper/modules';
 import 'swiper/css/effect-fade';
 import 'swiper/css';
 import { useEffect, useState } from 'react';
+import Aos from 'aos';
+import axios from 'axios';
 
 const HeroSlider = ({ children }) => {
+    const [homeBanner, setHomeBanner] = useState([]);
+
+    useEffect(() => {
+        Aos.init({
+            duration: 1200,
+        });
+
+        axios
+            .get('http://localhost:5000/top-collection-movies')
+            .then(function (response) {
+                setHomeBanner(response?.data);
+            })
+            .catch(function (error) {
+                // console.log(error);
+                setHomeBanner([]);
+            });
+    }, []);
+
     const [counter, setCounter] = useState(0);
 
     useEffect(() => {
@@ -13,20 +33,18 @@ const HeroSlider = ({ children }) => {
                 let num = parseInt(prevCounter, 10) + 1;
                 if (num < 10) {
                     return `0${num}`;
-                } else if (num <= 50) {
+                } else if (num <= 25) {
                     return `${num}`;
                 } else {
                     return '00';
                 }
             });
-        }, 1000);
+        }, 220);
 
         return () => {
             clearInterval(interval);
         };
     }, []);
-
-    console.log('1.0' + counter);
 
     return (
         <>
@@ -36,7 +54,7 @@ const HeroSlider = ({ children }) => {
                 effect={'fade'}
                 centeredSlides={true}
                 autoplay={{
-                    delay: 10000,
+                    delay: 5000,
                     disableOnInteraction: false,
                 }}
                 pagination={{
@@ -45,58 +63,27 @@ const HeroSlider = ({ children }) => {
                 navigation={true}
                 modules={[Autoplay, EffectFade]}
                 className="mySwiper">
-                <SwiperSlide>
-                    <div className="w-full h-screen">
-                        <div className=" overflow-hidden">
-                            <img
-                                src="https://i.ibb.co/mXngkTk/Nice-Chair-4.jpg"
-                                alt=""
-                                className="w-full h-full object-cover object-center 
+                {homeBanner.map((element, inx) => {
+                    return (
+                        <SwiperSlide key={'banner-' + inx}>
+                            <div className="w-full h-screen">
+                                <div className=" overflow-hidden relative">
+                                    <img
+                                        src={element?.ImageUrl}
+                                        alt={element?.name}
+                                        className="w-full h-full object-cover object-center 
                                 duration-1000"
-                                style={{ transform: `scale(1.${counter})` }}
-                            />
-                        </div>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className="w-full h-screen">
-                        <div className=" overflow-hidden">
-                            <img
-                                src="https://i.ibb.co/KjGxLYK/Nice-Chair-5.jpg"
-                                className="w-full h-full object-cover object-center 
-                                duration-1000"
-                                alt=""
-                                style={{ transform: `scale(1.${counter})` }}
-                            />
-                        </div>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className="w-full h-screen">
-                        <div className=" overflow-hidden">
-                            <img
-                                src="https://i.ibb.co/D9Nm7fc/product-12-2.jpg"
-                                className="w-full h-full object-cover object-center 
-                                duration-1000"
-                                alt=""
-                                style={{ transform: `scale(1.${counter})` }}
-                            />
-                        </div>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className="w-full h-screen">
-                        <div className=" overflow-hidden">
-                            <img
-                                src="https://i.ibb.co/8zdyY5V/product-12-3.jpg"
-                                className="w-full h-full object-cover object-center 
-                                duration-1000"
-                                alt=""
-                                style={{ transform: `scale(1.${counter})` }}
-                            />
-                        </div>
-                    </div>
-                </SwiperSlide>
+                                        style={{
+                                            transform: `scale(1.${counter})`,
+                                        }}
+                                    />
+
+                                    <div className="absolute bg-black/30 w-full h-full z-30 top-0 left-0"></div>
+                                </div>
+                            </div>
+                        </SwiperSlide>
+                    );
+                })}
                 ...
             </Swiper>
 
