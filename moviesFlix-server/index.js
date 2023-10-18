@@ -35,6 +35,7 @@ async function run() {
         const navBar = moviesFlixDb.collection('navBar');
         const errorPage = moviesFlixDb.collection('errorPage');
         const homeHeroBanar = moviesFlixDb.collection('homeHeroBanar');
+        const entertainment = moviesFlixDb.collection('entertainment');
         // data get
         app.get('/header', async (request, response) => {
             const cursor = icon.find();
@@ -43,6 +44,12 @@ async function run() {
             const resultIcon = await cursor.toArray();
             const resultNav = await cursorNav.toArray();
             response.json({ resultIcon, resultNav });
+        });
+        app.get('/home', async (request, response) => {
+            const cursorEntertain = entertainment.find();
+
+            const resultEntertainment = await cursorEntertain.toArray();
+            response.json({ resultEntertainment });
         });
         app.get('/error', async (request, response) => {
             const errorPageCursor = errorPage.find();
@@ -75,6 +82,12 @@ async function run() {
             const moviesFlix = request.body;
 
             const result = await homeHeroBanar.insertOne(moviesFlix);
+            response.send(result);
+        });
+        app.post('/entertainment', async (request, response) => {
+            const moviesFlix = request.body;
+
+            const result = await entertainment.insertOne(moviesFlix);
             response.send(result);
         });
     } finally {
