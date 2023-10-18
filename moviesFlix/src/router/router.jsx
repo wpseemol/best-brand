@@ -8,6 +8,8 @@ import Games from '../pages/games/Games';
 import Careers from '../pages/careers/Careers';
 import WhoWeAre from '../pages/whoWeAre/WhoWeAre';
 import AboutUs from '../pages/aboutUs/AboutUs';
+import Login from '../pages/login/Login';
+import Register from '../pages/register/Register';
 
 const router = createBrowserRouter([
     {
@@ -33,6 +35,15 @@ const router = createBrowserRouter([
                 path: '/games',
                 element: <Games />, // Explore come from '../pages/games/Games.jsx'
             },
+            {
+                path: '/login',
+                element: <Login />, // Explore come from '../pages/games/Games.jsx'
+            },
+            {
+                path: '/register',
+                element: <Register />, // Explore come from '../pages/games/Games.jsx'
+            },
+
             {
                 path: '/careers',
                 element: <Careers />, // Explore come from '../pages/careers/Careers.jsx'
