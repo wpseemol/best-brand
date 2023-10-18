@@ -10,11 +10,13 @@ import WhoWeAre from '../pages/whoWeAre/WhoWeAre';
 import AboutUs from '../pages/aboutUs/AboutUs';
 import Login from '../pages/login/Login';
 import Register from '../pages/register/Register';
+import ErrorPage from '../pages/errorePage/Errorpage';
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <Root />, //Root come from 'root/Root'
+        errorElement: <ErrorPage />, // ErrorPage come from '../pages/errorePage/ErrorPage.jsx'
         children: [
             {
                 path: '/',
