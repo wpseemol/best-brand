@@ -33,14 +33,21 @@ async function run() {
         const moviesFlixDb = client.db('moviesFlix');
         const icon = moviesFlixDb.collection('icon');
         const navBar = moviesFlixDb.collection('navBar');
+        const errorPage = moviesFlixDb.collection('errorPage');
 
         app.get('/header', async (request, response) => {
             const cursor = icon.find();
-            const cursorNav = icon.find();
+            const cursorNav = navBar.find();
 
             const resultIcon = await cursor.toArray();
             const resultNav = await cursorNav.toArray();
             response.json({ resultIcon, resultNav });
+        });
+        app.get('/error', async (request, response) => {
+            const errorPageCursor  = errorPage.find();
+
+            const result = await errorPageCursor.toArray();
+            response.send(result);
         });
 
         app.post('/data', async (request, response) => {
