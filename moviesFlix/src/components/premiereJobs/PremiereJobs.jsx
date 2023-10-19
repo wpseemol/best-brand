@@ -26,7 +26,7 @@ const PremiereJobs = () => {
                 </div>
 
                 <div
-                    data-aos="fade-right"
+                    data-aos="zoom-in-right"
                     className=" absolute -z-10 xl:-top-10 md:-top-8 -top-6 -left-48 border-2 border-gray-600 w-full xl:h-64 h-[20rem]"></div>
             </div>
         </>

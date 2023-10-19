@@ -12,16 +12,18 @@ const Home = () => {
     return (
         <>
             {/* Entertainment */}
-            <section className="myContainer md:mt-16 mt-10">
+            <section className="myContainer md:mt-20 mt-12">
                 <Entertainment data={resultEntertainment} />
             </section>
             {/* premiere Jobs */}
-            <section className="myContainer md:mt-16 mt-10">
+            <section className="myContainer md:mt-20 mt-12">
                 <PremiereJobs />
             </section>
             {/* BEHIND THE SCENES */}
-            <section className="myContainer md:mt-16 mt-10">
-                <BehindTheScenes data={resultBehindTheScenes} />
+            <section className=" md:mt-20 mt-12 overflow-hidden">
+                <div className="myContainer md:py-14 border">
+                    <BehindTheScenes data={resultBehindTheScenes} />
+                </div>
             </section>
         </>
     );
