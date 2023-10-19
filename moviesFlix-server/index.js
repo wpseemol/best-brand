@@ -37,6 +37,9 @@ async function run() {
         const homeHeroBanar = moviesFlixDb.collection('homeHeroBanar');
         const entertainment = moviesFlixDb.collection('entertainment');
         const behindTheScenes = moviesFlixDb.collection('behindTheScenes');
+        const careerOpportunities = moviesFlixDb.collection(
+            'careerOpportunities'
+        );
         // data get
         app.get('/header', async (request, response) => {
             const cursor = icon.find();
@@ -49,10 +52,16 @@ async function run() {
         app.get('/home', async (request, response) => {
             const cursorEntertain = entertainment.find();
             const cursorBehindTheScenes = behindTheScenes.find();
+            const cursorCareer = careerOpportunities.find();
 
             const resultEntertainment = await cursorEntertain.toArray();
             const resultBehindTheScenes = await cursorBehindTheScenes.toArray();
-            response.json({ resultEntertainment, resultBehindTheScenes });
+            const resultCareer = await cursorCareer.toArray();
+            response.json({
+                resultEntertainment,
+                resultBehindTheScenes,
+                resultCareer,
+            });
         });
         app.get('/error', async (request, response) => {
             const errorPageCursor = errorPage.find();
@@ -100,6 +109,12 @@ async function run() {
             const moviesFlix = request.body;
 
             const result = await behindTheScenes.insertOne(moviesFlix);
+            response.send(result);
+        });
+        app.post('/career-opportunities', async (request, response) => {
+            const moviesFlix = request.body;
+
+            const result = await careerOpportunities.insertOne(moviesFlix);
             response.send(result);
         });
     } finally {
