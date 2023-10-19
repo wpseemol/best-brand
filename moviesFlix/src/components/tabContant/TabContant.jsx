@@ -159,7 +159,7 @@ export default function TabContant() {
                         aria-labelledby="tab-label-1b"
                         tabindex="-1">
                         <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gri gap-2">
-                            <div className="border-2 border-primaryColor p-4">
+                            <div className="border-2 border-primaryColor bg-white p-4">
                                 <h2 className="text-2xl font-bold">
                                     <Link>
                                         Coordinator, Sales Planning & Operations
@@ -170,7 +170,7 @@ export default function TabContant() {
                                     Beijing, Beijing Municipality | 07/05/2023
                                 </p>
                             </div>
-                            <div className="border-2 border-primaryColor p-4">
+                            <div className="border-2 border-primaryColor bg-white p-4">
                                 <h2 className="text-2xl font-bold">
                                     <Link>Marketing Analyst, B2B</Link>
                                 </h2>
@@ -178,7 +178,7 @@ export default function TabContant() {
                                     Buenos Aires | 09/27/2023
                                 </p>
                             </div>
-                            <div className="border-2 border-primaryColor p-4">
+                            <div className="border-2 border-primaryColor bg-white p-4">
                                 <h2 className="text-2xl font-bold">
                                     <Link>OnDemand Services Supervisor</Link>
                                 </h2>
@@ -186,7 +186,7 @@ export default function TabContant() {
                                     Buenos Aires | 08/25/2023
                                 </p>
                             </div>
-                            <div className="border-2 border-primaryColor p-4">
+                            <div className="border-2 border-primaryColor bg-white p-4">
                                 <h2 className="text-2xl font-bold">
                                     <Link>
                                         Coordinator Creative Production B2I
@@ -209,7 +209,7 @@ export default function TabContant() {
                         role="tabpanel"
                         aria-labelledby="tab-label-2b"
                         tabindex="-1">
-                        <div className="border-2 border-primaryColor p-4">
+                        <div className="border-2 border-primaryColor bg-white p-4">
                             <div className="grid grid-cols-1">
                                 <h2 className="text-2xl font-bold text-center mt-2 mb-8">
                                     You have not recently viewed any jobs.
@@ -228,7 +228,7 @@ export default function TabContant() {
                         role="tabpanel"
                         aria-labelledby="tab-label-3b"
                         tabindex="-1">
-                        <div className="border-2 border-primaryColor p-4">
+                        <div className="border-2 border-primaryColor bg-white p-4">
                             <div className="grid grid-cols-1">
                                 <h2 className="text-2xl font-bold text-center mt-2 mb-8">
                                     You have not saved any jobs.
