@@ -37,6 +37,10 @@ async function run() {
         const homeHeroBanar = moviesFlixDb.collection('homeHeroBanar');
         const entertainment = moviesFlixDb.collection('entertainment');
         const behindTheScenes = moviesFlixDb.collection('behindTheScenes');
+        const popularMovie = moviesFlixDb.collection('popularMovie');
+        const popularShow = moviesFlixDb.collection('popularShow');
+        const trailerVideo = moviesFlixDb.collection('trailerVideo');
+        const movies = moviesFlixDb.collection('movies');
         const careerOpportunities = moviesFlixDb.collection(
             'careerOpportunities'
         );
@@ -53,15 +57,30 @@ async function run() {
             const cursorEntertain = entertainment.find();
             const cursorBehindTheScenes = behindTheScenes.find();
             const cursorCareer = careerOpportunities.find();
+            const cursorPopularMovies = popularMovie.find();
+            const cursorTrailerVideo = trailerVideo.find();
+            const cursorShow = popularShow.find();
 
             const resultEntertainment = await cursorEntertain.toArray();
             const resultBehindTheScenes = await cursorBehindTheScenes.toArray();
             const resultCareer = await cursorCareer.toArray();
+            const resultPopularMovies = await cursorPopularMovies.toArray();
+            const resultTrailerVideo = await cursorTrailerVideo.toArray();
+            const resultShow = await cursorShow.toArray();
             response.json({
                 resultEntertainment,
                 resultBehindTheScenes,
                 resultCareer,
+                resultPopularMovies,
+                resultShow,
+                resultTrailerVideo,
             });
+        });
+        app.get('/movies', async (request, response) => {
+            const cursorMovies = movies.find();
+
+            const resultMovies = await cursorMovies.toArray();
+            response.send(resultMovies);
         });
         app.get('/error', async (request, response) => {
             const errorPageCursor = errorPage.find();
@@ -115,6 +134,24 @@ async function run() {
             const moviesFlix = request.body;
 
             const result = await careerOpportunities.insertOne(moviesFlix);
+            response.send(result);
+        });
+        app.post('/popular-show', async (request, response) => {
+            const moviesFlix = request.body;
+
+            const result = await popularShow.insertOne(moviesFlix);
+            response.send(result);
+        });
+        app.post('/trailer-video', async (request, response) => {
+            const moviesFlix = request.body;
+
+            const result = await trailerVideo.insertOne(moviesFlix);
+            response.send(result);
+        });
+        app.post('/post-movies', async (request, response) => {
+            const moviesFlix = request.body;
+
+            const result = await movies.insertOne(moviesFlix);
             response.send(result);
         });
     } finally {
