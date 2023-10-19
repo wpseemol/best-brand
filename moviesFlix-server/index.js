@@ -36,6 +36,7 @@ async function run() {
         const errorPage = moviesFlixDb.collection('errorPage');
         const homeHeroBanar = moviesFlixDb.collection('homeHeroBanar');
         const entertainment = moviesFlixDb.collection('entertainment');
+        const behindTheScenes = moviesFlixDb.collection('behindTheScenes');
         // data get
         app.get('/header', async (request, response) => {
             const cursor = icon.find();
@@ -47,9 +48,11 @@ async function run() {
         });
         app.get('/home', async (request, response) => {
             const cursorEntertain = entertainment.find();
+            const cursorBehindTheScenes = behindTheScenes.find();
 
             const resultEntertainment = await cursorEntertain.toArray();
-            response.json({ resultEntertainment });
+            const resultBehindTheScenes = await cursorBehindTheScenes.toArray();
+            response.json({ resultEntertainment, resultBehindTheScenes });
         });
         app.get('/error', async (request, response) => {
             const errorPageCursor = errorPage.find();
@@ -62,6 +65,9 @@ async function run() {
 
             const result = await topCollectionMovies.toArray();
             response.send(result);
+        });
+        app.get('/', async (request, response) => {
+            response.send('Welcome to my Server...');
         });
 
         // data post
@@ -88,6 +94,12 @@ async function run() {
             const moviesFlix = request.body;
 
             const result = await entertainment.insertOne(moviesFlix);
+            response.send(result);
+        });
+        app.post('/behindTheScenes', async (request, response) => {
+            const moviesFlix = request.body;
+
+            const result = await behindTheScenes.insertOne(moviesFlix);
             response.send(result);
         });
     } finally {
