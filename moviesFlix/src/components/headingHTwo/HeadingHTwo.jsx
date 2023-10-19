@@ -1,9 +1,18 @@
+import Aos from 'aos';
+import { useEffect } from 'react';
+
 const HeadingHTwo = ({ hTwo }) => {
+    useEffect(() => {
+        Aos.init({
+            duration: 1200,
+        });
+    }, []);
     return (
         <>
             {/* title here */}
             <h2
-                className="xl:text-4xl md:text-3xl text-2xl font-bold mb-5
+                data-aos="flip-left"
+                className="xl:text-5xl md:text-4xl text-2xl font-bold
             ">
                 {hTwo}
             </h2>

@@ -75,7 +75,7 @@ export default function TabContant() {
                             role="tab"
                             aria-setsize="3"
                             aria-posinset="1"
-                            tabindex={`${
+                            tabIndex={`${
                                 tabSelected.currentTab === 1 ? '0' : '-1'
                             }`}
                             aria-controls="tab-panel-1b"
@@ -102,7 +102,7 @@ export default function TabContant() {
                             role="tab"
                             aria-setsize="3"
                             aria-posinset="2"
-                            tabindex={`${
+                            tabIndex={`${
                                 tabSelected.currentTab === 2 ? '0' : '-1'
                             }`}
                             aria-controls="tab-panel-2b"
@@ -129,7 +129,7 @@ export default function TabContant() {
                             role="tab"
                             aria-setsize="3"
                             aria-posinset="3"
-                            tabindex={`${
+                            tabIndex={`${
                                 tabSelected.currentTab === 3 ? '0' : '-1'
                             }`}
                             aria-controls="tab-panel-3b"
@@ -157,7 +157,7 @@ export default function TabContant() {
                         }`}
                         role="tabpanel"
                         aria-labelledby="tab-label-1b"
-                        tabindex="-1">
+                        tabIndex="-1">
                         <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gri gap-2">
                             <div className="border-2 border-primaryColor bg-white p-4">
                                 <h2 className="text-2xl font-bold">
@@ -208,7 +208,7 @@ export default function TabContant() {
                         }`}
                         role="tabpanel"
                         aria-labelledby="tab-label-2b"
-                        tabindex="-1">
+                        tabIndex="-1">
                         <div className="border-2 border-primaryColor bg-white p-4">
                             <div className="grid grid-cols-1">
                                 <h2 className="text-2xl font-bold text-center mt-2 mb-8">
@@ -227,7 +227,7 @@ export default function TabContant() {
                         }`}
                         role="tabpanel"
                         aria-labelledby="tab-label-3b"
-                        tabindex="-1">
+                        tabIndex="-1">
                         <div className="border-2 border-primaryColor bg-white p-4">
                             <div className="grid grid-cols-1">
                                 <h2 className="text-2xl font-bold text-center mt-2 mb-8">
