@@ -46,13 +46,17 @@ const BehindTheScenes = ({ data }) => {
                 </div>
 
                 <div className="flex md:flex-row flex-col justify-center items-center gap-12 mt-28 relative ">
-                    <div className="overflow-hidden w-full">
+                    <div
+                        className="xl:w-[45rem]  md:w-[250rem] md:h-[15rem] 
+                            lg:h-[16rem] xl:h-[19rem]  h-[15rem] overflow-hidden border">
                         <iframe
-                            className="xl:w-[45rem] lg:w-[30rem] md:w-[20rem] md:h-[15rem] lg:h-[16rem] xl:h-[19rem]"
+                            className="h-full"
+                            width="560"
+                            height="315"
                             src={videoLink}
                             title="YouTube video player"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            allowfullscreen></iframe>
+                            allowFullScreen></iframe>
                     </div>
                     <div>
                         <div className="relative overflow-hidden z-10 mb-6">
@@ -69,7 +73,7 @@ const BehindTheScenes = ({ data }) => {
                     </div>
 
                     <div
-                        // data-aos="zoom-in-left"
+                        data-aos="zoom-in-left"
                         className=" absolute -z-10 xl:-top-9 md:-top-8 -top-6 md:-right-56 sm:-right-16 -right-32  border-2 border-gray-600 md:w-full sm:w-[35rem] w-[25rem] xl:h-96 md:h-[20rem]  h-[12.5rem]"></div>
                 </div>
             </div>
