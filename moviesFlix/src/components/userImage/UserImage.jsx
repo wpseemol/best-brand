@@ -1,5 +1,10 @@
-const UserImage = ({ imgUrl }) => {
-    const url = imgUrl ? imgUrl : 'https://i.ibb.co/wBfQjTy/user-Image.png';
+const UserImage = ({ imgUrl, usDbImg }) => {
+    const url = imgUrl
+        ? imgUrl
+        : usDbImg
+        ? usDbImg
+        : 'https://i.ibb.co/wBfQjTy/user-Image.png';
+
     return (
         <>
             <div className="w-12 overflow-hidden rounded-full">

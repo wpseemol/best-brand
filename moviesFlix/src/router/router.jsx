@@ -14,6 +14,7 @@ import ErrorPage from '../pages/errorePage/Errorpage';
 import WatchingLate from '../pages/watchingLate/WatchingLate';
 import MoviesSingle from '../components/moviesSingle/MoviesSingle';
 import PrivetRoute from '../privetRoute/PrivetRoute';
+import UploadMovies from '../pages/uploadMovies/UploadMovies';
 
 const router = createBrowserRouter([
     {
@@ -63,6 +64,14 @@ const router = createBrowserRouter([
             {
                 path: '/login',
                 element: <Login />, // Explore come from '../pages/games/Games.jsx'
+            },
+            {
+                path: '/upload-movies',
+                element: (
+                    <PrivetRoute>
+                        <UploadMovies />
+                    </PrivetRoute>
+                ),
             },
             {
                 path: '/register',

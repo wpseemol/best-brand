@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const LoginInformation = ({ info, logOutFun }) => {
@@ -28,20 +29,25 @@ const LoginInformation = ({ info, logOutFun }) => {
     return (
         <>
             <div className="absolute z-[100] right-0 bg-gray-600/80 text-white rounded-md">
-                <div className="w-fit sm:m-5 m-2 mt-4 flex flex-col items-end sm:gap-4 gap-1">
-                    <div className="uppercase text-lg">
-                        <h2>{info?.type && info?.type}</h2>
+                <div className="w-fit sm:m-5 m-2 mt-4 ">
+                    <div className="uppercase text-lg text-center">
+                        <h2>Admin</h2>
                     </div>
-                    <ul className="sm:text-lg text-base font-medium">
-                        <li className="mt-2">{info?.displayName}</li>
-                        <li className="mt-2">{info?.email}</li>
-                    </ul>
-                    <button
-                        onClick={handalLogout}
-                        className="secondaryBtn rounded-md border border-white p-2
+                    <ul className="sm:text-lg text-base text-left font-medium flex flex-col items-end ">
+                        <li className="mt-2">
+                            <Link to="/upload-movies">Upload Movie</Link>
+                        </li>
+                        <li className="mt-1">{info?.displayName}</li>
+                        <li className="mt-1">{info?.email}</li>
+                        <li className="mt-1 mb-2">
+                            <button
+                                onClick={handalLogout}
+                                className="secondaryBtn mt-3 rounded-md border border-white px-4 py-2
                          hover:bg-slate-400 duration-150">
-                        Log Out
-                    </button>
+                                Log Out
+                            </button>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </>

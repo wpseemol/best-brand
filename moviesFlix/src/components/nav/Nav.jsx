@@ -15,6 +15,21 @@ const Nav = () => {
     const loginRegInfo = useContext(AuthContext);
     const { user, loading, logOut } = loginRegInfo || {};
 
+    const [userAdsonalData, setUserAdsonalData] = useState(null);
+
+    useEffect(() => {
+        if (!loading) {
+            axios
+                .get(`http://localhost:5000/user/${user?.uid}`)
+                .then(function (response) {
+                    setUserAdsonalData(response?.data);
+                })
+                .catch(function () {
+                    // console.log(error);
+                });
+        }
+    }, []);
+
     const [navBar, setNavBar] = useState(null);
     const [click, setClick] = useState(true);
     useEffect(() => {
@@ -95,11 +110,15 @@ const Nav = () => {
                                 <LodingIcon />
                             ) : user ? (
                                 <div className="relative duration-300 abaterImageHover">
-                                    <UserImage imgUrl={user?.photoURL} />
+                                    <UserImage
+                                        imgUrl={user?.photoURL}
+                                        usDbImg={userAdsonalData?.photoURL}
+                                    />
                                     <div className="hidden hover:block duration-300 loginInformationShow">
                                         <LoginInformation
                                             info={user}
                                             logOutFun={logOut}
+                                            userAdisonalInfo={userAdsonalData}
                                         />
                                     </div>
                                 </div>
@@ -120,11 +139,15 @@ const Nav = () => {
                             <LodingIcon />
                         ) : user ? (
                             <div className="relative duration-300 abaterImageHover">
-                                <UserImage imgUrl={user?.photoURL} />
+                                <UserImage
+                                    imgUrl={user?.photoURL}
+                                    usDbImg={userAdsonalData?.photoURL}
+                                />
                                 <div className="hidden hover:block duration-300 loginInformationShow">
                                     <LoginInformation
                                         info={user}
                                         logOutFun={logOut}
+                                        userAdisonalInfo={userAdsonalData}
                                     />
                                 </div>
                             </div>

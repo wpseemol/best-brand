@@ -1,4 +1,4 @@
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import HeadingHTwo from '../headingHTwo/HeadingHTwo';
 import Swal from 'sweetalert2';
 import axios from 'axios';
@@ -212,13 +212,16 @@ const MoviesSingle = () => {
                         <div className="text-xl font-semibold my-2">
                             <p>
                                 Subscribe Now to our newsletters and get updates
+                                <br />
                                 from Sony Pictures delivered right to your
                                 inbox.
                             </p>
                         </div>
                         <div>
                             <button className="seconderBtn border-none bg-black hover:bg-black/50 focus:bg-black/60 active:bg-black/40 rounded-none text-xl font-semibold text-white">
-                                Sign Up <br /> Now
+                                <Link to="/register">
+                                    Sign Up <br /> Now
+                                </Link>
                             </button>
                         </div>
                     </div>
