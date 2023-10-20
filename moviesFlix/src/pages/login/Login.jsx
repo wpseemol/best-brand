@@ -1,9 +1,42 @@
+import { useContext } from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../providers/AuthProvider';
 
 const Login = () => {
-    const [clickInputEmail, setClickInputEmail] = useState(false);
-    const [clickInputPass, setClickInputPass] = useState(false);
+    const loginRegInfo = useContext(AuthContext);
+    const { singIn, logInGoogle } = loginRegInfo || {};
+
+    const handaleLogin = (event) => {
+        event.preventDefault();
+        const form = event.target;
+
+        const email = form.email.value;
+
+        const password = form.password.value;
+
+        if (password.length < 6) {
+            // toast('Password less than 6 Character.');
+            return;
+        }
+        if (!/[A-Z]/.test(password)) {
+            // toast('Password must least one capital letter.');
+            return;
+        }
+        if (!/[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/.test(password)) {
+            // toast('Password must at least one special character.');
+            return;
+        }
+
+        singIn(email, password)
+            .then(() => {
+                // Login  Successful
+                console.log('Login  Successful');
+                form.reset();
+            })
+            .catch((error) => {});
+    };
+
     return (
         <>
             <section className="h-screen">
@@ -20,7 +53,9 @@ const Login = () => {
 
                         {/* Right column container */}
                         <div className="mb-12 md:mb-0 md:w-8/12 lg:w-5/12 xl:w-5/12 ">
-                            <form className="sm:px-16 lg:mr-28">
+                            <form
+                                onSubmit={handaleLogin}
+                                className="sm:px-16 lg:mr-28">
                                 {/* Sign in section */}
                                 <div className="flex flex-row items-center justify-center lg:justify-start">
                                     <p className="mb-0 mr-4 text-lg">
@@ -87,51 +122,23 @@ const Login = () => {
                                 </div>
 
                                 {/* Email input */}
-                                <div
-                                    className="relative mb-6"
-                                    data-te-input-wrapper-init>
+                                <div className="relative mb-6">
                                     <input
-                                        onFocus={() => {
-                                            setClickInputEmail(true);
-                                        }}
-                                        onBlur={() => {
-                                            setClickInputEmail(false);
-                                        }}
                                         type="text"
-                                        className="peer customInputStyle"
-                                        id="exampleFormControlInput2"
+                                        className=" customInputStyle"
                                         placeholder="Email address"
+                                        name="email"
                                     />
-                                    <label
-                                        className={`${
-                                            clickInputEmail && 'bg-white px-1'
-                                        } customLableStyle `}>
-                                        Email address
-                                    </label>
                                 </div>
 
                                 {/* Password input  */}
-                                <div
-                                    className="relative mb-6"
-                                    data-te-input-wrapper-init>
+                                <div className="relative mb-6">
                                     <input
-                                        onFocus={() => {
-                                            setClickInputPass(true);
-                                        }}
-                                        onBlur={() => {
-                                            setClickInputPass(false);
-                                        }}
                                         type="password"
                                         className=" peer customInputStyle"
-                                        id="exampleFormControlInput22"
                                         placeholder="Password"
+                                        name="password"
                                     />
-                                    <label
-                                        className={`${
-                                            clickInputPass && 'bg-white px-1'
-                                        } customLableStyle`}>
-                                        Password
-                                    </label>
                                 </div>
 
                                 <div className="mb-6 flex items-center justify-between">
@@ -154,13 +161,13 @@ const Login = () => {
 
                                 {/* Login button  */}
                                 <div className="text-center lg:text-left">
-                                    <button
-                                        type="button"
+                                    <input
+                                        type="submit"
+                                        value="Login"
                                         className="seconderBtn"
                                         data-te-ripple-init
-                                        data-te-ripple-color="light">
-                                        Login
-                                    </button>
+                                        data-te-ripple-color="light"
+                                    />
 
                                     {/* Register link */}
                                     <p className="mb-0 mt-2 pt-1 text-sm font-semibold">

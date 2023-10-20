@@ -4,8 +4,18 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { Link, NavLink } from 'react-router-dom';
 import TogolIcon from '../togolIcon/TogolIcon';
+import { useContext } from 'react';
+import { AuthContext } from '../../providers/AuthProvider';
+import LodingIcon from '../LodingIcon/LodingIcon';
+import UserImage from '../userImage/UserImage';
+import '../../assets/css/hover.css';
+import LoginInformation from '../loginInformation/LoginInformation';
 
 const Nav = () => {
+    const loginRegInfo = useContext(AuthContext);
+    const { user, loading, logOut } = loginRegInfo || {};
+    console.log(user);
+
     const [navBar, setNavBar] = useState(null);
     const [click, setClick] = useState(true);
     useEffect(() => {
@@ -80,24 +90,50 @@ const Nav = () => {
                                 );
                             })}
 
-                            <li
-                                data-aos="zoom-in-left"
-                                className="primaryBtn bg-primaryColor sm:w-[6rem] w-fit text-center hidden lg:block ml-16 mt-2">
-                                <NavLink to="/login">
-                                    <span>Sign In</span>
-                                </NavLink>
-                            </li>
+                            {loading ? (
+                                <LodingIcon />
+                            ) : user ? (
+                                <div className="relative duration-300 abaterImageHover">
+                                    <UserImage imgUrl={user?.photoURL} />
+                                    <div className="hidden hover:block duration-300 loginInformationShow">
+                                        <LoginInformation
+                                            info={user}
+                                            logOutFun={logOut}
+                                        />
+                                    </div>
+                                </div>
+                            ) : (
+                                <li className="primaryBtn bg-primaryColor w-[6rem] text-center">
+                                    <NavLink to="/login">
+                                        <span>Sign In</span>
+                                    </NavLink>
+                                </li>
+                            )}
                         </div>
                     </ul>
                 </div>
 
                 <div className="lg:hidden" data-aos="zoom-in-left">
                     <ul className="relative lg:block text-xl font-bold text-white">
-                        <li className="primaryBtn bg-primaryColor w-[6rem] text-center">
-                            <NavLink to="/login">
-                                <span>Sign In</span>
-                            </NavLink>
-                        </li>
+                        {loading ? (
+                            <LodingIcon />
+                        ) : user ? (
+                            <div className="relative duration-300 abaterImageHover">
+                                <UserImage imgUrl={user?.photoURL} />
+                                <div className="hidden hover:block duration-300 loginInformationShow">
+                                    <LoginInformation
+                                        info={user}
+                                        logOutFun={logOut}
+                                    />
+                                </div>
+                            </div>
+                        ) : (
+                            <li className="primaryBtn bg-primaryColor w-[6rem] text-center">
+                                <NavLink to="/login">
+                                    <span>Sign In</span>
+                                </NavLink>
+                            </li>
+                        )}
                     </ul>
                 </div>
             </section>

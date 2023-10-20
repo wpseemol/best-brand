@@ -1,11 +1,43 @@
+import { useContext } from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../providers/AuthProvider';
 
 const Register = () => {
-    const [clickInputEmail, setClickInputEmail] = useState(false);
-    const [clickInputPass, setClickInputPass] = useState(false);
-    const [clickInputName, setClickInputName] = useState(false);
-    const [clickInputPhone, setClickInputPhone] = useState(false);
+    const loginRegInfo = useContext(AuthContext);
+    const { singUp } = loginRegInfo || {};
+
+    // register function call
+    const handaleRegister = (event) => {
+        event.preventDefault();
+        const form = event.target;
+        const name = form.name.value;
+        const email = form.email.value;
+        const phone = form.phone.value;
+        const password = form.password.value;
+
+        if (password.length < 6) {
+            // toast('Password less than 6 Character.');
+            return;
+        }
+        if (!/[A-Z]/.test(password)) {
+            // toast('Password must least one capital letter.');
+            return;
+        }
+        if (!/[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/.test(password)) {
+            // toast('Password must at least one special character.');
+            return;
+        }
+
+        singUp(email, password)
+            .then(() => {
+                // Signed up Successful
+                console.log('Signed up Successful');
+                form.reset();
+            })
+            .catch((error) => {});
+    };
+
     return (
         <>
             <section className="h-screen">
@@ -22,7 +54,9 @@ const Register = () => {
 
                         {/* Right column container */}
                         <div className="mb-12 md:mb-0 md:w-8/12 lg:w-5/12 xl:w-5/12 ">
-                            <form className="sm:px-16 lg:ml-28">
+                            <form
+                                onSubmit={handaleRegister}
+                                className="sm:px-16 lg:ml-28">
                                 {/* Sign in section */}
                                 <div className="flex flex-row items-center justify-center lg:justify-start">
                                     <p className="mb-0 mr-4 text-lg">
@@ -98,46 +132,23 @@ const Register = () => {
                                     className="relative mb-6"
                                     data-te-input-wrapper-init>
                                     <input
-                                        onFocus={() => {
-                                            setClickInputName(true);
-                                        }}
-                                        onBlur={() => {
-                                            setClickInputName(false);
-                                        }}
                                         type="text"
                                         className="peer customInputStyle"
-                                        id="exampleFormControlInput2"
-                                        placeholder="Email address"
+                                        placeholder="Full Name"
+                                        name="name"
                                     />
-                                    <label
-                                        className={`${
-                                            clickInputName && 'bg-white px-1'
-                                        } customLableStyle `}>
-                                        Full Name
-                                    </label>
                                 </div>
                                 {/* Email input */}
                                 <div
                                     className="relative mb-6"
                                     data-te-input-wrapper-init>
                                     <input
-                                        onFocus={() => {
-                                            setClickInputEmail(true);
-                                        }}
-                                        onBlur={() => {
-                                            setClickInputEmail(false);
-                                        }}
                                         type="text"
                                         className="peer customInputStyle"
-                                        id="exampleFormControlInput2"
                                         placeholder="Email address"
+                                        name="email"
+                                        required
                                     />
-                                    <label
-                                        className={`${
-                                            clickInputEmail && 'bg-white px-1'
-                                        } customLableStyle `}>
-                                        Email address
-                                    </label>
                                 </div>
 
                                 {/* phon number  */}
@@ -145,23 +156,11 @@ const Register = () => {
                                     className="relative mb-6"
                                     data-te-input-wrapper-init>
                                     <input
-                                        onFocus={() => {
-                                            setClickInputPhone(true);
-                                        }}
-                                        onBlur={() => {
-                                            setClickInputPhone(false);
-                                        }}
                                         type="text"
                                         className="peer customInputStyle"
-                                        id="exampleFormControlInput2"
-                                        placeholder="Email address"
+                                        placeholder="Phone Number"
+                                        name="phone"
                                     />
-                                    <label
-                                        className={`${
-                                            clickInputPhone && 'bg-white px-1'
-                                        } customLableStyle `}>
-                                        Phone Number
-                                    </label>
                                 </div>
 
                                 {/* Password input  */}
@@ -169,23 +168,13 @@ const Register = () => {
                                     className="relative mb-6"
                                     data-te-input-wrapper-init>
                                     <input
-                                        onFocus={() => {
-                                            setClickInputPass(true);
-                                        }}
-                                        onBlur={() => {
-                                            setClickInputPass(false);
-                                        }}
                                         type="password"
                                         className=" peer customInputStyle"
                                         id="exampleFormControlInput22"
                                         placeholder="Password"
+                                        name="password"
+                                        required
                                     />
-                                    <label
-                                        className={`${
-                                            clickInputPass && 'bg-white px-1'
-                                        } customLableStyle`}>
-                                        Password
-                                    </label>
                                 </div>
 
                                 <div className="mb-6 flex items-center justify-between">
@@ -208,13 +197,13 @@ const Register = () => {
 
                                 {/* Login button  */}
                                 <div className="text-center lg:text-left">
-                                    <button
-                                        type="button"
+                                    <input
+                                        type="submit"
+                                        value="Register"
                                         className="seconderBtn"
                                         data-te-ripple-init
-                                        data-te-ripple-color="light">
-                                        Register
-                                    </button>
+                                        data-te-ripple-color="light"
+                                    />
 
                                     {/* Register link */}
                                     <p className="mb-0 mt-2 pt-1 text-sm font-semibold">
