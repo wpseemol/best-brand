@@ -41,6 +41,7 @@ async function run() {
         const popularShow = moviesFlixDb.collection('popularShow');
         const trailerVideo = moviesFlixDb.collection('trailerVideo');
         const movies = moviesFlixDb.collection('movies');
+        const watchingLate = moviesFlixDb.collection('watchingLate');
         const user = moviesFlixDb.collection('user');
         const careerOpportunities = moviesFlixDb.collection(
             'careerOpportunities'
@@ -90,6 +91,12 @@ async function run() {
             const result = await errorPageCursor.toArray();
             response.send(result);
         });
+        app.get('/watching-late', async (request, response) => {
+            const cursorWatchingLate = watchingLate.find();
+
+            const result = await cursorWatchingLate.toArray();
+            response.send(result);
+        });
         app.get('/top-collection-movies', async (request, response) => {
             const topCollectionMovies = homeHeroBanar.find();
 
@@ -116,6 +123,13 @@ async function run() {
             const moviesFlix = request.body;
 
             const result = await icon.insertOne(moviesFlix);
+            response.send(result);
+        });
+
+        app.post('/watching-late', async (request, response) => {
+            const moviesFlix = request.body;
+
+            const result = await watchingLate.insertOne(moviesFlix);
             response.send(result);
         });
         app.post('/navbar', async (request, response) => {
@@ -186,6 +200,16 @@ async function run() {
             };
 
             const result = await user.updateOne(filter, updatData);
+            response.send(result);
+        });
+
+        app.delete('/watching-late/:id', async (request, response) => {
+            const id = request.params.id;
+            const query = {
+                wlId: id,
+            };
+
+            const result = await watchingLate.deleteOne(query);
             response.send(result);
         });
     } finally {
