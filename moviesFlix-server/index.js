@@ -83,13 +83,7 @@ async function run() {
             const resultMovies = await cursorMovies.toArray();
             response.send(resultMovies);
         });
-        app.get('/user', async (request, response) => {
-            const query = { email: 'seemol.contact@gmail.com' };
-            const options = { upsert: true };
-            const resultUser = user.findOne(query, options);
 
-            response.send(resultUser);
-        });
         app.get('/error', async (request, response) => {
             const errorPageCursor = errorPage.find();
 
