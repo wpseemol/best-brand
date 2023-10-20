@@ -117,6 +117,16 @@ async function run() {
 
             response.send(resultMovies);
         });
+        // single user
+        app.get('/user/:id', async (request, response) => {
+            const id = request.params.id;
+            const query = {
+                uid: id,
+            };
+            resultMovies = await user.findOne(query);
+
+            response.send(resultMovies);
+        });
 
         // data post
         app.post('/data', async (request, response) => {
