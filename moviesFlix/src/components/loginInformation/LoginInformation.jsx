@@ -23,7 +23,8 @@ const LoginInformation = ({ info, logOutFun }) => {
                     </ul>
                     <button
                         onClick={handalLogout}
-                        className="secondaryBtn rounded-md border border-white p-2 hover:bg-slate-400 duration-150">
+                        className="secondaryBtn rounded-md border border-white p-2
+                         hover:bg-slate-400 duration-150">
                         Log Out
                     </button>
                 </div>

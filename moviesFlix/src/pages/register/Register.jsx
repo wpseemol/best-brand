@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
+import axios from 'axios';
 
 const Register = () => {
     const loginRegInfo = useContext(AuthContext);
@@ -30,9 +31,24 @@ const Register = () => {
         }
 
         singUp(email, password)
-            .then(() => {
+            .then((userCredential) => {
+                const user = userCredential.user;
                 // Signed up Successful
                 console.log('Signed up Successful');
+                axios
+                    .post('http://localhost:5000/user', {
+                        name: name,
+                        phone: phone,
+                        email: user?.email,
+                        createAt: user?.metadata?.creationTime,
+                        uid: user?.uid,
+                    })
+                    .then(function (response) {
+                        console.log(response.status);
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
                 form.reset();
             })
             .catch((error) => {});

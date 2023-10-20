@@ -32,6 +32,9 @@ const router = createBrowserRouter([
             {
                 path: '/movies',
                 element: <Movies />, // Explore come from '../pages/movies/Movies.jsx'
+                loader: () => {
+                    return axios.get('http://localhost:5000/movies');
+                },
             },
             {
                 path: '/games',

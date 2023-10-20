@@ -29,9 +29,24 @@ const Login = () => {
         }
 
         singIn(email, password)
-            .then(() => {
-                // Login  Successful
-                console.log('Login  Successful');
+            .then((userCredential) => {
+                const user = {
+                    email,
+                    lastLoggedAt: userCredential.user?.metadata?.lastSignInTim,
+                };
+
+                fetch('http://localhost:5000/user', {
+                    method: 'PATCH',
+                    headers: {
+                        'content-type': 'application/json',
+                    },
+                    body: JSON.stringify(user),
+                })
+                    .then((res) => res.json())
+                    .then((data) => {
+                        console.log(data);
+                    });
+
                 form.reset();
             })
             .catch((error) => {});
