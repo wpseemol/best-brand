@@ -2,7 +2,6 @@ import { createBrowserRouter } from 'react-router-dom';
 import Root from '../root/Root';
 import Home from '../pages/home/Home';
 import axios from 'axios';
-import Explore from '../pages/explore/Explore';
 import Movies from '../pages/movies/Movies';
 import Games from '../pages/games/Games';
 import Careers from '../pages/careers/Careers';
@@ -11,6 +10,8 @@ import AboutUs from '../pages/aboutUs/AboutUs';
 import Login from '../pages/login/Login';
 import Register from '../pages/register/Register';
 import ErrorPage from '../pages/errorePage/Errorpage';
+import WatchingLate from '../pages/watchingLate/WatchingLate';
+import MoviesSingle from '../components/moviesSingle/MoviesSingle';
 
 const router = createBrowserRouter([
     {
@@ -25,10 +26,7 @@ const router = createBrowserRouter([
                     return axios.get('http://localhost:5000/home');
                 },
             },
-            {
-                path: '/explore',
-                element: <Explore />, // Explore come from '../pages/explore/Explore.jsx'
-            },
+
             {
                 path: '/movies',
                 element: <Movies />, // Explore come from '../pages/movies/Movies.jsx'
@@ -37,8 +35,24 @@ const router = createBrowserRouter([
                 },
             },
             {
+                path: '/movies/:id',
+                element: <MoviesSingle />,
+                loader: ({ params }) => {
+                    return axios.get(
+                        `http://localhost:5000/movies/${params.id}`
+                    );
+                },
+            },
+            {
                 path: '/games',
                 element: <Games />, // Explore come from '../pages/games/Games.jsx'
+            },
+            {
+                path: '/watching-late',
+                element: <WatchingLate />, // Explore come from ''
+                loader: () => {
+                    return axios.get('http://localhost:5000/movies');
+                },
             },
             {
                 path: '/login',

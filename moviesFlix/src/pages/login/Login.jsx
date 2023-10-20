@@ -1,7 +1,7 @@
 import { useContext } from 'react';
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
+import Swal from 'sweetalert2';
 
 const Login = () => {
     const loginRegInfo = useContext(AuthContext);
@@ -16,15 +16,30 @@ const Login = () => {
         const password = form.password.value;
 
         if (password.length < 6) {
-            // toast('Password less than 6 Character.');
+            Swal.fire({
+                title: 'Error!',
+                text: 'Password less than 6 Character.',
+                icon: 'error',
+                confirmButtonText: 'Okay',
+            });
             return;
         }
         if (!/[A-Z]/.test(password)) {
-            // toast('Password must least one capital letter.');
+            Swal.fire({
+                title: 'Error!',
+                text: 'Password must least one capital letter.',
+                icon: 'error',
+                confirmButtonText: 'Okay',
+            });
             return;
         }
         if (!/[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/.test(password)) {
-            // toast('Password must at least one special character.');
+            Swal.fire({
+                title: 'Error!',
+                text: 'Password must have special character',
+                icon: 'error',
+                confirmButtonText: 'Okay',
+            });
             return;
         }
 
@@ -43,13 +58,25 @@ const Login = () => {
                     body: JSON.stringify(user),
                 })
                     .then((res) => res.json())
-                    .then((data) => {
-                        console.log(data);
+                    .then(() => {
+                        Swal.fire({
+                            title: 'Successful',
+                            text: 'Log out Successful',
+                            icon: 'success',
+                            confirmButtonText: 'Okay',
+                        });
                     });
 
                 form.reset();
             })
-            .catch((error) => {});
+            .catch((error) => {
+                Swal.fire({
+                    title: 'Error!',
+                    text: error,
+                    icon: 'error',
+                    confirmButtonText: 'Okay',
+                });
+            });
     };
 
     return (

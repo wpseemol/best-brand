@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import Swal from 'sweetalert2';
 
 const LoginInformation = ({ info, logOutFun }) => {
     const handalLogout = () => {
@@ -6,10 +7,21 @@ const LoginInformation = ({ info, logOutFun }) => {
             .then(() => {
                 // Sign-out successful.
 
-                console.log('Log out Successful');
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Log out Successful',
+                    icon: 'success',
+                    confirmButtonText: 'Okay',
+                });
             })
-            .catch(() => {
+            .catch((error) => {
                 // An error happened.
+                Swal.fire({
+                    title: 'Error!',
+                    text: error,
+                    icon: 'error',
+                    confirmButtonText: 'Okay',
+                });
             });
     };
 

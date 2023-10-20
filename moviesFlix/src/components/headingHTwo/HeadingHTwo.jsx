@@ -12,7 +12,7 @@ const HeadingHTwo = ({ hTwo }) => {
             {/* title here */}
             <h2
                 data-aos="flip-left"
-                className="xl:text-5xl md:text-4xl text-2xl font-bold
+                className="xl:text-5xl md:text-4xl text-2xl py-1 font-bold
             ">
                 {hTwo}
             </h2>

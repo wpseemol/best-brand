@@ -1,6 +1,7 @@
 import { useContext } from 'react';
-import { useState } from 'react';
+import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
+
 import { AuthContext } from '../../providers/AuthProvider';
 import axios from 'axios';
 
@@ -18,15 +19,30 @@ const Register = () => {
         const password = form.password.value;
 
         if (password.length < 6) {
-            // toast('Password less than 6 Character.');
+            Swal.fire({
+                title: 'Error!',
+                text: 'Password less than 6 Character.',
+                icon: 'error',
+                confirmButtonText: 'Okay',
+            });
             return;
         }
         if (!/[A-Z]/.test(password)) {
-            // toast('Password must least one capital letter.');
+            Swal.fire({
+                title: 'Error!',
+                text: 'Password must least one capital letter.',
+                icon: 'error',
+                confirmButtonText: 'Okay',
+            });
             return;
         }
         if (!/[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/.test(password)) {
-            // toast('Password must at least one special character.');
+            Swal.fire({
+                title: 'Error!',
+                text: 'Password must have special character',
+                icon: 'error',
+                confirmButtonText: 'Okay',
+            });
             return;
         }
 
@@ -34,7 +50,7 @@ const Register = () => {
             .then((userCredential) => {
                 const user = userCredential.user;
                 // Signed up Successful
-                console.log('Signed up Successful');
+
                 axios
                     .post('http://localhost:5000/user', {
                         name: name,
@@ -43,11 +59,21 @@ const Register = () => {
                         createAt: user?.metadata?.creationTime,
                         uid: user?.uid,
                     })
-                    .then(function (response) {
-                        console.log(response.status);
+                    .then(function () {
+                        Swal.fire({
+                            title: 'Successful!',
+                            text: 'Signed up Successful',
+                            icon: 'success',
+                            confirmButtonText: 'Okay',
+                        });
                     })
                     .catch(function (error) {
-                        console.log(error);
+                        Swal.fire({
+                            title: 'Error!',
+                            text: error,
+                            icon: 'error',
+                            confirmButtonText: 'Okay',
+                        });
                     });
                 form.reset();
             })

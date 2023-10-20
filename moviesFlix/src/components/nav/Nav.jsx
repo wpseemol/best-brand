@@ -14,7 +14,6 @@ import LoginInformation from '../loginInformation/LoginInformation';
 const Nav = () => {
     const loginRegInfo = useContext(AuthContext);
     const { user, loading, logOut } = loginRegInfo || {};
-    console.log(user);
 
     const [navBar, setNavBar] = useState(null);
     const [click, setClick] = useState(true);
