@@ -27,7 +27,7 @@ const Nav = () => {
             .then(function (response) {
                 setNavBar(response?.data);
             })
-            .catch(function (error) {
+            .catch(function () {
                 // console.log(error);
             });
     }, []);
@@ -83,7 +83,9 @@ const Nav = () => {
                                                     : isActive
                                                     ? 'active'
                                                     : ''}`}>
-                                            {element.nav}
+                                            {element.nav === 'Watching Late'
+                                                ? user && 'Watching Late'
+                                                : element.nav}
                                         </NavLink>{' '}
                                     </li>
                                 );

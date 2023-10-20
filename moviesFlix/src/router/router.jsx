@@ -8,10 +8,12 @@ import Careers from '../pages/careers/Careers';
 import WhoWeAre from '../pages/whoWeAre/WhoWeAre';
 import AboutUs from '../pages/aboutUs/AboutUs';
 import Login from '../pages/login/Login';
+
 import Register from '../pages/register/Register';
 import ErrorPage from '../pages/errorePage/Errorpage';
 import WatchingLate from '../pages/watchingLate/WatchingLate';
 import MoviesSingle from '../components/moviesSingle/MoviesSingle';
+import PrivetRoute from '../privetRoute/PrivetRoute';
 
 const router = createBrowserRouter([
     {
@@ -49,7 +51,11 @@ const router = createBrowserRouter([
             },
             {
                 path: '/watching-late',
-                element: <WatchingLate />, // Explore come from ''
+                element: (
+                    <PrivetRoute>
+                        <WatchingLate />
+                    </PrivetRoute>
+                ), // Explore come from ''
                 loader: () => {
                     return axios.get('http://localhost:5000/movies');
                 },

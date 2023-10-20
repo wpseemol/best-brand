@@ -16,6 +16,8 @@ const Register = () => {
         const name = form.name.value;
         const email = form.email.value;
         const phone = form.phone.value;
+        const photoURL = form.photoURL.value;
+        const adminVlid = form.adminVlid.value;
         const password = form.password.value;
 
         if (password.length < 6) {
@@ -58,6 +60,8 @@ const Register = () => {
                         email: user?.email,
                         createAt: user?.metadata?.creationTime,
                         uid: user?.uid,
+                        photoURL: photoURL,
+                        type: adminVlid === 'admin' ? 'admin' : null,
                     })
                     .then(function () {
                         Swal.fire({
@@ -77,7 +81,14 @@ const Register = () => {
                     });
                 form.reset();
             })
-            .catch((error) => {});
+            .catch((error) => {
+                Swal.fire({
+                    title: 'Error!',
+                    text: error,
+                    icon: 'error',
+                    confirmButtonText: 'Okay',
+                });
+            });
     };
 
     return (
@@ -202,6 +213,28 @@ const Register = () => {
                                         className="peer customInputStyle"
                                         placeholder="Phone Number"
                                         name="phone"
+                                    />
+                                </div>
+                                {/* imgUrl  */}
+                                <div
+                                    className="relative mb-6"
+                                    data-te-input-wrapper-init>
+                                    <input
+                                        type="text"
+                                        className="peer customInputStyle"
+                                        placeholder="Image Url"
+                                        name="photoURL"
+                                    />
+                                </div>
+                                {/* imgUrl  */}
+                                <div
+                                    className="relative mb-6"
+                                    data-te-input-wrapper-init>
+                                    <input
+                                        type="text"
+                                        className="peer customInputStyle"
+                                        placeholder="Admin Validation code"
+                                        name="adminVlid"
                                     />
                                 </div>
 

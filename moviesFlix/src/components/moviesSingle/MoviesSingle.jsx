@@ -22,6 +22,7 @@ const MoviesSingle = () => {
     } = data || {};
 
     const [isMatchData, setIsMatchData] = useState(null);
+    const [btnDisable, setBtnDisable] = useState(false);
 
     useEffect(() => {
         axios
@@ -102,18 +103,16 @@ const MoviesSingle = () => {
                                 <p>Available Now on MoviesFlix</p>
                             </div>
                         </div>
-                        <div className="flex sm:flex-row flex-col sm:gap-4 gap-1 items-center">
-                            <div className="">
-                                {' '}
-                                <button className="seconderBtn bg-primaryColor/40 sm:py-3 sm:px-4 sm:p-0 p-2 text-white font-bold">
-                                    Watch Trailer{' '}
-                                </button>{' '}
-                            </div>
+                        <div className="">
                             <div>
                                 {' '}
                                 <button
-                                    onClick={hundalWasingLate}
-                                    className="seconderBtn bg-primaryColor/40 sm:py-3 sm:px-4 sm:p-0 p-2 text-white font-bold">
+                                    onClick={() => {
+                                        hundalWasingLate();
+                                        setBtnDisable(true);
+                                    }}
+                                    disabled={btnDisable}
+                                    className="seconderBtn disabled:bg-red-700/75 bg-primaryColor/40 sm:py-3 sm:px-4 sm:p-0 p-2 text-white font-bold">
                                     Watching Late{' '}
                                 </button>{' '}
                             </div>
@@ -143,18 +142,16 @@ const MoviesSingle = () => {
                             <div className="text-center text-xl font-bold mt-6">
                                 <p>{comingSoon} </p>
                             </div>
-                            <div className="flex  flex-col sm:gap-4 gap-1 items-center ">
-                                <div className="">
-                                    {' '}
-                                    <button className="seconderBtn bg-primaryColor hover:bg-primaryColor/80 sm:py-3 sm:px-4 sm:p-0 p-2 text-white font-bold">
-                                        Watch Trailer{' '}
-                                    </button>{' '}
-                                </div>
+                            <div className="">
                                 <div>
                                     {' '}
                                     <button
-                                        onClick={hundalWasingLate}
-                                        className="seconderBtn bg-primaryColor hover:bg-primaryColor/80 sm:py-3 sm:px-4 sm:p-0 p-2 text-white font-bold">
+                                        onClick={() => {
+                                            hundalWasingLate();
+                                            setBtnDisable(true);
+                                        }}
+                                        disabled={btnDisable}
+                                        className="seconderBtn bg-primaryColor hover:bg-primaryColor/80 sm:py-3 sm:px-4 sm:p-0 p-2 disabled:bg-red-700/75 text-white font-bold">
                                         Watching Late{' '}
                                     </button>{' '}
                                 </div>

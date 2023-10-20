@@ -93,9 +93,7 @@ const HeroSlider = ({ children }) => {
                 })}
             </Swiper>
 
-            <div className="fixed top-1 z-50 w-full overflow-hidden">
-                {children}
-            </div>
+            <div className="fixed top-1 z-40 w-full ">{children}</div>
         </>
     );
 };

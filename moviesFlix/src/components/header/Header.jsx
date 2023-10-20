@@ -14,8 +14,9 @@ const Header = () => {
                     </nav>
                 </HeroSlider>
             ) : (
-                <nav>
-                    <Nav /> {/* Nav come from '../components/nav/Nav'  */}
+                <nav className="fixed top-1 z-40 w-full ">
+                    <Nav />{' '}
+                    {/* Nav come from '../components/nav/Nav' <div className="fixed top-1 z-40 w-full ">  */}
                 </nav>
             )}
         </>

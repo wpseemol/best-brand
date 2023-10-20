@@ -27,8 +27,11 @@ const LoginInformation = ({ info, logOutFun }) => {
 
     return (
         <>
-            <div className="absolute right-0 bg-gray-600/80 text-white rounded-md">
+            <div className="absolute z-[100] right-0 bg-gray-600/80 text-white rounded-md">
                 <div className="w-fit sm:m-5 m-2 mt-4 flex flex-col items-end sm:gap-4 gap-1">
+                    <div className="uppercase text-lg">
+                        <h2>{info?.type && info?.type}</h2>
+                    </div>
                     <ul className="sm:text-lg text-base font-medium">
                         <li className="mt-2">{info?.displayName}</li>
                         <li className="mt-2">{info?.email}</li>

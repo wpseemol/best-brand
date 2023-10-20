@@ -1,11 +1,15 @@
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
 import Swal from 'sweetalert2';
 
 const Login = () => {
     const loginRegInfo = useContext(AuthContext);
     const { singIn, logInGoogle } = loginRegInfo || {};
+
+    const location = useLocation();
+
+    const navigate = useNavigate();
 
     const handaleLogin = (event) => {
         event.preventDefault();
@@ -61,12 +65,12 @@ const Login = () => {
                     .then(() => {
                         Swal.fire({
                             title: 'Successful',
-                            text: 'Log out Successful',
+                            text: 'Log in Successful',
                             icon: 'success',
                             confirmButtonText: 'Okay',
                         });
                     });
-
+                location?.state ? navigate(location?.state) : navigate('/');
                 form.reset();
             })
             .catch((error) => {

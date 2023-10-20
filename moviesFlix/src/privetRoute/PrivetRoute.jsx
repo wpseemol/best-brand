@@ -1,5 +1,5 @@
-import { useContext } from 'react';
 import PropTypes from 'prop-types';
+import { useContext } from 'react';
 import { AuthContext } from '../providers/AuthProvider';
 import { Navigate, useLocation } from 'react-router-dom';
 import Loading from '../components/loading/Loading';
@@ -17,7 +17,7 @@ const PrivetRoute = ({ children }) => {
         return children;
     }
 
-    return <Navigate state={location.pathname} to="/account" />;
+    return <Navigate state={location.pathname} to="/login" />;
 };
 
 export default PrivetRoute;
