@@ -12,7 +12,7 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 //come from dotenv.
 const uri = `mongodb+srv://${process.env.DB_NAME}:${process.env.DB_PASSWORD}@cluster0.s0x7bvc.mongodb.net/?retryWrites=true&w=majority`;
 
@@ -41,6 +41,7 @@ async function run() {
         const popularShow = moviesFlixDb.collection('popularShow');
         const trailerVideo = moviesFlixDb.collection('trailerVideo');
         const movies = moviesFlixDb.collection('movies');
+        const user = moviesFlixDb.collection('user');
         const careerOpportunities = moviesFlixDb.collection(
             'careerOpportunities'
         );
@@ -82,6 +83,13 @@ async function run() {
             const resultMovies = await cursorMovies.toArray();
             response.send(resultMovies);
         });
+        app.get('/user', async (request, response) => {
+            const query = { email: 'seemol.contact@gmail.com' };
+            const options = { upsert: true };
+            const resultUser = user.findOne(query, options);
+
+            response.send(resultUser);
+        });
         app.get('/error', async (request, response) => {
             const errorPageCursor = errorPage.find();
 
@@ -96,6 +104,17 @@ async function run() {
         });
         app.get('/', async (request, response) => {
             response.send('Welcome to my Server...');
+        });
+
+        // single movie
+        app.get('/movies/:id', async (request, response) => {
+            const id = request.params.id;
+            const query = {
+                _id: new ObjectId(id),
+            };
+            resultMovies = await movies.findOne(query);
+
+            response.send(resultMovies);
         });
 
         // data post
@@ -142,16 +161,37 @@ async function run() {
             const result = await popularShow.insertOne(moviesFlix);
             response.send(result);
         });
-        app.post('/trailer-video', async (request, response) => {
+        app.post('/videos', async (request, response) => {
             const moviesFlix = request.body;
 
             const result = await trailerVideo.insertOne(moviesFlix);
             response.send(result);
         });
-        app.post('/post-movies', async (request, response) => {
+        app.post('/movies', async (request, response) => {
             const moviesFlix = request.body;
 
             const result = await movies.insertOne(moviesFlix);
+            response.send(result);
+        });
+        app.post('/user', async (request, response) => {
+            const moviesFlix = request.body;
+
+            const result = await user.insertOne(moviesFlix);
+            response.send(result);
+        });
+        app.patch('/user', async (request, response) => {
+            const moviesFlix = request.body;
+            const filter = {
+                email: moviesFlix.email,
+            };
+
+            const updatData = {
+                $set: {
+                    lastLoggedAt: user.lastLoggedAt,
+                },
+            };
+
+            const result = await user.updateOne(filter, updatData);
             response.send(result);
         });
     } finally {
