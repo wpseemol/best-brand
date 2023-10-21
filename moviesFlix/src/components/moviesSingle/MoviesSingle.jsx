@@ -173,31 +173,44 @@ const MoviesSingle = () => {
                                     <p>{description}</p>
                                 </div>
                                 <br />
-                                <div>
-                                    <h2 className="text-2xl font-bold">
-                                        DIRECTED BY
-                                    </h2>
-                                    <p>{storyBy}</p>
-                                </div>
+                                {storyBy && (
+                                    <div>
+                                        <h2 className="text-2xl font-bold">
+                                            DIRECTED BY
+                                        </h2>
+                                        <p>{storyBy}</p>
+                                    </div>
+                                )}
+
                                 <br />
-                                <div>
-                                    <h2 className="text-2xl font-bold">
-                                        PRODUCED BY
-                                    </h2>
-                                    <p>{producedBy}</p>
-                                </div>
+                                {producedBy && (
+                                    <div>
+                                        <h2 className="text-2xl font-bold">
+                                            PRODUCED BY
+                                        </h2>
+                                        <p>{producedBy}</p>
+                                    </div>
+                                )}
+
                                 <br />
-                                <div>
-                                    <h2 className="text-2xl font-bold">
-                                        EXECUTIVE PRODUCERS
-                                    </h2>
-                                    <p>{executiveProducers}</p>
-                                </div>
+                                {executiveProducers && (
+                                    <div>
+                                        <h2 className="text-2xl font-bold">
+                                            EXECUTIVE PRODUCERS
+                                        </h2>
+                                        <p>{executiveProducers}</p>
+                                    </div>
+                                )}
+
                                 <br />
-                                <div>
-                                    <h2 className="text-2xl font-bold">CAST</h2>
-                                    <p>{cast}</p>
-                                </div>
+                                {cast && (
+                                    <div>
+                                        <h2 className="text-2xl font-bold">
+                                            CAST
+                                        </h2>
+                                        <p>{cast}</p>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>
