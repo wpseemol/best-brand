@@ -30,7 +30,7 @@ const UploadMovies = () => {
         const storyBy = from.storyBy.value;
 
         axios
-            .post('http://localhost:5000/movies', {
+            .post('https://movies-flix-server.vercel.app/movies', {
                 name: movieName,
                 type: 'BIOGRAPHICAL DRAMA',
                 comingSoon: shortDis ? shortDis : demoShortDis,

@@ -23,7 +23,7 @@ const Nav = () => {
         });
 
         axios
-            .get('http://localhost:5000/header')
+            .get('https://movies-flix-server.vercel.app/header')
             .then(function (response) {
                 setNavBar(response?.data);
             })

@@ -54,7 +54,7 @@ const Login = () => {
                     lastLoggedAt: userCredential.user?.metadata?.lastSignInTim,
                 };
 
-                fetch('http://localhost:5000/user', {
+                fetch('https://movies-flix-server.vercel.app/user', {
                     method: 'PATCH',
                     headers: {
                         'content-type': 'application/json',

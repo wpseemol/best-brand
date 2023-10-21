@@ -10,7 +10,7 @@ const WatchingLate = () => {
 
     useEffect(() => {
         axios
-            .get('http://localhost:5000/watching-late')
+            .get('https://movies-flix-server.vercel.app/watching-late')
             .then(function (response) {
                 const { data } = response;
                 setWatchingLateData(data);
@@ -43,7 +43,9 @@ const WatchingLate = () => {
                 });
 
                 axios
-                    .delete(`http://localhost:5000/watching-late/${id}`)
+                    .delete(
+                        `https://movies-flix-server.vercel.app/watching-late/${id}`
+                    )
                     .then(() => {
                         Swal.fire(
                             'Deleted!',

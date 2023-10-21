@@ -17,7 +17,7 @@ const HeroSlider = ({ children }) => {
         });
 
         axios
-            .get('http://localhost:5000/top-collection-movies')
+            .get('https://movies-flix-server.vercel.app/top-collection-movies')
             .then(function (response) {
                 setHomeBanner(response?.data);
             })

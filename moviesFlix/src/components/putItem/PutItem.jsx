@@ -24,9 +24,12 @@ const PutItem = ({ allData, clickText, popupClose }) => {
         console.log(filteredObject);
 
         axios
-            .put(`http://localhost:5000/movies/${allData._id}`, {
-                filteredObject,
-            })
+            .put(
+                `https://movies-flix-server.vercel.app/movies/${allData._id}`,
+                {
+                    filteredObject,
+                }
+            )
             .then(function () {
                 Swal.fire({
                     title: 'Done!',

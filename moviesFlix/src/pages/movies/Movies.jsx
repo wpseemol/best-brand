@@ -28,7 +28,7 @@ const Movies = () => {
     const [data, setData] = useState([]);
     useEffect(() => {
         axios
-            .get('http://localhost:5000/movies')
+            .get('https://movies-flix-server.vercel.app/movies')
             .then(function (response) {
                 setData(response.data);
             })
@@ -68,7 +68,9 @@ const Movies = () => {
                 });
 
                 axios
-                    .delete(`http://localhost:5000/movies/${id}`)
+                    .delete(
+                        `https://movies-flix-server.vercel.app/movies/${id}`
+                    )
                     .then(() => {
                         Swal.fire(
                             'Deleted!',

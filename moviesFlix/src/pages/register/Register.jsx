@@ -54,7 +54,7 @@ const Register = () => {
                 // Signed up Successful
 
                 axios
-                    .post('http://localhost:5000/user', {
+                    .post('https://movies-flix-server.vercel.app/user', {
                         name: name,
                         phone: phone,
                         email: user?.email,

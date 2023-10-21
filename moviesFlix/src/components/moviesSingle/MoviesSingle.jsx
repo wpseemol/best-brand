@@ -56,7 +56,7 @@ const MoviesSingle = () => {
 
     useEffect(() => {
         axios
-            .get('http://localhost:5000/watching-late')
+            .get('https://movies-flix-server.vercel.app/watching-late')
             .then(function (response) {
                 const { data } = response;
                 const isMatch = data.find((element) => {
@@ -86,7 +86,7 @@ const MoviesSingle = () => {
             });
         } else {
             axios
-                .post('http://localhost:5000/watching-late', {
+                .post('https://movies-flix-server.vercel.app/watching-late', {
                     wlId: _id,
                     name: name,
                     picUrl: picUrl,

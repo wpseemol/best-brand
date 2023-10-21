@@ -26,7 +26,9 @@ const router = createBrowserRouter([
                 path: '/',
                 element: <Home />, //Home come from 'pages/home/Home'
                 loader: () => {
-                    return axios.get('http://localhost:5000/home');
+                    return axios.get(
+                        'https://movies-flix-server.vercel.app/home'
+                    );
                 },
             },
 
@@ -39,7 +41,7 @@ const router = createBrowserRouter([
                 element: <MoviesSingle />,
                 loader: ({ params }) => {
                     return axios.get(
-                        `http://localhost:5000/movies/${params.id}`
+                        `https://movies-flix-server.vercel.app/movies/${params.id}`
                     );
                 },
             },
@@ -55,7 +57,9 @@ const router = createBrowserRouter([
                     </PrivetRoute>
                 ), // Explore come from ''
                 loader: () => {
-                    return axios.get('http://localhost:5000/movies');
+                    return axios.get(
+                        'https://movies-flix-server.vercel.app/movies'
+                    );
                 },
             },
             {
