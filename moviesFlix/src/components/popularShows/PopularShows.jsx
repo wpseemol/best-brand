@@ -1,4 +1,5 @@
 import HeadingHTwo from '../headingHTwo/HeadingHTwo';
+import PropTypes from 'prop-types';
 
 const PopularShows = ({ data }) => {
     const title = 'NEW AT SONY PICTURES';
@@ -195,3 +196,7 @@ const PopularShows = ({ data }) => {
 };
 
 export default PopularShows;
+
+PopularShows.propTypes = {
+    data: PropTypes.array.isRequired,
+};

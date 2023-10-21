@@ -1,4 +1,5 @@
 import { FaBars, FaX } from 'react-icons/fa6';
+import PropTypes from 'prop-types';
 
 const TogolIcon = ({ isClick }) => {
     return (
@@ -9,3 +10,7 @@ const TogolIcon = ({ isClick }) => {
 };
 
 export default TogolIcon;
+
+TogolIcon.propTypes = {
+    isClick: PropTypes.bool,
+};

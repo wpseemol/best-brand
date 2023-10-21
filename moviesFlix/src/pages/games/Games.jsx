@@ -1,7 +1,7 @@
 const Games = () => {
     return (
         <div>
-            <p className="demo">game page</p>
+            <p className="demo mt-[15rem]">Coming soon...</p>
         </div>
     );
 };

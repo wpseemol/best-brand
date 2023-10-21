@@ -1,9 +1,6 @@
-const UserImage = ({ imgUrl, usDbImg }) => {
-    const url = imgUrl
-        ? imgUrl
-        : usDbImg
-        ? usDbImg
-        : 'https://i.ibb.co/wBfQjTy/user-Image.png';
+import PropTypes from 'prop-types';
+const UserImage = ({ imgUrl }) => {
+    const url = imgUrl ? imgUrl : 'https://i.ibb.co/wBfQjTy/user-Image.png';
 
     return (
         <>
@@ -19,3 +16,7 @@ const UserImage = ({ imgUrl, usDbImg }) => {
 };
 
 export default UserImage;
+
+UserImage.propTypes = {
+    imgUrl: PropTypes.string,
+};

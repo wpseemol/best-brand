@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 const DescriptionPe = ({ disPe }) => {
     return (
         <>
@@ -7,3 +8,7 @@ const DescriptionPe = ({ disPe }) => {
 };
 
 export default DescriptionPe;
+
+DescriptionPe.propTypes = {
+    disPe: PropTypes.string.isRequired,
+};

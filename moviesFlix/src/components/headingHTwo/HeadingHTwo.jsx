@@ -1,5 +1,6 @@
 import Aos from 'aos';
 import { useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 const HeadingHTwo = ({ hTwo }) => {
     useEffect(() => {
@@ -21,3 +22,7 @@ const HeadingHTwo = ({ hTwo }) => {
 };
 
 export default HeadingHTwo;
+
+HeadingHTwo.propTypes = {
+    hTwo: PropTypes.string.isRequired,
+};

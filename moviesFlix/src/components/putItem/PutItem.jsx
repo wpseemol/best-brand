@@ -1,8 +1,7 @@
 import axios from 'axios';
-import { element } from 'prop-types';
-import { useEffect } from 'react';
 import { FaXmark } from 'react-icons/fa6';
 import Swal from 'sweetalert2';
+import PropTypes from 'prop-types';
 
 const PutItem = ({ allData, clickText, popupClose }) => {
     const filterSingleData = Object.keys(allData).find((element) => {
@@ -86,3 +85,9 @@ const PutItem = ({ allData, clickText, popupClose }) => {
 };
 
 export default PutItem;
+
+PutItem.propTypes = {
+    allData: PropTypes.object.isRequired,
+    clickText: PropTypes.object.isRequired,
+    popupClose: PropTypes.func,
+};

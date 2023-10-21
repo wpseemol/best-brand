@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import Aos from 'aos';
 import axios from 'axios';
 import HeaderText from '../headerText/HeaderText';
+import PropTypes from 'prop-types';
 
 const HeroSlider = ({ children }) => {
     const [homeBanner, setHomeBanner] = useState([]);
@@ -20,7 +21,7 @@ const HeroSlider = ({ children }) => {
             .then(function (response) {
                 setHomeBanner(response?.data);
             })
-            .catch(function (error) {
+            .catch(function () {
                 // console.log(error);
                 setHomeBanner([]);
             });
@@ -99,3 +100,7 @@ const HeroSlider = ({ children }) => {
 };
 
 export default HeroSlider;
+
+HeroSlider.propTypes = {
+    children: PropTypes.node.isRequired,
+};

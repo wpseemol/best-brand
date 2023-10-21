@@ -1,4 +1,5 @@
 import HeadingHTwo from '../headingHTwo/HeadingHTwo';
+import PropTypes from 'prop-types';
 
 import Marquee from 'react-fast-marquee';
 
@@ -42,3 +43,7 @@ const Video = ({ data }) => {
 };
 
 export default Video;
+
+Video.propTypes = {
+    data: PropTypes.object.isRequired,
+};

@@ -1,4 +1,5 @@
 import HeadingHTwo from '../headingHTwo/HeadingHTwo';
+import PropTypes from 'prop-types';
 
 const BehindTheScenes = ({ data }) => {
     const {
@@ -79,6 +80,10 @@ const BehindTheScenes = ({ data }) => {
             </div>
         </>
     );
+};
+
+BehindTheScenes.propTypes = {
+    data: PropTypes.object.isRequired,
 };
 
 export default BehindTheScenes;

@@ -1,4 +1,5 @@
 import HeadingHTwo from '../headingHTwo/HeadingHTwo';
+import PropTypes from 'prop-types';
 
 const CareerOption = ({ data }) => {
     const {
@@ -169,3 +170,6 @@ const CareerOption = ({ data }) => {
 };
 
 export default CareerOption;
+CareerOption.propTypes = {
+    data: PropTypes.object.isRequired,
+};

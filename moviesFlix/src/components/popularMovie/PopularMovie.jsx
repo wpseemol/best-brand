@@ -1,4 +1,4 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 const PopularMovie = ({ data }) => {
@@ -30,3 +30,7 @@ const PopularMovie = ({ data }) => {
 };
 
 export default PopularMovie;
+
+PopularMovie.propTypes = {
+    data: PropTypes.object.isRequired,
+};

@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import DescriptionPe from '../descriptionPe/DescriptionPe';
 import HeadingHTwo from '../headingHTwo/HeadingHTwo';
+import PropTypes from 'prop-types';
 import Aos from 'aos';
 
 const Entertainment = ({ data }) => {
@@ -57,3 +58,7 @@ const Entertainment = ({ data }) => {
 };
 
 export default Entertainment;
+
+Entertainment.propTypes = {
+    data: PropTypes.object.isRequired,
+};

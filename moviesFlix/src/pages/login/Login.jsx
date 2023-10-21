@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 
 const Login = () => {
     const loginRegInfo = useContext(AuthContext);
-    const { singIn, logInGoogle } = loginRegInfo || {};
+    const { singIn } = loginRegInfo || {};
 
     const location = useLocation();
 
