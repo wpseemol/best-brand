@@ -1,10 +1,19 @@
 import { Link, useLoaderData } from 'react-router-dom';
-import HeadingHTwo from '../headingHTwo/HeadingHTwo';
-import Swal from 'sweetalert2';
+import '../../assets/css/hover.css';
+import { useState } from 'react';
+import { useEffect } from 'react';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import Swal from 'sweetalert2';
+import HeadingHTwo from '../headingHTwo/HeadingHTwo';
+import { FaPencil } from 'react-icons/fa6';
+import PutItem from '../putItem/PutItem';
+import { useContext } from 'react';
+import { AuthContext } from '../../providers/AuthProvider';
 
 const MoviesSingle = () => {
+    const loginRegInfo = useContext(AuthContext);
+    const { user } = loginRegInfo || {};
+
     const { data } = useLoaderData();
     const {
         bnarImgUrl,
@@ -21,8 +30,29 @@ const MoviesSingle = () => {
         _id,
     } = data || {};
 
+    const allData = {
+        bnarImgUrl,
+        name,
+        picUrl,
+        comingSoon,
+        releaseYear,
+        type,
+        description,
+        storyBy,
+        producedBy,
+        executiveProducers,
+        cast,
+        _id,
+    };
+
     const [isMatchData, setIsMatchData] = useState(null);
     const [btnDisable, setBtnDisable] = useState(false);
+    const [editText, setEditText] = useState(null);
+    const [showEditFrom, setShowEditFrom] = useState(false);
+
+    const popupClose = (isClose) => {
+        setShowEditFrom(isClose);
+    };
 
     useEffect(() => {
         axios
@@ -85,7 +115,7 @@ const MoviesSingle = () => {
 
     return (
         <>
-            <div className="px-2">
+            <div className=" relative overflow-hidden">
                 <div
                     className="bg-fixed lg:bg-cover bg-contain overflow-auto bg-no-repeat lg:h-[40rem] md:h-[35rem] h-[20rem]  flex pl-20 lg:items-center"
                     style={{
@@ -119,8 +149,7 @@ const MoviesSingle = () => {
                         </div>
                     </div>
                 </div>
-
-                <div className="myContainer md:mt-20 mt-16">
+                <div className="myContainer md:mt-20 mt-16 px-2 sm:px-0">
                     <div>
                         <div className="relative overflow-hidden  mb-6">
                             <div className="ml-3">
@@ -131,7 +160,7 @@ const MoviesSingle = () => {
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
-                        <div>
+                        <div className="text-3xl font-bold relative duration-200 hover:border border-primaryColor  eidetItem">
                             <div className="w-full overflow-hidden">
                                 <img
                                     src={picUrl}
@@ -151,16 +180,39 @@ const MoviesSingle = () => {
                                             setBtnDisable(true);
                                         }}
                                         disabled={btnDisable}
-                                        className="seconderBtn bg-primaryColor hover:bg-primaryColor/80 sm:py-3 sm:px-4 sm:p-0 p-2 disabled:bg-red-700/75 text-white font-bold">
+                                        className="seconderBtn bg-primaryColor hover:bg-primaryColor/80 sm:py-3 sm:px-4 sm:p-0 p-2 disabled:bg-red-700/75 text-white font-bold ">
                                         Watching Late{' '}
                                     </button>{' '}
                                 </div>
                             </div>
+                            {/* edit icon */}
+                            {user && (
+                                <div
+                                    onClick={() => {
+                                        setEditText({ picUrl: picUrl });
+                                        setShowEditFrom(true);
+                                    }}
+                                    className="hidden overflow-hidden absolute -top-6 -right-6 bg-primaryColor
+                                    w-12 h-12 rounded-full justify-center items-center text-white hover:scale-110 duration-200 text-2xl shoeditIcon">
+                                    <FaPencil />
+                                </div>
+                            )}
                         </div>
                         <div>
                             <div className="text-xl font-semibold">
-                                <div className="text-3xl font-bold ">
+                                <div className="text-3xl font-bold relative duration-200 hover:border border-primaryColor  eidetItem">
                                     <h2> {name} </h2>
+                                    {user && (
+                                        <div
+                                            onClick={() => {
+                                                setEditText({ name: name });
+                                                setShowEditFrom(true);
+                                            }}
+                                            className="hidden overflow-hidden absolute -top-6 -right-6 bg-primaryColor
+                                    w-12 h-12 rounded-full justify-center items-center text-white hover:scale-110 duration-200 text-2xl shoeditIcon">
+                                            <FaPencil />
+                                        </div>
+                                    )}
                                 </div>
                                 <div className="text-base ">
                                     <p>
@@ -169,51 +221,125 @@ const MoviesSingle = () => {
                                     </p>
                                 </div>
 
-                                <div>
-                                    <p>{description}</p>
+                                <div className="  relative duration-200 hover:border border-primaryColor  eidetItem">
+                                    <p className="text-xl">{description}</p>
+                                    {user && (
+                                        <div
+                                            onClick={() => {
+                                                setEditText({
+                                                    description: description,
+                                                });
+                                                setShowEditFrom(true);
+                                            }}
+                                            className="hidden overflow-hidden absolute -top-6 -right-6 bg-primaryColor
+                                    w-12 h-12 rounded-full justify-center items-center text-white hover:scale-110 duration-200 text-2xl shoeditIcon">
+                                            <FaPencil />
+                                        </div>
+                                    )}
                                 </div>
+
                                 <br />
                                 {storyBy && (
-                                    <div>
+                                    <div className="  relative duration-200 hover:border border-primaryColor  eidetItem">
                                         <h2 className="text-2xl font-bold">
                                             DIRECTED BY
                                         </h2>
                                         <p>{storyBy}</p>
+
+                                        {user && (
+                                            <div
+                                                onClick={() => {
+                                                    setEditText({
+                                                        storyBy: storyBy,
+                                                    });
+                                                    setShowEditFrom(true);
+                                                }}
+                                                className="hidden overflow-hidden absolute -top-6 -right-6 bg-primaryColor
+                                    w-12 h-12 rounded-full justify-center items-center text-white hover:scale-110 duration-200 text-2xl shoeditIcon">
+                                                <FaPencil />
+                                            </div>
+                                        )}
                                     </div>
                                 )}
 
                                 <br />
                                 {producedBy && (
-                                    <div>
+                                    <div className="  relative duration-200 hover:border border-primaryColor  eidetItem">
                                         <h2 className="text-2xl font-bold">
                                             PRODUCED BY
                                         </h2>
                                         <p>{producedBy}</p>
+                                        {user && (
+                                            <div
+                                                onClick={() => {
+                                                    setEditText({
+                                                        producedBy: producedBy,
+                                                    });
+                                                    setShowEditFrom(true);
+                                                }}
+                                                className="hidden overflow-hidden absolute -top-6 -right-6 bg-primaryColor
+                                    w-12 h-12 rounded-full justify-center items-center text-white hover:scale-110 duration-200 text-2xl shoeditIcon">
+                                                <FaPencil />
+                                            </div>
+                                        )}
                                     </div>
                                 )}
 
                                 <br />
                                 {executiveProducers && (
-                                    <div>
+                                    <div className="  relative duration-200 hover:border border-primaryColor  eidetItem">
                                         <h2 className="text-2xl font-bold">
                                             EXECUTIVE PRODUCERS
                                         </h2>
                                         <p>{executiveProducers}</p>
+                                        {user && (
+                                            <div
+                                                onClick={() => {
+                                                    setEditText({
+                                                        executiveProducers:
+                                                            executiveProducers,
+                                                    });
+                                                    setShowEditFrom(true);
+                                                }}
+                                                className="hidden overflow-hidden absolute -top-6 -right-6 bg-primaryColor
+                                    w-12 h-12 rounded-full justify-center items-center text-white hover:scale-110 duration-200 text-2xl shoeditIcon">
+                                                <FaPencil />
+                                            </div>
+                                        )}
                                     </div>
                                 )}
 
                                 <br />
                                 {cast && (
-                                    <div>
+                                    <div className="  relative duration-200 hover:border border-primaryColor  eidetItem">
                                         <h2 className="text-2xl font-bold">
                                             CAST
                                         </h2>
                                         <p>{cast}</p>
+                                        {user && (
+                                            <div
+                                                onClick={() => {
+                                                    setEditText({ cast: cast });
+                                                    setShowEditFrom(true);
+                                                }}
+                                                className="hidden overflow-hidden absolute -top-6 -right-6 bg-primaryColor
+                                    w-12 h-12 rounded-full justify-center items-center text-white hover:scale-110 duration-200 text-2xl shoeditIcon">
+                                                <FaPencil />
+                                            </div>
+                                        )}
                                     </div>
                                 )}
                             </div>
                         </div>
                     </div>
+                </div>
+                {/* pope show here  */}
+                <div className={showEditFrom ? 'block' : 'hidden'}>
+                    <PutItem
+                        allData={allData}
+                        clickText={editText}
+                        popupClose={popupClose}
+                    />
                 </div>
             </div>
             <div className="bg-[#a01e14] py-24 md:mt-20 mt-16">

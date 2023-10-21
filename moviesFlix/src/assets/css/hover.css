@@ -1,3 +1,7 @@
 .abaterImageHover:hover .loginInformationShow {
     display: block;
 }
+
+.eidetItem:hover .shoeditIcon {
+    display: flex;
+}

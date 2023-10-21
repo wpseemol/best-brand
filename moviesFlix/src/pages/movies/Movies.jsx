@@ -5,9 +5,23 @@ import { useState } from 'react';
 import { FaXmark } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { Autoplay } from 'swiper/modules';
+import { useRef } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
+// Import Swiper
+import { Swiper, SwiperSlide } from 'swiper/react';
+// Import Swiper styles
+import 'swiper/css';
+import '../../assets/css/slidertimer.css';
 
 const Movies = () => {
+    const progressCircle = useRef(null);
+    const progressContent = useRef(null);
+    const onAutoplayTimeLeft = (s, time, progress) => {
+        progressCircle.current.style.setProperty('--progress', 1 - progress);
+        progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
+    };
+
     const loginRegInfo = useContext(AuthContext);
     const { user } = loginRegInfo || {};
 
@@ -71,9 +85,57 @@ const Movies = () => {
         });
     };
 
+    // array shuffiling for bnar
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+
+    const shuffledArray = shuffleArray(data);
+
     return (
         <>
-            <div className="h-20 w-5"></div>
+            <div className="w-full lg:h-[35rem] md:h-[25rem] sm:h-[20rem] h-[15rem]">
+                <Swiper
+                    spaceBetween={30}
+                    centeredSlides={true}
+                    autoplay={{
+                        delay: 5000,
+                        disableOnInteraction: false,
+                    }}
+                    pagination={{
+                        clickable: true,
+                    }}
+                    navigation={true}
+                    modules={[Autoplay]}
+                    onAutoplayTimeLeft={onAutoplayTimeLeft}
+                    className="mySwiper">
+                    {shuffledArray.slice(0, 4).map((element, index) => {
+                        return (
+                            <SwiperSlide key={index + '-slider'}>
+                                <div className="w-full">
+                                    {' '}
+                                    <img
+                                        src={element?.bnarImgUrl}
+                                        alt={element?.name}
+                                        className="w-full object-cover object-center"
+                                    />
+                                </div>
+                            </SwiperSlide>
+                        );
+                    })}
+
+                    <div className="autoplay-progress" slot="container-end">
+                        <svg viewBox="0 0 48 48" ref={progressCircle}>
+                            <circle cx="24" cy="24" r="20"></circle>
+                        </svg>
+                        <span ref={progressContent}></span>
+                    </div>
+                </Swiper>
+            </div>
             <div className="md:mt-20 mt-16">
                 {/* Featured & Coming Soon */}
                 <div className="md:mx-16 mx-2 ">
