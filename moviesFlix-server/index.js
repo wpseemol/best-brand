@@ -117,6 +117,54 @@ async function run() {
 
             response.send(resultMovies);
         });
+
+        //single ite put method
+        app.put('/movies/:id', async (request, response) => {
+            const id = request.params.id;
+            const query = {
+                _id: new ObjectId(id),
+            };
+
+            const options = {
+                upsert: true,
+            };
+
+            const { filteredObject } = request.body;
+
+            const {
+                bnarImgUrl,
+                name,
+                picUrl,
+                comingSoon,
+                releaseYear,
+                type,
+                description,
+                storyBy,
+                producedBy,
+                executiveProducers,
+                cast,
+            } = filteredObject;
+
+            const updateDoc = {
+                $set: {
+                    bnarImgUrl,
+                    name,
+                    picUrl,
+                    comingSoon,
+                    releaseYear,
+                    type,
+                    description,
+                    storyBy,
+                    producedBy,
+                    executiveProducers,
+                    cast,
+                },
+            };
+
+            const result = await movies.updateOne(query, updateDoc, options);
+            response.send(result);
+        });
+
         // single user
         app.get('/user/:id', async (request, response) => {
             const id = request.params.id;
@@ -220,6 +268,15 @@ async function run() {
             };
 
             const result = await watchingLate.deleteOne(query);
+            response.send(result);
+        });
+        app.delete('/movies/:id', async (request, response) => {
+            const id = request.params.id;
+            const query = {
+                _id: new ObjectId(id),
+            };
+
+            const result = await movies.deleteOne(query);
             response.send(result);
         });
     } finally {
