@@ -33,12 +33,12 @@ async function run() {
 
         const products = bestBrand.collection('products');
 
-        // app.get('/movies', async (request, response) => {
-        //     const cursorMovies = movies.find();
+        app.get('/products', async (request, response) => {
+            const cursorProducts = products.find();
 
-        //     const resultMovies = await cursorMovies.toArray();
-        //     response.send(resultMovies);
-        // });
+            const resultProducts = await cursorProducts.toArray();
+            response.send(resultProducts);
+        });
 
         // single movie
         // app.get('/movies/:id', async (request, response) => {
