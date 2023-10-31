@@ -4,14 +4,14 @@ import NavBar from '../navBar/NavBar';
 const Root = () => {
     return (
         <>
-            <header>
+            <header className="font-mySansFont">
                 <NavBar />
             </header>
-            <main>
+            <main className="font-mySansFont container mx-auto">
                 {' '}
                 <Outlet />{' '}
             </main>
-            <footer></footer>
+            <footer className="font-mySansFont"></footer>
         </>
     );
 };
