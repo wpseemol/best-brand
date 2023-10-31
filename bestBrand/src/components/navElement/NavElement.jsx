@@ -24,20 +24,18 @@ const logo = (
 
 //search section
 const search = (
-    
-        <div className=" 2xl:w-[25rem] xl:w-[22rem] md:w-[18rem] w-[16rem]  relative">
-            <input
-                type="text"
-                name="search"
-                id="searchIcon"
-                className="w-full text-gray-600 py-2 pl-3 rounded-md font-semibold outline-none"
-                placeholder="Search"
-            />
-            <div className="absolute top-2 z-10 right-3 text-primaryColo text-2xl">
-                <FaMagnifyingGlass />
-            </div>
+    <div className=" 2xl:w-[25rem] xl:w-[22rem] md:w-[18rem] sm:w-[22rem] w-[16rem] md:mt-0 mt-6  relative">
+        <input
+            type="text"
+            name="search"
+            id="searchIcon"
+            className="w-full text-gray-600 py-2 pl-3 rounded-md font-semibold outline-none"
+            placeholder="Search"
+        />
+        <div className="absolute top-2 z-10 right-3 text-primaryColo text-2xl hidden sm:block">
+            <FaMagnifyingGlass />
         </div>
-   
+    </div>
 );
 
 const offer = (
