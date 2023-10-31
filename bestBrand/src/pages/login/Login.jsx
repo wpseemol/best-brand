@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../providers/AuthProvider';
@@ -81,7 +81,9 @@ const Login = () => {
             });
     };
 
-    user && location?.state ? navigate(location?.state) : navigate('/');
+    useEffect(() => {
+        user && navigate('/');
+    }, [user]);
 
     return (
         <>

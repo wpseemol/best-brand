@@ -39,15 +39,17 @@ const Dashboard = () => {
 
     return (
         <>
-            <div>
+            <div className="md:px-0 px-2">
                 <Title>Dashboard</Title>
             </div>
 
             <div className="grid sm:grid-cols-3 grid-cols-1 gap-5">
-                <div className="col-span-1">
+                <div className="col-span-1 md:px-0 px-2">
                     <NavLink
                         to={`/dashboard/profile`}
-                        className={({ isActive }) => isActive && 'active'}>
+                        className={({ isActive }) =>
+                            isActive ? 'active' : ''
+                        }>
                         <div className="flex items-center  gap-2 hover:text-primaryColor duration-150 text-xl font-semibold mb-3">
                             <FaRegUser />
                             <span>Profile</span>
@@ -55,7 +57,9 @@ const Dashboard = () => {
                     </NavLink>
                     <NavLink
                         to={`/dashboard/upload`}
-                        className={({ isActive }) => isActive && 'active'}>
+                        className={({ isActive }) =>
+                            isActive ? 'active' : ''
+                        }>
                         <div className="flex items-center  gap-2 hover:text-primaryColor duration-150 text-xl font-semibold mb-3">
                             <FaUpload />
                             <span>Upload Product</span>
@@ -63,7 +67,9 @@ const Dashboard = () => {
                     </NavLink>
                     <NavLink
                         to={`/dashboard/address`}
-                        className={({ isActive }) => isActive && 'active'}>
+                        className={({ isActive }) =>
+                            isActive ? 'active' : ''
+                        }>
                         <div className="flex items-center  gap-2 hover:text-primaryColor duration-150 text-xl font-semibold mb-3">
                             <FaAddressCard />
                             <span>Address</span>
@@ -76,7 +82,7 @@ const Dashboard = () => {
                         </div>
                     </div>
                 </div>
-                <div className="col-span-2 mb-10">
+                <div className="col-span-2 md:mb-10 mb-20 md:px-0 px-2">
                     {' '}
                     <Outlet />{' '}
                 </div>

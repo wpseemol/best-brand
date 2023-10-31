@@ -24,6 +24,7 @@ const Upload = () => {
         const dimension = from.dimension.value;
         const weight = from.weight.value;
         const mainCamera = from.mainCamera.value;
+        const category = from.category.value;
         const selfieCamera = from.selfieCamera.value;
         const description = from.description.value;
         const batteryInfo = from.batteryInfo.value;
@@ -39,6 +40,7 @@ const Upload = () => {
                 brand: brand ? brand : 'Brand Name',
                 dimension: dimension ? dimension : '159.9 x 76.7 x 8.3 mm',
                 weight: weight ? weight : '221 g',
+                category: category ? category : 'Phones & Tablets',
                 mainCamera: mainCamera
                     ? mainCamera
                     : '48 MP(wide) | 12 MP (periscope telephoto) | 12 MP (ultrawide) | TOF 3D LiDAR scanner (depth) |Dual-LED dual-tone flash, HDR (photo/panorama) | 4K, 1080p, Dolby Vision HDR , ProRes, Cinematic mode , 3D (spatial) video',
@@ -80,7 +82,7 @@ const Upload = () => {
                 <div>
                     <form
                         onSubmit={handalUploadMovies}
-                        className="grid grid-cols-2 gap-2 ">
+                        className="grid md:grid-cols-2 grid-cols-1 gap-2 ">
                         <div className=" row-span-4">
                             <div className="text-base font-semibold text-center underline">
                                 <p>Image Preview</p>
@@ -210,7 +212,21 @@ const Upload = () => {
                                 placeholder="221 g"
                             />
                         </div>
-                        <div className="col-span-2">
+                        <div className="col-span-1 flex items-center gap-3">
+                            <label
+                                htmlFor="weight"
+                                className="text-xl font-semibold ">
+                                Category:
+                            </label>
+                            <input
+                                type="text"
+                                name="category"
+                                id="category"
+                                className="customInputStyle "
+                                placeholder="Phones & Tablets"
+                            />
+                        </div>
+                        <div className="md:col-span-2">
                             <label
                                 htmlFor="mainCamera"
                                 className="text-xl font-semibold ">
@@ -226,7 +242,7 @@ const Upload = () => {
                             />
                         </div>
 
-                        <div className="col-span-2">
+                        <div className="md:col-span-2">
                             <label
                                 htmlFor="selfieCamera"
                                 className="text-xl font-semibold ">
@@ -241,7 +257,7 @@ const Upload = () => {
                                 placeholder="Selfie Camera"
                             />
                         </div>
-                        <div className="col-span-2">
+                        <div className="md:col-span-2">
                             <label
                                 htmlFor="description"
                                 className="text-xl font-semibold ">
@@ -284,7 +300,7 @@ const Upload = () => {
                             />
                         </div>
 
-                        <div className="col-span-2 mx-auto mt-4">
+                        <div className="md:col-span-2 mx-auto mt-4">
                             <input
                                 type="submit"
                                 value="Upload Prodact"

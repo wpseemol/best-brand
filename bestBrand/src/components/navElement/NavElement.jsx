@@ -3,7 +3,7 @@ import {
     FaCartFlatbed,
     FaDollarSign,
     FaMagnifyingGlass,
-    FaRegUser,
+  
 } from 'react-icons/fa6';
 import { Link, NavLink } from 'react-router-dom';
 

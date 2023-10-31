@@ -18,9 +18,7 @@ const NavBar = () => {
     const [menuShow, setMenuShow] = useState(false);
 
     const loginRegInfo = useContext(AuthContext);
-    const { user, loading, logOut } = loginRegInfo || {};
-
-    console.log(user);
+    const { user } = loginRegInfo || {};
 
     const account = (
         <li className="text-white">
@@ -110,7 +108,7 @@ const NavBar = () => {
                                     menuShow && 'opacity-25'
                                 }`}
                                 onClick={() =>
-                                    menuShow || setClickSerce(!clickSerce)
+                                    !menuShow && setClickSerce(!clickSerce)
                                 }>
                                 <FaMagnifyingGlass />
                             </div>

@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import Swal from 'sweetalert2';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGoogle } from 'react-icons/fa6';
@@ -73,16 +73,12 @@ const Register = () => {
     };
 
     const handalLoginwitheGoogle = () => {
-        logInGoogle()
-            .then(() => {
-                //successful login with Google
-            })
-            .catch(() => {
-                // Handle Errors here.
-            });
+        logInGoogle();
     };
 
-    user && location?.state ? navigate(location?.state) : navigate('/');
+    useEffect(() => {
+        user && navigate('/');
+    }, [user]);
 
     return (
         <>

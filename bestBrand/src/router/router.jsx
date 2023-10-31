@@ -7,6 +7,7 @@ import PrivetRoute from '../privetRoute/PrivetRoute';
 import Dashboard from '../pages/dashboard/Dashboard';
 import Profile from '../pages/profile/Profile';
 import Upload from '../pages/upload/Upload';
+import axios from 'axios';
 
 const router = createBrowserRouter([
     {
@@ -16,6 +17,9 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home />,
+                loader: () => {
+                    return axios.get('http://localhost:5000/products');
+                },
             },
             {
                 path: '/login',
