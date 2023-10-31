@@ -1,7 +1,6 @@
-import { FaBars, FaMagnifyingGlass, FaX } from 'react-icons/fa6';
+import { FaBars, FaMagnifyingGlass, FaRegUser, FaX } from 'react-icons/fa6';
 import {
     about,
-    account,
     card,
     contact,
     logo,
@@ -9,12 +8,46 @@ import {
     products,
     search,
 } from '../navElement/NavElement';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import '../../assets/css/hover.css';
+import { AuthContext } from '../../providers/AuthProvider';
+import { Link } from 'react-router-dom';
 
 const NavBar = () => {
     const [clickSerce, setClickSerce] = useState(false);
     const [menuShow, setMenuShow] = useState(false);
+
+    const loginRegInfo = useContext(AuthContext);
+    const { user, loading, logOut } = loginRegInfo || {};
+
+    console.log(user);
+
+    const account = (
+        <li className="text-white">
+            {' '}
+            <Link to={user ? '/dashboard' : '/login'}>
+                <div className="flex md:flex-row flex-col items-center sm:gap-3 gap-1">
+                    <div className="text-primaryColor text-3xl">
+                        <FaRegUser />
+                    </div>
+                    <div>
+                        <h2 className="sm:text-lg text-sm font-semibold">
+                            Account
+                        </h2>
+                        {user ? (
+                            <p className="text-sm hidden md:block">
+                                {user?.email}
+                            </p>
+                        ) : (
+                            <p className="text-sm hidden md:block">
+                                register or Login
+                            </p>
+                        )}
+                    </div>
+                </div>
+            </Link>{' '}
+        </li>
+    );
 
     return (
         <>
@@ -58,13 +91,13 @@ const NavBar = () => {
                                         ? '-left-[1.8rem]'
                                         : '-left-[20rem]'
                                 }`}>
-                                <li className="hover:text-primaryColo duration-200 border-b p-2 pr-36">
+                                <li className="hover:text-primaryColor duration-200 border-b p-2 pr-36">
                                     {products}
                                 </li>
-                                <li className="hover:text-primaryColo duration-200 border-b p-2 pr-16">
+                                <li className="hover:text-primaryColor duration-200 border-b p-2 pr-16">
                                     {contact}
                                 </li>
-                                <li className="hover:text-primaryColo duration-200 p-2 pr-16">
+                                <li className="hover:text-primaryColor duration-200 p-2 pr-16">
                                     {about}
                                 </li>
                             </ul>
@@ -73,7 +106,7 @@ const NavBar = () => {
                         {logo}
                         <li className="">
                             <div
-                                className={`text-primaryColo text-2xl  ${
+                                className={`text-primaryColor text-2xl  ${
                                     menuShow && 'opacity-25'
                                 }`}
                                 onClick={() =>
@@ -98,7 +131,7 @@ const NavBar = () => {
                     <div className="w-ful h-[5rem]"> </div>
                 </div>
                 <div>
-                    <ul className="fixed bottom-0 bg-black py-2 flex w-full justify-evenly">
+                    <ul className="fixed bottom-0 z-40 bg-black py-2 flex w-full justify-evenly">
                         {/* offer */ offer}
 
                         {/* card */ card}

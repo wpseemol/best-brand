@@ -7,7 +7,7 @@ export default {
                 mySansFont: ['Open Sans', 'sans-serif'],
             },
             colors: {
-                primaryColo: '#ec7c21',
+                primaryColor: '#ec7c21',
             },
         },
     },
