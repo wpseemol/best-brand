@@ -31,46 +31,14 @@ async function run() {
 
         const bestBrand = client.db('bestBrand');
 
-        const movies = bestBrand.collection('products');
+        const products = bestBrand.collection('products');
 
-        // data get
-        app.get('/header', async (request, response) => {
-            const cursor = icon.find();
-            const cursorNav = navBar.find();
+        // app.get('/movies', async (request, response) => {
+        //     const cursorMovies = movies.find();
 
-            const resultIcon = await cursor.toArray();
-            const resultNav = await cursorNav.toArray();
-            response.json({ resultIcon, resultNav });
-        });
-
-        app.get('/movies', async (request, response) => {
-            const cursorMovies = movies.find();
-
-            const resultMovies = await cursorMovies.toArray();
-            response.send(resultMovies);
-        });
-
-        app.get('/error', async (request, response) => {
-            const errorPageCursor = errorPage.find();
-
-            const result = await errorPageCursor.toArray();
-            response.send(result);
-        });
-        app.get('/watching-late', async (request, response) => {
-            const cursorWatchingLate = watchingLate.find();
-
-            const result = await cursorWatchingLate.toArray();
-            response.send(result);
-        });
-        app.get('/top-collection-movies', async (request, response) => {
-            const topCollectionMovies = homeHeroBanar.find();
-
-            const result = await topCollectionMovies.toArray();
-            response.send(result);
-        });
-        app.get('/', async (request, response) => {
-            response.send('Welcome to my Server...');
-        });
+        //     const resultMovies = await cursorMovies.toArray();
+        //     response.send(resultMovies);
+        // });
 
         // single movie
         // app.get('/movies/:id', async (request, response) => {
@@ -131,10 +99,9 @@ async function run() {
         // });
 
         // data post
-        app.post('/data', async (request, response) => {
-            const moviesFlix = request.body;
-
-            const result = await icon.insertOne(moviesFlix);
+        app.post('/products', async (request, response) => {
+            const product = request.body;
+            const result = await products.insertOne(product);
             response.send(result);
         });
 
