@@ -40,16 +40,29 @@ async function run() {
             response.send(resultProducts);
         });
 
-        // single movie
-        // app.get('/movies/:id', async (request, response) => {
-        //     const id = request.params.id;
-        //     const query = {
-        //         _id: new ObjectId(id),
-        //     };
-        //     resultMovies = await movies.findOne(query);
+        app.get('/products/:category', async (request, response) => {
+            const categoryId = request.params.category;
+            const query = {
+                'category.catId': categoryId,
+            };
 
-        //     response.send(resultMovies);
-        // });
+            const options = {
+                projection: {
+                    _id: 0,
+                    name: 1,
+                    price: 1,
+                    ImgUrl: 1,
+                    category: 1,
+                },
+            };
+
+            console.log(query);
+            const findCategory = await products.find(query, options);
+
+            const result = await findCategory.toArray();
+
+            response.send(result);
+        });
 
         //single ite put method
         // app.put('/movies/:id', async (request, response) => {
