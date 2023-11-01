@@ -8,6 +8,7 @@ import Dashboard from '../pages/dashboard/Dashboard';
 import Profile from '../pages/profile/Profile';
 import Upload from '../pages/upload/Upload';
 import axios from 'axios';
+import Category from '../components/category/Category';
 
 const router = createBrowserRouter([
     {
@@ -24,6 +25,15 @@ const router = createBrowserRouter([
             {
                 path: '/login',
                 element: <Login />,
+            },
+            {
+                path: '/:category',
+                element: <Category />,
+                loader: ({ params }) => {
+                    return axios.get(
+                        `http://localhost:5000/products/${params.category}`
+                    );
+                },
             },
             {
                 path: '/register',

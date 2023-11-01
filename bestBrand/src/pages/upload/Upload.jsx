@@ -7,6 +7,13 @@ const Upload = () => {
         'https://picsum.photos/500/400'
     );
 
+    const [selectedOption, setSelectedOption] = useState('');
+    const [addBtnClick, setAddBtnClick] = useState(false);
+
+    const handleSelectChange = (event) => {
+        setSelectedOption(event.target.value);
+    };
+
     const handleInputChange = (event) => {
         setPreviewImage(event.target.value);
     };
@@ -24,7 +31,9 @@ const Upload = () => {
         const dimension = from.dimension.value;
         const weight = from.weight.value;
         const mainCamera = from.mainCamera.value;
-        const category = from.category.value;
+        const categoryName = addBtnClick ? from.categoryName.value : '';
+        const categoryIcon = addBtnClick ? from.categoryIcon.value : '';
+
         const selfieCamera = from.selfieCamera.value;
         const description = from.description.value;
         const batteryInfo = from.batteryInfo.value;
@@ -38,24 +47,20 @@ const Upload = () => {
                 ImgUrl: previewImage,
                 status: status ? status : 'In Stock',
                 brand: brand ? brand : 'Brand Name',
-                dimension: dimension ? dimension : '159.9 x 76.7 x 8.3 mm',
-                weight: weight ? weight : '221 g',
-                category: category ? category : 'Phones & Tablets',
-                mainCamera: mainCamera
-                    ? mainCamera
-                    : '48 MP(wide) | 12 MP (periscope telephoto) | 12 MP (ultrawide) | TOF 3D LiDAR scanner (depth) |Dual-LED dual-tone flash, HDR (photo/panorama) | 4K, 1080p, Dolby Vision HDR , ProRes, Cinematic mode , 3D (spatial) video',
-                selfieCamera: selfieCamera
-                    ? selfieCamera
-                    : '12 MP (wide) | SL 3D | HDR | Cinematic mode | 4K@24/25/30/60fps, 1080p, gyro-EIS',
-                description: description
-                    ? description
-                    : 'Meet the Apple iPhone 15 Pro Max, a game-changing device that redefines the smartphone landscape and sets new industry standards. With its pioneering titanium construction, it sets a new standard for durability and elegance. Powered by a cutting-edge 3nm processor, this phone delivers unparalleled performance. The ultimate camera system, equipped with advanced features, promises magnificent photography and videography. Its high-resolution display offers a visual feast, and the optimized battery with a Type-C charger ensures convenience. Undoubtedly, the iPhone 15 Pro Max represents the Apex of smartphone innovation, making it the best phone to date.',
-                batteryInfo: batteryInfo
-                    ? batteryInfo
-                    : 'Li-Ion 4441 mAh | Non-removable | Wired Charging | 15W wireless (MagSafe) | 7.5W wireless (Qi)',
-                otherInfo: otherInfo
-                    ? otherInfo
-                    : 'USB Type-C 3.2 Gen 2 | Face ID | Emergency SOS via satellite | IP68 dust/water resistant',
+                dimension: dimension ? dimension : null,
+                weight: weight ? weight : null,
+                category: addBtnClick
+                    ? {
+                          catId: categoryName.replace(/\s/g, '').toLowerCase(),
+                          categoryName,
+                          categoryIcon,
+                      }
+                    : { catId: null, categoryName: null, categoryIcon: null },
+                mainCamera: mainCamera ? mainCamera : null,
+                selfieCamera: selfieCamera ? selfieCamera : null,
+                description: description ? description : null,
+                batteryInfo: batteryInfo ? batteryInfo : null,
+                otherInfo: otherInfo ? otherInfo : null,
             })
 
             .then(function () {
@@ -212,19 +217,67 @@ const Upload = () => {
                                 placeholder="221 g"
                             />
                         </div>
-                        <div className="col-span-1 flex items-center gap-3">
+                        {/* this is catagori section  */}
+                        <div className="col-span-2 flex items-center gap-3 ">
                             <label
-                                htmlFor="weight"
+                                htmlFor="category"
                                 className="text-xl font-semibold ">
                                 Category:
                             </label>
-                            <input
-                                type="text"
-                                name="category"
-                                id="category"
-                                className="customInputStyle "
-                                placeholder="Phones & Tablets"
-                            />
+                            <div className="flex gap-4 items-center">
+                                <select
+                                    name="category"
+                                    id="category"
+                                    className="customInputStyle py-2 w-52"
+                                    value={selectedOption}
+                                    onChange={handleSelectChange}>
+                                    <option value="">Select an option</option>
+                                    <option value="option1">Option 1</option>
+                                    <option value="option2">Option 2</option>
+                                    <option value="option3">Option 3</option>
+                                    <option value="option4">Option 4</option>
+                                </select>
+
+                                <div>
+                                    <div
+                                        onClick={() =>
+                                            setAddBtnClick(!addBtnClick)
+                                        }
+                                        className="w-8 hover:scale-110 duration-150 h-8 bg-slate-800 text-white text-center text-2xl rounded-full ">
+                                        {addBtnClick ? 'x' : '+'}
+                                    </div>
+                                </div>
+                                {addBtnClick && (
+                                    <div className="flex items-center gap-2">
+                                        <label
+                                            htmlFor="categoryName"
+                                            className="text-lg font-medium ">
+                                            New:
+                                        </label>
+                                        <input
+                                            required
+                                            type="text"
+                                            name="categoryName"
+                                            id="categoryName"
+                                            className="customInputStyle "
+                                            placeholder="Phones & Tablets"
+                                        />
+                                        <label
+                                            htmlFor="categoryIcon"
+                                            className="text-lg font-medium ">
+                                            Icon:
+                                        </label>
+                                        <input
+                                            required
+                                            type="text"
+                                            name="categoryIcon"
+                                            id="categoryIcon"
+                                            className="customInputStyle "
+                                            placeholder="Icon Url"
+                                        />
+                                    </div>
+                                )}
+                            </div>
                         </div>
                         <div className="md:col-span-2">
                             <label

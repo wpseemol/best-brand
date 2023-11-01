@@ -15,7 +15,7 @@ const HomeHeroSection = () => {
     return (
         <>
             <div className="grid md:grid-cols-3 grid-cols-4 gap-4">
-                <div className="md:col-span-2 col-span-4 md:row-span-2">
+                <div className="md:col-span-2 -z-10 col-span-4 md:row-span-2">
                     <Swiper
                         spaceBetween={30}
                         centeredSlides={true}
