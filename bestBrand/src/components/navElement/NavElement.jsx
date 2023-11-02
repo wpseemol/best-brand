@@ -1,10 +1,4 @@
-
-import {
-    FaCartFlatbed,
-    FaDollarSign,
-    FaMagnifyingGlass,
-  
-} from 'react-icons/fa6';
+import { FaDollarSign, FaMagnifyingGlass } from 'react-icons/fa6';
 import { Link, NavLink } from 'react-router-dom';
 
 // site logo
@@ -23,8 +17,6 @@ const logo = (
         </li>
     </>
 );
-
-
 
 //search section
 const search = (
@@ -59,28 +51,8 @@ const offer = (
     </li>
 );
 
-const card = (
-    <li className="text-white">
-        {' '}
-        <Link>
-            <div className="flex md:flex-row flex-col items-center sm:gap-3 gap-1">
-                <div className="text-primaryColor text-3xl">
-                    <FaCartFlatbed />
-                </div>
-                <div>
-                    <h2 className="sm:text-lg text-sm font-semibold">
-                        Cart<span>(0)</span>
-                    </h2>
-                    <p className="text-sm hidden md:block">Add items</p>
-                </div>
-            </div>
-        </Link>{' '}
-    </li>
-);
-
-
 const products = <NavLink>Products </NavLink>;
 const contact = <NavLink>Contact </NavLink>;
 const about = <NavLink>about </NavLink>;
 
-export { logo, search, offer, card, products, contact, about };
+export { logo, search, offer, products, contact, about };

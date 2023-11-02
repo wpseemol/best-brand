@@ -66,7 +66,7 @@ const Upload = () => {
             .then(function () {
                 Swal.fire({
                     title: 'Done!',
-                    text: 'Move Post Done',
+                    text: 'Product Upload is Done',
                     icon: 'success',
                     confirmButtonText: 'Okay',
                 });

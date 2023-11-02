@@ -1,7 +1,12 @@
-import { FaBars, FaMagnifyingGlass, FaRegUser, FaX } from 'react-icons/fa6';
+import {
+    FaBars,
+    FaCartFlatbed,
+    FaMagnifyingGlass,
+    FaRegUser,
+    FaX,
+} from 'react-icons/fa6';
 import {
     about,
-    card,
     contact,
     logo,
     offer,
@@ -11,7 +16,8 @@ import {
 import { useContext, useState } from 'react';
 import '../../assets/css/hover.css';
 import { AuthContext } from '../../providers/AuthProvider';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import useCardData from '../useCardData/useCardData';
 
 const NavBar = () => {
     const [clickSerce, setClickSerce] = useState(false);
@@ -20,10 +26,35 @@ const NavBar = () => {
     const loginRegInfo = useContext(AuthContext);
     const { user } = loginRegInfo || {};
 
+    const cardData = useCardData();
+
+    const card = (
+        <li className="text-white">
+            {' '}
+            <NavLink
+                to="/cart-items"
+                className={({ isActive }) => (isActive ? 'active' : '')}>
+                <div className="flex md:flex-row flex-col items-center sm:gap-3 gap-1">
+                    <div className="text-primaryColor text-3xl">
+                        <FaCartFlatbed />
+                    </div>
+                    <div>
+                        <h2 className="sm:text-lg text-sm font-semibold">
+                            Cart<span>({cardData.length})</span>
+                        </h2>
+                        <p className="text-sm hidden md:block">Add items</p>
+                    </div>
+                </div>
+            </NavLink>{' '}
+        </li>
+    );
+
     const account = (
         <li className="text-white">
             {' '}
-            <Link to={user ? '/dashboard' : '/login'}>
+            <NavLink
+                to={user ? '/dashboard' : '/login'}
+                className={({ isActive }) => (isActive ? 'active' : '')}>
                 <div className="flex md:flex-row flex-col items-center sm:gap-3 gap-1">
                     <div className="text-primaryColor text-3xl">
                         <FaRegUser />
@@ -43,7 +74,7 @@ const NavBar = () => {
                         )}
                     </div>
                 </div>
-            </Link>{' '}
+            </NavLink>{' '}
         </li>
     );
 

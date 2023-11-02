@@ -1,4 +1,4 @@
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import Title from '../title/Title';
 // Import Swiper
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -13,7 +13,6 @@ const Category = () => {
     const { data } = useLoaderData();
     const { category, categoryBenar } = data || {};
 
-    console.log(category);
     return (
         <>
             <div className="">
@@ -54,26 +53,39 @@ const Category = () => {
             </div>
             <div className="container mx-auto ">
                 <Title>{category[0]?.category?.categoryName}</Title>
-                <div className="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-1 gap-3 md:px-0 px-2">
+                <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-3 md:px-0 px-2">
                     {category.map((element, inx) => {
                         return (
                             <dir
                                 key={inx}
-                                className="bg-white px-1 py-3 rounded-md">
+                                className="bg-white px-1 pb-3 rounded-md hover:shadow-2xl duration-200">
                                 <div>
                                     <div>
                                         <img
                                             src={element.ImgUrl}
                                             alt={element?.name}
+                                            loading="lazy"
                                         />
                                     </div>
-                                    <div className="text-center mt-4">
+                                    <div className="text-center mb-4">
                                         <h2 className="text-base font-medium">
                                             {element?.name}
                                         </h2>
-                                        <p className="text-sm font-normal mt-2">
+                                        <p className="text-sm font-normal my-2">
                                             Price: <span>{element.price}</span>{' '}
                                         </p>
+                                        <button className="seconderBtn px-4 py-2 bg-primaryColor text-white hover:bg-primaryColor/70 ">
+                                            <Link
+                                                to={`/category/PowerAdapter/${element._id}`}>
+                                                Update
+                                            </Link>
+                                        </button>
+                                        <button className="seconderBtn px-4 py-2 ml-3 border border-primaryColor text-primaryColor">
+                                            <Link
+                                                to={`/category/PowerAdapter/${element._id}`}>
+                                                See Details
+                                            </Link>
+                                        </button>
                                     </div>
                                 </div>
                             </dir>

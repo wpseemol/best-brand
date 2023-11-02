@@ -8,7 +8,7 @@ const Root = () => {
             <header className="font-mySansFont">
                 <NavBar />
             </header>
-            <main className="font-mySansFont">
+            <main className="font-mySansFon">
                 {' '}
                 <Outlet />{' '}
             </main>

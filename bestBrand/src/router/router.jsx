@@ -9,6 +9,9 @@ import Profile from '../pages/profile/Profile';
 import Upload from '../pages/upload/Upload';
 import axios from 'axios';
 import Category from '../components/category/Category';
+import CategorySection from '../components/categorySection/CategorySection';
+import SingleProduct from '../components/singleProduct/SingleProduct';
+import CardItems from '../components/cardItmes/CardItems';
 
 const router = createBrowserRouter([
     {
@@ -23,15 +26,40 @@ const router = createBrowserRouter([
                 },
             },
             {
+                path: '/cart-items',
+                element: (
+                    <PrivetRoute>
+                        <CardItems />
+                    </PrivetRoute>
+                ),
+
+                loader: () => {
+                    return axios.get('http://localhost:5000/cart-items');
+                },
+            },
+            {
                 path: '/login',
                 element: <Login />,
             },
             {
-                path: '/:category',
+                path: '/category',
+                element: <CategorySection />,
+            },
+            {
+                path: '/category/:category',
                 element: <Category />,
                 loader: ({ params }) => {
                     return axios.get(
                         `http://localhost:5000/products/${params.category}`
+                    );
+                },
+            },
+            {
+                path: '/category/:category/:item',
+                element: <SingleProduct />,
+                loader: ({ params }) => {
+                    return axios.get(
+                        `http://localhost:5000/category/${params.item}`
                     );
                 },
             },

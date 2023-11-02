@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 const useCatagariData = () => {
-    const [catagoriData, getCatagoriData] = useState([]);
+    const [catagoriData, setCatagoriData] = useState([]);
     useEffect(() => {
         axios
             .get('http://localhost:5000/products')
@@ -26,7 +26,7 @@ const useCatagariData = () => {
                     (element) => element.category
                 );
 
-                getCatagoriData(allCategory);
+                setCatagoriData(allCategory);
             })
             .catch(function () {
                 // handle error
