@@ -33,12 +33,19 @@ async function run() {
 
         const products = bestBrand.collection('products');
         const categoryBenar = bestBrand.collection('categoryBenar');
+        const cartProduct = bestBrand.collection('cartProduct');
 
         app.get('/products', async (request, response) => {
             const cursorProducts = products.find();
 
             const resultProducts = await cursorProducts.toArray();
             response.send(resultProducts);
+        });
+        app.get('/cart-items', async (request, response) => {
+            const cursorCartProduct = cartProduct.find();
+
+            const resultCartProduct = await cursorCartProduct.toArray();
+            response.send(resultCartProduct);
         });
 
         app.get('/products/:category', async (request, response) => {
@@ -52,7 +59,6 @@ async function run() {
 
             const options = {
                 projection: {
-                    _id: 0,
                     name: 1,
                     price: 1,
                     ImgUrl: 1,
@@ -60,7 +66,6 @@ async function run() {
                 },
             };
 
-            console.log(query);
             const findCategory = await products.find(query, options);
             const findCategoryBenar = await categoryBenar.find(query2);
 
@@ -71,6 +76,17 @@ async function run() {
                 category: result,
                 categoryBenar: result2,
             });
+        });
+
+        // single items
+        app.get('/category/:id', async (request, response) => {
+            const id = request.params.id;
+            const query = {
+                _id: new ObjectId(id),
+            };
+            const resultItems = await products.findOne(query);
+
+            response.send(resultItems);
         });
 
         //single ite put method
@@ -123,7 +139,15 @@ async function run() {
         // data post
         app.post('/products', async (request, response) => {
             const product = request.body;
+
             const result = await products.insertOne(product);
+            response.send(result);
+        });
+        // add cord product
+        app.post('/cart-product', async (request, response) => {
+            const product = request.body;
+
+            const result = await cartProduct.insertOne(product);
             response.send(result);
         });
 
