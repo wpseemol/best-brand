@@ -2,38 +2,75 @@ import { useLoaderData } from 'react-router-dom';
 import Title from '../title/Title';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { useContext, useEffect, useState } from 'react';
+
+import { AuthContext } from '../../providers/AuthProvider';
 
 const SingleProduct = () => {
     const { data } = useLoaderData();
 
-    const handalAddItmeCard = () => {
-        axios
-            .post('http://localhost:5000/cart-product', {
-                id: data?._id,
-                name: data?.name,
-                imageUrl: data?.ImgUrl,
-                price: data?.price,
-                brand: data?.brand,
-            })
+    const [cardData, setCardData] = useState([]);
+    const loginRegInfo = useContext(AuthContext);
+    const { setCardItemLength, cardItemLength } = loginRegInfo || {};
 
-            .then(function () {
-                Swal.fire({
-                    title: 'Done!',
-                    text: 'Product Is add your Card',
-                    icon: 'success',
-                    confirmButtonText: 'Okay',
-                }).then(() => {
-                    window.location.reload(false);
-                });
+    useEffect(() => {
+        axios
+            .get('http://localhost:5000/cart-items')
+            .then(function (response) {
+                setCardData(response?.data);
             })
-            .catch(function (error) {
-                Swal.fire({
-                    title: 'Error!',
-                    text: error,
-                    icon: 'error',
-                    confirmButtonText: 'Cool',
-                });
+            .catch(function () {
+                // handle error
             });
+    }, [cardItemLength]);
+
+    const handalAddItmeCard = () => {
+        const previousSetElement = cardData.find(
+            (item) => item.id === data?._id
+        );
+        if (!previousSetElement) {
+            axios
+                .post('http://localhost:5000/cart-product', {
+                    id: data?._id,
+                    name: data?.name,
+                    imageUrl: data?.ImgUrl,
+                    price: data?.price,
+                    brand: data?.brand,
+                })
+
+                .then(function () {
+                    Swal.fire({
+                        title: 'Done!',
+                        text: 'Product Is add your Card',
+                        icon: 'success',
+                        confirmButtonText: 'Okay',
+                    }).then(() => {
+                        axios
+                            .get('http://localhost:5000/cart-items')
+                            .then(function (response) {
+                                setCardItemLength(response?.data?.length);
+                            })
+                            .catch(function () {
+                                // handle error
+                            });
+                    });
+                })
+                .catch(function (error) {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: error,
+                        icon: 'error',
+                        confirmButtonText: 'Cool',
+                    });
+                });
+        } else {
+            Swal.fire({
+                title: 'Error!',
+                text: 'Oops Previous set this product Card page',
+                icon: 'error',
+                confirmButtonText: 'Cool',
+            });
+        }
     };
 
     return (

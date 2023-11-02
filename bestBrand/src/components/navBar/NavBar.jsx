@@ -13,20 +13,32 @@ import {
     products,
     search,
 } from '../navElement/NavElement';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import '../../assets/css/hover.css';
 import { AuthContext } from '../../providers/AuthProvider';
 import { NavLink } from 'react-router-dom';
-import useCardData from '../useCardData/useCardData';
+
+import axios from 'axios';
 
 const NavBar = () => {
     const [clickSerce, setClickSerce] = useState(false);
     const [menuShow, setMenuShow] = useState(false);
 
     const loginRegInfo = useContext(AuthContext);
-    const { user } = loginRegInfo || {};
+    const { user, cardItemLength, setCardItemLength } = loginRegInfo || {};
 
-    const cardData = useCardData();
+    useEffect(() => {
+        axios
+            .get('http://localhost:5000/cart-items')
+            .then(function (response) {
+                setCardItemLength(response?.data?.length);
+            })
+            .catch(function () {
+                // handle error
+            });
+    }, []);
+
+    const cardDataLength = cardItemLength;
 
     const card = (
         <li className="text-white">
@@ -40,7 +52,7 @@ const NavBar = () => {
                     </div>
                     <div>
                         <h2 className="sm:text-lg text-sm font-semibold">
-                            Cart<span>({cardData.length})</span>
+                            Cart<span>({cardDataLength})</span>
                         </h2>
                         <p className="text-sm hidden md:block">Add items</p>
                     </div>

@@ -10,7 +10,6 @@ import {
 } from 'firebase/auth';
 import auth from '../../firebase/firebase.config';
 
-
 export const AuthContext = createContext(null);
 
 const googleProvider = new GoogleAuthProvider();
@@ -18,6 +17,7 @@ const googleProvider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, SetLoading] = useState(true);
+    const [cardItemLength, setCardItemLength] = useState(0);
 
     // created account
     const singUp = (email, password) => {
@@ -59,6 +59,8 @@ const AuthProvider = ({ children }) => {
         logOut,
         loading,
         logInGoogle,
+        cardItemLength,
+        setCardItemLength,
     };
     return (
         <AuthContext.Provider value={loginAndRegInfo}>
