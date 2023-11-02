@@ -7,7 +7,7 @@ const Root = () => {
             <header className="font-mySansFont">
                 <NavBar />
             </header>
-            <main className="font-mySansFont container mx-auto">
+            <main className="font-mySansFont">
                 {' '}
                 <Outlet />{' '}
             </main>
