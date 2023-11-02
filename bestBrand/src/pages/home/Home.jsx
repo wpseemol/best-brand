@@ -15,7 +15,7 @@ const Home = () => {
                 <HomeHeroSection />
             </section>
 
-            <section className="container mx-auto mt-16">
+            <section className="container mx-auto mt-16 ">
                 <CategorySection />
             </section>
         </>

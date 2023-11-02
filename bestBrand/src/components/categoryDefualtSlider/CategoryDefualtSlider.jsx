@@ -8,7 +8,7 @@ import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 
 const CategoryDefualtSlider = () => {
     return (
-        <div className="md:h-[30rem] h-60">
+        <div className="md:h-[30rem] h-60 -z-10">
             <Swiper
                 spaceBetween={30}
                 centeredSlides={true}
@@ -26,7 +26,7 @@ const CategoryDefualtSlider = () => {
                     <img
                         src="https://i.ibb.co/DpdtZ4t/Mix-Fold-3-Slider-1262.webp"
                         alt="slider image 1"
-                        className="w-full object-cover object-center"
+                        className="w-full object-cover object-center "
                     />
                 </SwiperSlide>
                 <SwiperSlide>

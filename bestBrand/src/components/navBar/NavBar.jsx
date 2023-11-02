@@ -51,15 +51,12 @@ const NavBar = () => {
         <>
             <nav className="hidden md:block">
                 <div>
-                    <div className="bg-black py-2 fixed top-0 left-0 w-full ">
+                    <div className="bg-black py-2 fixed top-0 left-0 w-full z-50">
                         <ul className="container mx-auto flex justify-evenly items-center">
                             {/* logo */ logo}
                             <li>{/* search */ search}</li>
-
                             {/* offer */ offer}
-
                             {/* card */ card}
-
                             {/* account */ account}
                         </ul>
                     </div>
@@ -76,7 +73,7 @@ const NavBar = () => {
 
             <nav className="md:hidden">
                 <div>
-                    <ul className=" flex justify-between items-center bg-black w-full fixed top-0 px-8">
+                    <ul className=" flex justify-between items-center bg-black w-full fixed z-50 top-0 px-8">
                         <li className={`relative `}>
                             <div
                                 className=" text-white text-2xl"
@@ -129,7 +126,7 @@ const NavBar = () => {
                     <div className="w-ful h-[5rem]"> </div>
                 </div>
                 <div>
-                    <ul className="fixed bottom-0 z-40 bg-black py-2 flex w-full justify-evenly">
+                    <ul className="fixed bottom-0 z-50 bg-black py-2 flex w-full justify-evenly">
                         {/* offer */ offer}
 
                         {/* card */ card}

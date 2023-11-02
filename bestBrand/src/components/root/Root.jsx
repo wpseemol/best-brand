@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import NavBar from '../navBar/NavBar';
+import FooterSection from '../footerSection/FooterSection';
 
 const Root = () => {
     return (
@@ -11,7 +12,10 @@ const Root = () => {
                 {' '}
                 <Outlet />{' '}
             </main>
-            <footer className="font-mySansFont"></footer>
+            {/* this si footer section */}
+            <>
+                <FooterSection />
+            </>
         </>
     );
 };

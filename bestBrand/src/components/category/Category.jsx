@@ -16,9 +16,9 @@ const Category = () => {
     console.log(category);
     return (
         <>
-            <div>
+            <div className="">
                 {categoryBenar.length > 0 ? (
-                    <div className="md:h-[30rem] h-60 ">
+                    <div className="md:h-[30rem] h-60 -z-10">
                         <Swiper
                             spaceBetween={30}
                             centeredSlides={true}
