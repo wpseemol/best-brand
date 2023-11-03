@@ -12,6 +12,7 @@ import Category from '../components/category/Category';
 import CategorySection from '../components/categorySection/CategorySection';
 import SingleProduct from '../components/singleProduct/SingleProduct';
 import CardItems from '../components/cardItmes/CardItems';
+import UpdateData from '../components/updateData/UpdateData';
 
 const router = createBrowserRouter([
     {
@@ -60,6 +61,15 @@ const router = createBrowserRouter([
                 loader: ({ params }) => {
                     return axios.get(
                         `http://localhost:5000/category/${params.item}`
+                    );
+                },
+            },
+            {
+                path: '/category/:category/:product/update',
+                element: <UpdateData />,
+                loader: ({ params }) => {
+                    return axios.get(
+                        `http://localhost:5000/category/${params.product}`
                     );
                 },
             },

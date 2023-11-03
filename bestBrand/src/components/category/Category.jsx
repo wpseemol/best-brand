@@ -76,13 +76,13 @@ const Category = () => {
                                         </p>
                                         <button className="seconderBtn px-4 py-2 bg-primaryColor text-white hover:bg-primaryColor/70 ">
                                             <Link
-                                                to={`/category/PowerAdapter/${element._id}`}>
+                                                to={`/category/${category[0]?.category?.catId}/${element._id}/update`}>
                                                 Update
                                             </Link>
                                         </button>
                                         <button className="seconderBtn px-4 py-2 ml-3 border border-primaryColor text-primaryColor">
                                             <Link
-                                                to={`/category/PowerAdapter/${element._id}`}>
+                                                to={`/category/${category[0]?.category?.catId}/${element._id}`}>
                                                 See Details
                                             </Link>
                                         </button>
