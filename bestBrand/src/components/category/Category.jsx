@@ -56,7 +56,7 @@ const Category = () => {
                 <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-3 md:px-0 px-2">
                     {category.map((element, inx) => {
                         return (
-                            <dir
+                            <div
                                 key={inx}
                                 className="bg-white px-1 pb-3 rounded-md hover:shadow-2xl duration-200">
                                 <div>
@@ -88,7 +88,7 @@ const Category = () => {
                                         </button>
                                     </div>
                                 </div>
-                            </dir>
+                            </div>
                         );
                     })}
                 </div>
