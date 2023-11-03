@@ -1,4 +1,3 @@
-//server is for MoviesFlix site.
 //come from express.
 const express = require('express');
 //come from cors.
@@ -16,7 +15,7 @@ const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 //come from dotenv.
 const uri = `mongodb+srv://${process.env.DB_NAME}:${process.env.DB_PASSWORD}@cluster0.s0x7bvc.mongodb.net/?retryWrites=true&w=majority`;
 
-// Create a MongoClient with a MongoClientOptions object to set the Stable API version
+// Create a  MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
     serverApi: {
         version: ServerApiVersion.v1,
