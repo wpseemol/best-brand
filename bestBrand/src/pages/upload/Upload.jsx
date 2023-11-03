@@ -25,7 +25,6 @@ const Upload = () => {
 
     const handleSelectChange = (event) => {
         setSelectedOption(event.target.value);
-        console.log(event.target.value);
     };
 
     useEffect(() => {
@@ -41,7 +40,6 @@ const Upload = () => {
     const selectedCatagari = categoryData.find(
         (element) => element?.catId === selectedOption
     );
-    console.log(selectedCatagari);
 
     // upload files
     const handalUploadMovies = (e) => {
