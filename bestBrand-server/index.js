@@ -47,6 +47,9 @@ async function run() {
             const resultCartProduct = await cursorCartProduct.toArray();
             response.send(resultCartProduct);
         });
+        app.get('/', async (request, response) => {
+            response.send('Server is Running ...');
+        });
 
         app.get('/products/:category', async (request, response) => {
             const categoryId = request.params.category;
@@ -90,51 +93,27 @@ async function run() {
         });
 
         //single ite put method
-        // app.put('/movies/:id', async (request, response) => {
-        //     const id = request.params.id;
-        //     const query = {
-        //         _id: new ObjectId(id),
-        //     };
+        app.put('/category/:id', async (request, response) => {
+            const id = request.params.id;
+            const query = {
+                _id: new ObjectId(id),
+            };
 
-        //     const options = {
-        //         upsert: true,
-        //     };
+            const options = {
+                upsert: true,
+            };
 
-        //     const { filteredObject } = request.body;
+            const { filteredObject } = request.body;
 
-        //     const {
-        //         bnarImgUrl,
-        //         name,
-        //         picUrl,
-        //         comingSoon,
-        //         releaseYear,
-        //         type,
-        //         description,
-        //         storyBy,
-        //         producedBy,
-        //         executiveProducers,
-        //         cast,
-        //     } = filteredObject;
+            const updateDoc = {
+                $set: {
+                    ...filteredObject,
+                },
+            };
 
-        //     const updateDoc = {
-        //         $set: {
-        //             bnarImgUrl,
-        //             name,
-        //             picUrl,
-        //             comingSoon,
-        //             releaseYear,
-        //             type,
-        //             description,
-        //             storyBy,
-        //             producedBy,
-        //             executiveProducers,
-        //             cast,
-        //         },
-        //     };
-
-        //     const result = await movies.updateOne(query, updateDoc, options);
-        //     response.send(result);
-        // });
+            const result = await products.updateOne(query, updateDoc, options);
+            response.send(result);
+        });
 
         // data post
         app.post('/products', async (request, response) => {
@@ -153,15 +132,15 @@ async function run() {
 
         // data deleted
 
-        // app.delete('/movies/:id', async (request, response) => {
-        //     const id = request.params.id;
-        //     const query = {
-        //         _id: new ObjectId(id),
-        //     };
+        app.delete('/card-item-remove/:id', async (request, response) => {
+            const id = request.params.id;
+            const query = {
+                _id: new ObjectId(id),
+            };
 
-        //     const result = await movies.deleteOne(query);
-        //     response.send(result);
-        // });
+            const result = await cartProduct.deleteOne(query);
+            response.send(result);
+        });
     } finally {
     }
 }
