@@ -3,6 +3,7 @@ import Title from '../title/Title';
 import { useState } from 'react';
 import { FaPencil } from 'react-icons/fa6';
 import EditContentPopUp from '../editContentPopUp/EditContentPopUp';
+import useCatagariData from '../useCatagariData/useCatagariData';
 
 const UpdateData = () => {
     const { data } = useLoaderData();
@@ -10,6 +11,9 @@ const UpdateData = () => {
     // const [btnDisable, setBtnDisable] = useState(false);
     const [editText, setEditText] = useState(null);
     const [showEditFrom, setShowEditFrom] = useState(false);
+
+    const test = useCatagariData();
+    console.log(test);
 
     const popupClose = (isClose) => {
         setShowEditFrom(isClose);

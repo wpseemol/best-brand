@@ -1,22 +1,47 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
+import useCatagariData from '../../components/useCatagariData/useCatagariData';
 
 const Upload = () => {
+    const categoryData = useCatagariData();
+
     const [previewImage, setPreviewImage] = useState(
-        'https://picsum.photos/500/400'
+        'https://picsum.photos/500/600'
     );
-
-    const [selectedOption, setSelectedOption] = useState('');
-    const [addBtnClick, setAddBtnClick] = useState(false);
-
-    const handleSelectChange = (event) => {
-        setSelectedOption(event.target.value);
-    };
-
     const handleInputChange = (event) => {
         setPreviewImage(event.target.value);
     };
+
+    const [selectedOption, setSelectedOption] = useState('');
+    const [addBtnClick, setAddBtnClick] = useState(false);
+    const [showWarningMassage, setShowWarningMassage] = useState(false);
+    const [isFromSubmet, setIsFormSubmet] = useState(false);
+    useEffect(() => {
+        setTimeout(() => {
+            setShowWarningMassage(false);
+        }, 5000);
+    }, [showWarningMassage]);
+
+    const handleSelectChange = (event) => {
+        setSelectedOption(event.target.value);
+        console.log(event.target.value);
+    };
+
+    useEffect(() => {
+        if (selectedOption) {
+            setIsFormSubmet(true);
+        }
+    }, [selectedOption]);
+
+    // useEffect(() => {
+    //
+    // }, [selectedOption]);
+
+    const selectedCatagari = categoryData.find(
+        (element) => element?.catId === selectedOption
+    );
+    console.log(selectedCatagari);
 
     // upload files
     const handalUploadMovies = (e) => {
@@ -39,57 +64,73 @@ const Upload = () => {
         const batteryInfo = from.batteryInfo.value;
         const otherInfo = from.otherInfo.value;
 
-        axios
-            .post('http://localhost:5000/products', {
-                productCode: productCode,
-                name: name ? name : 'Product Name',
-                price: price ? price : '12000 tk',
-                ImgUrl: previewImage,
-                status: status ? status : 'In Stock',
-                brand: brand ? brand : 'Brand Name',
-                dimension: dimension ? dimension : null,
-                weight: weight ? weight : null,
-                category: addBtnClick
-                    ? {
-                          catId: categoryName.replace(/\s/g, '').toLowerCase(),
-                          categoryName,
-                          categoryIcon,
-                      }
-                    : { catId: null, categoryName: null, categoryIcon: null },
-                mainCamera: mainCamera ? mainCamera : null,
-                selfieCamera: selfieCamera ? selfieCamera : null,
-                description: description ? description : null,
-                batteryInfo: batteryInfo ? batteryInfo : null,
-                otherInfo: otherInfo ? otherInfo : null,
-            })
+        if (isFromSubmet) {
+            axios
+                .post('http://localhost:5000/products', {
+                    productCode: productCode,
+                    name: name ? name : 'Product Name',
+                    price: price ? price : '12000 tk',
+                    ImgUrl: previewImage,
+                    status: status ? status : 'In Stock',
+                    brand: brand ? brand : 'Brand Name',
+                    dimension: dimension ? dimension : null,
+                    weight: weight ? weight : null,
+                    category: addBtnClick
+                        ? {
+                              catId: categoryName
+                                  .replace(/\s/g, '')
+                                  .toLowerCase(),
+                              categoryName,
+                              categoryIcon,
+                          }
+                        : {
+                              catId: selectedCatagari.catId,
+                              categoryName: selectedCatagari.categoryName,
+                              categoryIcon: selectedCatagari.categoryIcon,
+                          },
+                    mainCamera: mainCamera ? mainCamera : null,
+                    selfieCamera: selfieCamera ? selfieCamera : null,
+                    description: description ? description : null,
+                    batteryInfo: batteryInfo ? batteryInfo : null,
+                    otherInfo: otherInfo ? otherInfo : null,
+                })
 
-            .then(function () {
-                Swal.fire({
-                    title: 'Done!',
-                    text: 'Product Upload is Done',
-                    icon: 'success',
-                    confirmButtonText: 'Okay',
+                .then(function () {
+                    Swal.fire({
+                        title: 'Done!',
+                        text: 'Product Upload is Done',
+                        icon: 'success',
+                        confirmButtonText: 'Okay',
+                    });
+                })
+                .catch(function (error) {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: error,
+                        icon: 'error',
+                        confirmButtonText: 'Cool',
+                    });
                 });
-            })
-            .catch(function (error) {
-                Swal.fire({
-                    title: 'Error!',
-                    text: error,
-                    icon: 'error',
-                    confirmButtonText: 'Cool',
-                });
-            });
+        } else {
+            setShowWarningMassage(true);
+        }
     };
 
     return (
         <>
             <div className="">
+                <div
+                    className={`bg-red-500 p-2 fixed duration-700 text-lg font-semibold text-white top-[10rem] rounded-md  z-50 ${
+                        showWarningMassage ? 'right-8' : '-right-[15rem]'
+                    }`}>
+                    Category Is not selected.
+                </div>
                 <div>
                     <form
                         onSubmit={handalUploadMovies}
                         className="grid md:grid-cols-2 grid-cols-1 gap-2 ">
                         <div className=" row-span-4">
-                            <div className="text-base font-semibold text-center underline">
+                            <div className="text-base font-semibold text-center underline ">
                                 <p>Image Preview</p>
                             </div>{' '}
                             <img
@@ -110,7 +151,7 @@ const Upload = () => {
                                 name="name"
                                 id="name"
                                 className="customInputStyle mt-4"
-                                placeholder="Product Name "
+                                placeholder="Product Name"
                             />
                         </div>
                         <div className="">
@@ -231,18 +272,24 @@ const Upload = () => {
                                     className="customInputStyle py-2 w-52"
                                     value={selectedOption}
                                     onChange={handleSelectChange}>
-                                    <option value="">Select an option</option>
-                                    <option value="option1">Option 1</option>
-                                    <option value="option2">Option 2</option>
-                                    <option value="option3">Option 3</option>
-                                    <option value="option4">Option 4</option>
+                                    <option value="">No Select</option>
+                                    {categoryData?.map((item) => {
+                                        return (
+                                            <option
+                                                key={item?.catId}
+                                                value={item?.catId}>
+                                                {item?.categoryName}
+                                            </option>
+                                        );
+                                    })}
                                 </select>
 
                                 <div>
                                     <div
-                                        onClick={() =>
-                                            setAddBtnClick(!addBtnClick)
-                                        }
+                                        onClick={() => {
+                                            setAddBtnClick(!addBtnClick);
+                                            setIsFormSubmet(!isFromSubmet);
+                                        }}
                                         className="w-8 hover:scale-110 duration-150 h-8 bg-slate-800 text-white text-center text-2xl rounded-full ">
                                         {addBtnClick ? 'x' : '+'}
                                     </div>

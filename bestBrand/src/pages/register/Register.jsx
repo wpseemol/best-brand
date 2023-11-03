@@ -82,7 +82,7 @@ const Register = () => {
 
     return (
         <>
-            <section>
+            <section className="container mx-auto mb-8">
                 <div>
                     <Title>Register</Title>{' '}
                 </div>
