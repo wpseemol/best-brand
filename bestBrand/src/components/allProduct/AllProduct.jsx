@@ -11,7 +11,7 @@ const AllProduct = () => {
     const itemsPerPage = 6;
     useEffect(() => {
         axios
-            .get('http://localhost:5000/products')
+            .get('https://best-brand-server.vercel.app/products')
             .then(function (response) {
                 getAllProductData(response?.data);
             })
@@ -44,7 +44,7 @@ const AllProduct = () => {
                     shopping.
                 </p>
             </div>
-            <div className="grid grid-cols-6 relative allHoverElement">
+            <div className="grid xl:grid-cols-6 lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 relative allHoverElement">
                 {allProductData?.slice(startIndex, endIndex).map((item) => {
                     return (
                         <div

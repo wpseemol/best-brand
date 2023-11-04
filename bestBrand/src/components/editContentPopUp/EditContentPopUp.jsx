@@ -45,9 +45,12 @@ const EditContentPopUp = ({ allData, clickText, popupClose }) => {
         }
 
         axios
-            .put(`http://localhost:5000/category/${allData._id}`, {
-                filteredObject,
-            })
+            .put(
+                `https://best-brand-server.vercel.app/category/${allData._id}`,
+                {
+                    filteredObject,
+                }
+            )
             .then(function () {
                 Swal.fire({
                     title: 'Done!',

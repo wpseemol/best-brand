@@ -29,7 +29,7 @@ const NavBar = () => {
 
     useEffect(() => {
         axios
-            .get('http://localhost:5000/cart-items')
+            .get('https://best-brand-server.vercel.app/cart-items')
             .then(function (response) {
                 setCardItemLength(response?.data?.length);
             })

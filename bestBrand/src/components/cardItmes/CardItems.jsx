@@ -43,7 +43,9 @@ const CardItems = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 axios
-                    .delete(`http://localhost:5000/card-item-remove/${rmId}`)
+                    .delete(
+                        `https://best-brand-server.vercel.app/card-item-remove/${rmId}`
+                    )
                     .then(() => {
                         Swal.fire(
                             'Deleted!',

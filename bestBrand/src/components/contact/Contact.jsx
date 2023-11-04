@@ -20,31 +20,31 @@ const Contact = () => {
                         </p>
                     </div>
                     <div className="w-fit mx-auto text-xl">
-                        <div className="flex items-center gap-3">
-                            <div>
+                        <div className="flex flex-col md:flex-row items-center gap-3">
+                            <div className="w-full px-2 md:px-0">
                                 <label htmlFor="fName">First Name *</label>{' '}
                                 <br />
                                 <input
-                                    className="text-[#666697] px-3 py-2"
+                                    className="text-[#666697] px-3 py-2 w-full"
                                     type="text"
                                     name="fName"
                                     id="fName"
                                 />{' '}
                             </div>
-                            <div>
+                            <div className="w-full px-2 md:px-0">
                                 <label htmlFor="lName">Last Name *</label>{' '}
                                 <br />
                                 <input
-                                    className="text-[#666697] px-3 py-2"
+                                    className="text-[#666697] px-3 py-2 w-full"
                                     type="text"
                                     name="lName"
                                     id="lName"
                                 />{' '}
                             </div>
-                            <div>
+                            <div className="w-full px-2 md:px-0">
                                 <label htmlFor="email">Email *</label> <br />
                                 <input
-                                    className="text-[#666697] px-3 py-2"
+                                    className="text-[#666697] px-3 py-2 w-full"
                                     type="text"
                                     name="email"
                                     id="email"
@@ -53,7 +53,7 @@ const Contact = () => {
                         </div>
                         <br />
 
-                        <div className="flex items-center gap-3">
+                        <div className="flex flex-col sm:flex-row items-center gap-3 px-2 md:px-0">
                             <div className="sm:w-1/2">
                                 <label htmlFor="pdCod">Product Code *</label>{' '}
                                 <br />
@@ -78,7 +78,7 @@ const Contact = () => {
                                 />{' '}
                             </div>
                         </div>
-                        <div className="w-fit ml-auto mt-4">
+                        <div className="w-fit md:ml-auto md:mx-0 mx-auto mt-4 px-2 md:px-0">
                             <button className="seconderBtn px-4 py-2 bg-primaryColor text-white hover:bg-primaryColor/70">
                                 {' '}
                                 Send Massage

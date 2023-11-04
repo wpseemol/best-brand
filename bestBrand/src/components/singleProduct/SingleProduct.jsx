@@ -15,7 +15,7 @@ const SingleProduct = () => {
 
     useEffect(() => {
         axios
-            .get('http://localhost:5000/cart-items')
+            .get('https://best-brand-server.vercel.app/cart-items')
             .then(function (response) {
                 setCardData(response?.data);
             })
@@ -30,7 +30,7 @@ const SingleProduct = () => {
         );
         if (!previousSetElement) {
             axios
-                .post('http://localhost:5000/cart-product', {
+                .post('https://best-brand-server.vercel.app/cart-product', {
                     id: data?._id,
                     name: data?.name,
                     imageUrl: data?.ImgUrl,
@@ -46,7 +46,9 @@ const SingleProduct = () => {
                         confirmButtonText: 'Okay',
                     }).then(() => {
                         axios
-                            .get('http://localhost:5000/cart-items')
+                            .get(
+                                'https://best-brand-server.vercel.app/cart-items'
+                            )
                             .then(function (response) {
                                 setCardItemLength(response?.data?.length);
                             })

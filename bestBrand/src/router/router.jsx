@@ -25,7 +25,9 @@ const router = createBrowserRouter([
                 path: '/',
                 element: <Home />,
                 loader: () => {
-                    return axios.get('http://localhost:5000/products');
+                    return axios.get(
+                        'https://best-brand-server.vercel.app/products'
+                    );
                 },
             },
             {
@@ -37,7 +39,9 @@ const router = createBrowserRouter([
                 ),
 
                 loader: () => {
-                    return axios.get('http://localhost:5000/cart-items');
+                    return axios.get(
+                        'https://best-brand-server.vercel.app/cart-items'
+                    );
                 },
             },
             {
@@ -53,7 +57,7 @@ const router = createBrowserRouter([
                 element: <Category />,
                 loader: ({ params }) => {
                     return axios.get(
-                        `http://localhost:5000/products/${params.category}`
+                        `https://best-brand-server.vercel.app/products/${params.category}`
                     );
                 },
             },
@@ -62,7 +66,7 @@ const router = createBrowserRouter([
                 element: <SingleProduct />,
                 loader: ({ params }) => {
                     return axios.get(
-                        `http://localhost:5000/category/${params.item}`
+                        `https://best-brand-server.vercel.app/category/${params.item}`
                     );
                 },
             },
@@ -71,7 +75,7 @@ const router = createBrowserRouter([
                 element: <UpdateData />,
                 loader: ({ params }) => {
                     return axios.get(
-                        `http://localhost:5000/category/${params.product}`
+                        `https://best-brand-server.vercel.app/category/${params.product}`
                     );
                 },
             },

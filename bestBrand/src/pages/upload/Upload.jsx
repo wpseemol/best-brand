@@ -64,7 +64,7 @@ const Upload = () => {
 
         if (isFromSubmet) {
             axios
-                .post('http://localhost:5000/products', {
+                .post('https://best-brand-server.vercel.app/products', {
                     productCode: productCode,
                     name: name ? name : 'Product Name',
                     price: price ? price : '12000 tk',

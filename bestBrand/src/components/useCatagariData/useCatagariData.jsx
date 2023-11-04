@@ -5,7 +5,7 @@ const useCatagariData = () => {
     const [catagoriData, setCatagoriData] = useState([]);
     useEffect(() => {
         axios
-            .get('http://localhost:5000/products')
+            .get('https://best-brand-server.vercel.app/products')
             .then(function (response) {
                 //category
                 // handle success
