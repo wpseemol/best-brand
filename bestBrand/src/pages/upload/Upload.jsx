@@ -127,7 +127,7 @@ const Upload = () => {
                     <form
                         onSubmit={handalUploadMovies}
                         className="grid md:grid-cols-2 grid-cols-1 gap-2 ">
-                        <div className=" row-span-4">
+                        <div className="md:row-span-4">
                             <div className="text-base font-semibold text-center underline ">
                                 <p>Image Preview</p>
                             </div>{' '}
@@ -200,7 +200,7 @@ const Upload = () => {
                             />
                         </div>
 
-                        <div className="col-span-1 flex items-center gap-3">
+                        <div className="md:col-span-1 flex items-center gap-3">
                             <label
                                 htmlFor="status"
                                 className="text-xl font-semibold">
@@ -214,7 +214,7 @@ const Upload = () => {
                                 placeholder="In Stock"
                             />
                         </div>
-                        <div className="col-span-1 flex items-center gap-3 ">
+                        <div className="md:col-span-1 flex items-center gap-3 ">
                             <label
                                 htmlFor="brand"
                                 className="text-xl font-semibold">
@@ -228,7 +228,7 @@ const Upload = () => {
                                 placeholder="Brand"
                             />
                         </div>
-                        <div className="col-span-1 flex items-center gap-3">
+                        <div className="md:col-span-1 flex items-center gap-3">
                             <label
                                 htmlFor="dimension"
                                 className="text-xl font-semibold ">
@@ -242,7 +242,7 @@ const Upload = () => {
                                 placeholder="159.9 x 76.7 x 8.3 mm"
                             />
                         </div>
-                        <div className="col-span-1 flex items-center gap-3">
+                        <div className="md:col-span-1 flex items-center gap-3">
                             <label
                                 htmlFor="weight"
                                 className="text-xl font-semibold ">
@@ -257,69 +257,76 @@ const Upload = () => {
                             />
                         </div>
                         {/* this is catagori section  */}
-                        <div className="col-span-2 flex items-center gap-3 ">
+                        <div className="md:col-span-2 flex lg:items-center gap-3 overflow-auto">
                             <label
                                 htmlFor="category"
                                 className="text-xl font-semibold ">
                                 Category:
                             </label>
-                            <div className="flex gap-4 items-center">
-                                <select
-                                    name="category"
-                                    id="category"
-                                    className="customInputStyle py-2 w-52"
-                                    value={selectedOption}
-                                    onChange={handleSelectChange}>
-                                    <option value="">No Select</option>
-                                    {categoryData?.map((item) => {
-                                        return (
-                                            <option
-                                                key={item?.catId}
-                                                value={item?.catId}>
-                                                {item?.categoryName}
-                                            </option>
-                                        );
-                                    })}
-                                </select>
+                            <div className="flex flex-col lg:flex-row border lg:border-none lg:gap-4 gap-2 items-center w-full">
+                                <div className="flex items-center gap-2">
+                                    <select
+                                        name="category"
+                                        id="category"
+                                        className="customInputStyle py-2 w-full"
+                                        value={selectedOption}
+                                        onChange={handleSelectChange}>
+                                        <option value="">No Select</option>
+                                        {categoryData?.map((item) => {
+                                            return (
+                                                <option
+                                                    key={item?.catId}
+                                                    value={item?.catId}>
+                                                    {item?.categoryName}
+                                                </option>
+                                            );
+                                        })}
+                                    </select>
 
-                                <div>
-                                    <div
-                                        onClick={() => {
-                                            setAddBtnClick(!addBtnClick);
-                                            setIsFormSubmet(!isFromSubmet);
-                                        }}
-                                        className="w-8 hover:scale-110 duration-150 h-8 bg-slate-800 text-white text-center text-2xl rounded-full ">
-                                        {addBtnClick ? 'x' : '+'}
+                                    <div>
+                                        <div
+                                            onClick={() => {
+                                                setAddBtnClick(!addBtnClick);
+                                                setIsFormSubmet(!isFromSubmet);
+                                            }}
+                                            className="w-8 hover:scale-110 duration-150 h-8 bg-slate-800 text-white text-center text-2xl rounded-full ">
+                                            {addBtnClick ? 'x' : '+'}
+                                        </div>
                                     </div>
                                 </div>
+
                                 {addBtnClick && (
-                                    <div className="flex items-center gap-2">
-                                        <label
-                                            htmlFor="categoryName"
-                                            className="text-lg font-medium ">
-                                            New:
-                                        </label>
-                                        <input
-                                            required
-                                            type="text"
-                                            name="categoryName"
-                                            id="categoryName"
-                                            className="customInputStyle "
-                                            placeholder="Phones & Tablets"
-                                        />
-                                        <label
-                                            htmlFor="categoryIcon"
-                                            className="text-lg font-medium ">
-                                            Icon:
-                                        </label>
-                                        <input
-                                            required
-                                            type="text"
-                                            name="categoryIcon"
-                                            id="categoryIcon"
-                                            className="customInputStyle "
-                                            placeholder="Icon Url"
-                                        />
+                                    <div className="flex md:flex-row flex-col items-center gap-2">
+                                        <div className="flex items-center gap-2">
+                                            <label
+                                                htmlFor="categoryName"
+                                                className="text-lg font-medium ">
+                                                New:
+                                            </label>
+                                            <input
+                                                required
+                                                type="text"
+                                                name="categoryName"
+                                                id="categoryName"
+                                                className="customInputStyle "
+                                                placeholder="Phones & Tablets"
+                                            />
+                                        </div>
+                                        <div className="flex items-center gap-2">
+                                            <label
+                                                htmlFor="categoryIcon"
+                                                className="text-lg font-medium ">
+                                                Icon:
+                                            </label>
+                                            <input
+                                                required
+                                                type="text"
+                                                name="categoryIcon"
+                                                id="categoryIcon"
+                                                className="customInputStyle "
+                                                placeholder="Icon Url"
+                                            />
+                                        </div>
                                     </div>
                                 )}
                             </div>

@@ -44,8 +44,8 @@ const Dashboard = () => {
                     <Title>Dashboard</Title>
                 </div>
 
-                <div className="grid sm:grid-cols-3 grid-cols-1 gap-5">
-                    <div className="col-span-1 md:px-0 px-2">
+                <div className="grid sm:grid-cols-3 grid-cols-1 lg:gap-5">
+                    <div className="sm:col-span-1 md:px-0 px-2">
                         <NavLink
                             to={`/dashboard/profile`}
                             className={({ isActive }) =>
@@ -83,7 +83,7 @@ const Dashboard = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="col-span-2 md:mb-10 mb-20 md:px-0 px-2">
+                    <div className="sm:col-span-2 md:mb-10 mb-20 md:px-0 px-2">
                         {' '}
                         <Outlet />{' '}
                     </div>
