@@ -35,6 +35,11 @@ const Home = () => {
                 <Contact />
             </section>
 
+            {/* brand section */}
+            {/* <section className="container mx-auto md:mt-16 mt-5">
+                
+            </section> */}
+
             <section className="container mx-auto md:my-16 my-5">
                 <About />
             </section>

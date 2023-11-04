@@ -5,14 +5,7 @@ import {
     FaRegUser,
     FaX,
 } from 'react-icons/fa6';
-import {
-    about,
-    contact,
-    logo,
-    offer,
-    products,
-    search,
-} from '../navElement/NavElement';
+import { menuArr, logo, offer, search } from '../navElement/NavElement';
 import { useContext, useEffect, useState } from 'react';
 import '../../assets/css/hover.css';
 import { AuthContext } from '../../providers/AuthProvider';
@@ -123,16 +116,16 @@ const NavBar = () => {
                 </div>
                 <div className="shadow-lg">
                     <ul className="container mx-auto text-base font-medium py-2 flex items-center gap-5">
-                        {products}
-                        {contact}
-                        {about}
+                        {menuArr?.map((itme, inx) => {
+                            return <li key={inx}>{itme}</li>;
+                        })}
                     </ul>
                 </div>
             </nav>
 
             <nav className="md:hidden">
                 <div>
-                    <ul className=" flex justify-between items-center bg-black w-full fixed z-50 top-0 px-8">
+                    <ul className="  flex justify-between items-center bg-black w-full fixed z-50 top-0 px-8">
                         <li className={`relative `}>
                             <div
                                 className=" text-white text-2xl"
@@ -140,20 +133,20 @@ const NavBar = () => {
                                 {menuShow ? <FaX /> : <FaBars />}
                             </div>
                             <ul
-                                className={`absolute top-[3.25rem]  h-44 bg-white duration-500 ${
+                                className={`absolute top-[3.25rem]  h-44 bg-gray-100 duration-500 ${
                                     menuShow
                                         ? '-left-[1.8rem]'
                                         : '-left-[20rem]'
                                 }`}>
-                                <li className="hover:text-primaryColor duration-200 border-b p-2 pr-36">
-                                    {products}
-                                </li>
-                                <li className="hover:text-primaryColor duration-200 border-b p-2 pr-16">
-                                    {contact}
-                                </li>
-                                <li className="hover:text-primaryColor duration-200 p-2 pr-16">
-                                    {about}
-                                </li>
+                                {menuArr?.map((itme, inx) => {
+                                    return (
+                                        <li
+                                            key={inx}
+                                            className="last:border-none hover:text-primaryColor duration-200 border-b border-black p-2 pr-36">
+                                            {itme}
+                                        </li>
+                                    );
+                                })}
                             </ul>
                         </li>
 

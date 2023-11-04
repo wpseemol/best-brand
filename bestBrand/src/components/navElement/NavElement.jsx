@@ -52,7 +52,10 @@ const offer = (
 );
 
 const products = <a href="/#product">Products </a>;
+const brand = <a href="/#brand">Products </a>;
 const contact = <a href="/#contact">Contact </a>;
 const about = <a href="/#about">about </a>;
 
-export { logo, search, offer, products, contact, about };
+const menuArr = [products, brand, contact, about];
+
+export { logo, search, offer, menuArr };
