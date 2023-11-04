@@ -44,7 +44,7 @@ const AllProduct = () => {
                     shopping.
                 </p>
             </div>
-            <div className="grid xl:grid-cols-6 lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 relative allHoverElement">
+            <div className="grid 2xl:grid-cols-6 xl:grid-cols-5 lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 relative allHoverElement">
                 {allProductData?.slice(startIndex, endIndex).map((item) => {
                     return (
                         <div
