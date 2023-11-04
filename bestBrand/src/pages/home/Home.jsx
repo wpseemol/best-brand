@@ -37,7 +37,7 @@ const Home = () => {
             </section>
 
             {/* brand section */}
-            <section className="container mx-auto md:mt-16 mt-5">
+            <section className="container mx-auto md:mt-16 mt-5" id="brand">
                 <BrandSection />
             </section>
 

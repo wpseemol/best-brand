@@ -65,7 +65,7 @@ const CardItems = () => {
         });
     };
 
-    if (cartData.length === 0) {
+    if (cartData?.length === 0) {
         return (
             <>
                 <div className="container mx-auto md:my-16 my-6">
@@ -122,7 +122,7 @@ const CardItems = () => {
                                 Total
                             </th>
                         </tr>
-                        {cartData.map((element, inx) => {
+                        {cartData?.map((element, inx) => {
                             return (
                                 <tr
                                     key={inx}

@@ -12,7 +12,6 @@ import HomeTitle from '../homeTitle/HomeTitle';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import PrivetRoute from '../../privetRoute/PrivetRoute';
 
 const HotProduct = () => {
     const [appleProductData, getAppleProductData] = useState([]);

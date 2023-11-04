@@ -8,13 +8,15 @@ import Dashboard from '../pages/dashboard/Dashboard';
 import Profile from '../pages/profile/Profile';
 import Upload from '../pages/upload/Upload';
 import axios from 'axios';
-import Category from '../components/category/Category';
+
 import CategorySection from '../components/categorySection/CategorySection';
 import SingleProduct from '../components/singleProduct/SingleProduct';
 import CardItems from '../components/cardItmes/CardItems';
 import UpdateData from '../components/updateData/UpdateData';
 import ErrorPage from '../pages/errorePage/ErrorPage';
 import Brand from '../pages/bradn/Brand';
+import BrandItems from '../pages/brandItems/BrandItems';
+import Category from '../pages/category/Category';
 
 const router = createBrowserRouter([
     {
@@ -58,6 +60,10 @@ const router = createBrowserRouter([
                 element: <Brand />,
             },
             {
+                path: '/brand/:items',
+                element: <BrandItems />,
+            },
+            {
                 path: '/category/:category',
                 element: <Category />,
                 loader: ({ params }) => {
@@ -67,11 +73,11 @@ const router = createBrowserRouter([
                 },
             },
             {
-                path: '/category/:category/:item',
+                path: '/category/:category/:items',
                 element: <SingleProduct />,
                 loader: ({ params }) => {
                     return axios.get(
-                        `https://best-brand-server.vercel.app/category/${params.item}`
+                        `https://best-brand-server.vercel.app/category/${params.items}`
                     );
                 },
             },

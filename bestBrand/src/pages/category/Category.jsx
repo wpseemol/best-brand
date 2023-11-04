@@ -1,5 +1,5 @@
 import { Link, useLoaderData } from 'react-router-dom';
-import Title from '../title/Title';
+
 // Import Swiper
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
@@ -7,7 +7,9 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import '../../assets/css/styles.css';
-import CategoryDefualtSlider from '../categoryDefualtSlider/CategoryDefualtSlider';
+
+import Title from '../../components/title/Title';
+import CategoryDefualtSlider from '../../components/categoryDefualtSlider/CategoryDefualtSlider';
 
 const Category = () => {
     const { data } = useLoaderData();
@@ -17,7 +19,7 @@ const Category = () => {
         <>
             <div className="">
                 {categoryBenar.length > 0 ? (
-                    <div className="md:h-[30rem] h-60 -z-10">
+                    <div className="md:h-[35rem] h-60 -z-10">
                         <Swiper
                             spaceBetween={30}
                             centeredSlides={true}
@@ -54,7 +56,7 @@ const Category = () => {
             <div className="container mx-auto ">
                 <Title>{category[0]?.category?.categoryName}</Title>
                 <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-3 md:px-0 px-2">
-                    {category.map((element, inx) => {
+                    {category?.map((element, inx) => {
                         return (
                             <div
                                 key={inx}
@@ -76,13 +78,13 @@ const Category = () => {
                                         </p>
                                         <button className="seconderBtn px-4 py-2 bg-primaryColor text-white hover:bg-primaryColor/70 ">
                                             <Link
-                                                to={`/category/${category[0]?.category?.catId}/${element._id}/update`}>
+                                                to={`/category/${element?.category?.catId}/${element._id}/update`}>
                                                 Update
                                             </Link>
                                         </button>
                                         <button className="seconderBtn px-4 py-2 ml-3 border border-primaryColor text-primaryColor">
                                             <Link
-                                                to={`/category/${category[0]?.category?.catId}/${element._id}`}>
+                                                to={`/category/${element?.category?.catId}/${element._id}`}>
                                                 See Details
                                             </Link>
                                         </button>

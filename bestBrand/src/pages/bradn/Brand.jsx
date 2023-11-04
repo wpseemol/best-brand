@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Title from '../../components/title/Title';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const Brand = () => {
     const [brandData, getBrandData] = useState([]);
@@ -44,7 +45,7 @@ const Brand = () => {
                 </div>
 
                 <div
-                    className="grid 2xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-5
+                    className="grid 2xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-5
             w-fit mx-auto">
                     {brandData?.map((item, inx) => {
                         const defultIcon =
@@ -77,26 +78,28 @@ const Brand = () => {
                         return (
                             <div
                                 key={inx}
-                                className="group text-3xl font-bold text-center overflow-hidden py-5 px-2 hover:shadow-xl rounded-md duration-200">
-                                <div className="group-hover:scale-110 p-4 duration-200">
-                                    <div className="w-48">
-                                        <img
-                                            src={
-                                                appleIcon ||
-                                                googleIcon ||
-                                                samsungIcon ||
-                                                huaweiIcon ||
-                                                oppoIcon ||
-                                                xiaomiIcon ||
-                                                defultIcon
-                                            }
-                                            alt={`${item} icon`}
-                                        />
+                                className="group text-3xl font-bold text-center overflow-hidden py-5 px-2 hover:shadow-2xl shadow-md rounded-md duration-200">
+                                <Link to={`/brand/${item}`}>
+                                    <div className="group-hover:scale-110 p-4 duration-200">
+                                        <div className="w-48 mx-auto">
+                                            <img
+                                                src={
+                                                    appleIcon ||
+                                                    googleIcon ||
+                                                    samsungIcon ||
+                                                    huaweiIcon ||
+                                                    oppoIcon ||
+                                                    xiaomiIcon ||
+                                                    defultIcon
+                                                }
+                                                alt={`${item} icon`}
+                                            />
+                                        </div>
+                                        <div className="mt-3 capitalize">
+                                            <h2>{item}</h2>
+                                        </div>
                                     </div>
-                                    <div className="mt-3 capitalize">
-                                        <h2>{item}</h2>
-                                    </div>
-                                </div>
+                                </Link>
                             </div>
                         );
                     })}
