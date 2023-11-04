@@ -80,7 +80,7 @@ async function run() {
             });
         });
 
-        // single items
+        // single product
         app.get('/category/:id', async (request, response) => {
             const id = request.params.id;
             const query = {
