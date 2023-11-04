@@ -27,11 +27,11 @@ const HomeHeroSection = () => {
                         navigation={true}
                         modules={[Autoplay, Pagination, Navigation]}
                         className="mySwiper ">
-                        <SwiperSlide>
+                        <SwiperSlide className="w-full h-full">
                             <img
                                 src="https://i.ibb.co/DpdtZ4t/Mix-Fold-3-Slider-1262.webp"
                                 alt="slider image 1"
-                                className="w-full object-cover object-center"
+                                className="w-full h-full object-cover object-center"
                             />
                         </SwiperSlide>
                         <SwiperSlide>

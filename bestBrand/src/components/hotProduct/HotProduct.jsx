@@ -23,7 +23,7 @@ const HotProduct = () => {
                 // handle success
                 const filterAppleProductData = response?.data?.filter(
                     (item) => {
-                        return item?.brand?.toLowerCase() === 'apple';
+                        return item?.brand?.toLowerCase().trim() === 'apple';
                     }
                 );
 
@@ -35,7 +35,7 @@ const HotProduct = () => {
     }, []);
 
     return (
-        <div className="container mx-auto my-16">
+        <div className=" my-16">
             <div className="mx-auto">
                 <HomeTitle>
                     <samp className="uppercase">Hot Apple Product</samp>
@@ -67,8 +67,8 @@ const HotProduct = () => {
                         return (
                             <SwiperSlide
                                 key={element?._id}
-                                className="duration-500">
-                                <div className=" test px-1 pb-3 rounded-md  duration-200">
+                                className="hotProducHover duration-200">
+                                <div className=" test px-1 pb-3 rounded-md ">
                                     <div>
                                         <div>
                                             <img

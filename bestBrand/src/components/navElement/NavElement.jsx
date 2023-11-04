@@ -51,8 +51,8 @@ const offer = (
     </li>
 );
 
-const products = <NavLink>Products </NavLink>;
-const contact = <NavLink>Contact </NavLink>;
-const about = <NavLink>about </NavLink>;
+const products = <a href="/#product">Products </a>;
+const contact = <a href="/#contact">Contact </a>;
+const about = <a href="/#about">about </a>;
 
 export { logo, search, offer, products, contact, about };

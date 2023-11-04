@@ -13,11 +13,13 @@ import CategorySection from '../components/categorySection/CategorySection';
 import SingleProduct from '../components/singleProduct/SingleProduct';
 import CardItems from '../components/cardItmes/CardItems';
 import UpdateData from '../components/updateData/UpdateData';
+import ErrorPage from '../pages/errorePage/ErrorPage';
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <Root />,
+        errorElement: <ErrorPage />,
         children: [
             {
                 path: '/',

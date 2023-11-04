@@ -1,6 +1,9 @@
 import HomeHeroSection from '../../components/homeHeroSection/HomeHeroSection';
 import CategorySection from '../../components/categorySection/CategorySection';
 import HotProduct from '../../components/hotProduct/HotProduct';
+import AllProduct from '../../components/allProduct/AllProduct';
+import Contact from '../../components/contact/Contact';
+import About from '../../components/about/About';
 
 const Home = () => {
     return (
@@ -15,8 +18,25 @@ const Home = () => {
                 <HotProduct />
             </section>
 
+            {/* category section  */}
             <section className="">
                 <CategorySection />
+            </section>
+
+            {/* all product section  */}
+
+            <section className="container mx-auto md:mt-16 mt-5">
+                <AllProduct />
+            </section>
+
+            {/* contact section */}
+
+            <section className=" md:mt-16 mt-5">
+                <Contact />
+            </section>
+
+            <section className="container mx-auto md:my-16 my-5">
+                <About />
             </section>
         </>
     );
