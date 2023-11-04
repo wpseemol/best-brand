@@ -1,17 +1,20 @@
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import Title from '../title/Title';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { useContext, useEffect, useState } from 'react';
 
 import { AuthContext } from '../../providers/AuthProvider';
+import PrivetRoute from '../../privetRoute/PrivetRoute';
 
 const SingleProduct = () => {
     const { data } = useLoaderData();
 
     const [cardData, setCardData] = useState([]);
     const loginRegInfo = useContext(AuthContext);
-    const { setCardItemLength, cardItemLength } = loginRegInfo || {};
+    const { setCardItemLength, cardItemLength, user } = loginRegInfo || {};
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         axios
@@ -143,8 +146,13 @@ const SingleProduct = () => {
                             <button className="seconderBtn px-4 py-2 bg-primaryColor text-white hover:bg-primaryColor/70 ">
                                 Buy Now
                             </button>
+
                             <button
-                                onClick={handalAddItmeCard}
+                                onClick={() => {
+                                    user
+                                        ? handalAddItmeCard()
+                                        : navigate('/login');
+                                }}
                                 className="seconderBtn px-4 py-2 ml-3 border border-primaryColor text-primaryColor">
                                 Add to Cart
                             </button>

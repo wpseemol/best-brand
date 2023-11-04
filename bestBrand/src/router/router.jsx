@@ -72,7 +72,11 @@ const router = createBrowserRouter([
             },
             {
                 path: '/category/:category/:product/update',
-                element: <UpdateData />,
+                element: (
+                    <PrivetRoute>
+                        <UpdateData />
+                    </PrivetRoute>
+                ),
                 loader: ({ params }) => {
                     return axios.get(
                         `https://best-brand-server.vercel.app/category/${params.product}`

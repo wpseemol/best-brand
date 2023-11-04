@@ -52,7 +52,7 @@ const NavBar = () => {
                     </div>
                     <div>
                         <h2 className="sm:text-lg text-sm font-semibold">
-                            Cart<span>({cardDataLength})</span>
+                            Cart<span>{user ? `(${cardDataLength})` : ''}</span>
                         </h2>
                         <p className="text-sm hidden md:block">Add items</p>
                     </div>
@@ -69,7 +69,23 @@ const NavBar = () => {
                 className={({ isActive }) => (isActive ? 'active' : '')}>
                 <div className="flex md:flex-row flex-col items-center sm:gap-3 gap-1">
                     <div className="text-primaryColor text-3xl">
-                        <FaRegUser />
+                        {user ? (
+                            user?.photoURL ? (
+                                <img
+                                    className="rounded-full w-10 h-10 object-cover"
+                                    src={user?.photoURL}
+                                    alt={
+                                        user?.displayName
+                                            ? user?.displayName
+                                            : 'User Image'
+                                    }
+                                />
+                            ) : (
+                                <FaRegUser />
+                            )
+                        ) : (
+                            <FaRegUser />
+                        )}
                     </div>
                     <div>
                         <h2 className="sm:text-lg text-sm font-semibold">
