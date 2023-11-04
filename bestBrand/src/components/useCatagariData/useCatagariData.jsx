@@ -9,18 +9,21 @@ const useCatagariData = () => {
             .then(function (response) {
                 //category
                 // handle success
-                const categoryData = response?.data.reduce((p, c) => {
-                    const catName = p.find(
-                        (item) =>
-                            item?.category?.categoryName ===
-                            c?.category?.categoryName
-                    );
-                    if (!catName) {
-                        return p.concat([c]);
-                    } else {
-                        return p;
-                    }
-                }, []);
+                const categoryData = response?.data.reduce(
+                    (accumulator, currentValue) => {
+                        const catName = accumulator.find(
+                            (item) =>
+                                item?.category?.categoryName ===
+                                currentValue?.category?.categoryName
+                        );
+                        if (!catName) {
+                            return accumulator.concat([currentValue]);
+                        } else {
+                            return accumulator;
+                        }
+                    },
+                    []
+                );
 
                 const allCategory = categoryData.map(
                     (element) => element.category

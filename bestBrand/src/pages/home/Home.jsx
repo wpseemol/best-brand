@@ -4,6 +4,7 @@ import HotProduct from '../../components/hotProduct/HotProduct';
 import AllProduct from '../../components/allProduct/AllProduct';
 import Contact from '../../components/contact/Contact';
 import About from '../../components/about/About';
+import BrandSection from '../../components/brandSection/BrandSection';
 
 const Home = () => {
     return (
@@ -36,9 +37,9 @@ const Home = () => {
             </section>
 
             {/* brand section */}
-            {/* <section className="container mx-auto md:mt-16 mt-5">
-                
-            </section> */}
+            <section className="container mx-auto md:mt-16 mt-5">
+                <BrandSection />
+            </section>
 
             <section className="container mx-auto md:my-16 my-5">
                 <About />

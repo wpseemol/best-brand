@@ -1,5 +1,5 @@
 import { FaDollarSign, FaMagnifyingGlass } from 'react-icons/fa6';
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 // site logo
 const logo = (
@@ -52,7 +52,7 @@ const offer = (
 );
 
 const products = <a href="/#product">Products </a>;
-const brand = <a href="/#brand">Products </a>;
+const brand = <a href="/#brand">Brand </a>;
 const contact = <a href="/#contact">Contact </a>;
 const about = <a href="/#about">about </a>;
 

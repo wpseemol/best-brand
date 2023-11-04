@@ -31,8 +31,6 @@ const AllProduct = () => {
     const startIndex = currentPage * itemsPerPage;
     const endIndex = (currentPage + 1) * itemsPerPage;
 
-    console.log(startIndex, endIndex);
-
     return (
         <div id="product" className="overflow-hidden">
             <div className="mx-auto">

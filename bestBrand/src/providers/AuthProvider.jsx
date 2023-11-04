@@ -17,7 +17,7 @@ const googleProvider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, SetLoading] = useState(true);
-    const [cardItemLength, setCardItemLength] = useState(0);
+    const [cardItemLength, setCardItemLength] = useState(0); // card item length show on top
 
     // created account
     const singUp = (email, password) => {

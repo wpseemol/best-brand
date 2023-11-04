@@ -33,7 +33,7 @@ const UpdateData = () => {
                 <Title>Edit Item</Title>
             </div>
             <div className="grid grid-cols-2 gap-2">
-                <div className="md:col-span-1 col-span-2 relative p-3 border">
+                <div className="md:col-span-1 col-span-2 relative p-3 border hover:border-black duration-200">
                     <div className="md:w-fit w-3/4 mx-auto">
                         <img src={data?.ImgUrl} alt={data?.name} />
                     </div>
@@ -48,7 +48,7 @@ const UpdateData = () => {
                     </div>
                 </div>
                 <div className="md:col-span-1 col-span-2 px-2 md:px-0">
-                    <div className="text-xl font-bold mb-10 relative p-3 border">
+                    <div className="text-xl font-bold mb-10 relative p-3 border hover:bg-slate-100 duration-200">
                         <h2>{data?.brand}</h2>
                         <div
                             onClick={() => {
@@ -61,7 +61,7 @@ const UpdateData = () => {
                             <FaPencil />
                         </div>
                     </div>
-                    <div className="text-2xl font-bold relative p-3 border">
+                    <div className="text-2xl font-bold relative p-3 border hover:bg-slate-100 duration-200">
                         <h2>{data?.name}</h2>
                         <div
                             onClick={() => {
@@ -75,8 +75,8 @@ const UpdateData = () => {
                         </div>
                     </div>
                     <div className="flex items-center gap-2 my-5 ">
-                        <div className="relative  border">
-                            <p className="text-base bg-slate-300 p-2">
+                        <div className="relative  border hover:bg-slate-300 bg-slate-200 duration-200">
+                            <p className="text-base p-2">
                                 Product Price:{' '}
                                 <span className="font-semibold">
                                     {data?.price}
@@ -94,8 +94,8 @@ const UpdateData = () => {
                             </div>
                         </div>
                         <div>
-                            <div className="relative border">
-                                <p className="text-base bg-slate-300 p-2">
+                            <div className="relative border hover:bg-slate-300 bg-slate-200 duration-200">
+                                <p className="text-base  p-2">
                                     Status:{' '}
                                     <span className="font-semibold">
                                         {data?.status}
@@ -115,8 +115,8 @@ const UpdateData = () => {
                         </div>
                     </div>
                     <div>
-                        <div className="border relative w-fit">
-                            <p className="text-base bg-slate-300 w-[13rem] p-2">
+                        <div className="border relative w-fit hover:bg-slate-300 bg-slate-200 duration-200">
+                            <p className="text-base  w-[13rem] p-2">
                                 Product Code:{' '}
                                 <span className="font-semibold">
                                     {data?.productCode}
@@ -227,57 +227,55 @@ const UpdateData = () => {
                                         </div>
                                     </td>
                                 </tr>
-                                {data?.weight && (
-                                    <tr className="transition-colors duration-300 hover:bg-slate-100">
-                                        <td className="h-12 px-6 text-sm font-medium stroke-slate-700 text-slate-700 bg-slate-100 border-t border-l first:border-l-0 border-slate-200">
-                                            Weight
-                                        </td>
-                                        <td className="h-12 px-6 text-sm transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 relative">
-                                            <div className="">
-                                                {data?.weight}
 
-                                                <div
-                                                    onClick={() => {
-                                                        setEditText({
-                                                            weight: data?.weight,
-                                                        });
-                                                        setShowEditFrom(true);
-                                                    }}
-                                                    className="flex overflow-hidden hover:rotate-12 absolute -top-7 -right-7
+                                <tr className="transition-colors duration-300 hover:bg-slate-100">
+                                    <td className="h-12 px-6 text-sm font-medium stroke-slate-700 text-slate-700 bg-slate-100 border-t border-l first:border-l-0 border-slate-200">
+                                        Weight
+                                    </td>
+                                    <td className="h-12 px-6 text-sm transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 relative">
+                                        <div className="">
+                                            {data?.weight}
+
+                                            <div
+                                                onClick={() => {
+                                                    setEditText({
+                                                        weight: data?.weight,
+                                                    });
+                                                    setShowEditFrom(true);
+                                                }}
+                                                className="flex overflow-hidden hover:rotate-12 absolute -top-7 -right-7
                                             hover:-top-6 hover:-right-6 bg-primaryColor/70
                                     w-12 h-12 rounded-full justify-center items-center text-white hover:scale-110 duration-200 text-2xl shoeditIcon">
-                                                    <FaPencil />
-                                                </div>
+                                                <FaPencil />
                                             </div>
-                                        </td>
-                                    </tr>
-                                )}
-                                {data?.dimension && (
-                                    <tr className="transition-colors duration-300 hover:bg-slate-100">
-                                        <td className="h-12 px-6 text-sm font-medium stroke-slate-700 text-slate-700 bg-slate-100 border-t border-l first:border-l-0 border-slate-200">
-                                            Dimension
-                                        </td>
-                                        <td className="h-12 px-6 text-sm transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 relative">
-                                            <div className="">
-                                                {data?.dimension}
+                                        </div>
+                                    </td>
+                                </tr>
 
-                                                <div
-                                                    onClick={() => {
-                                                        setEditText({
-                                                            dimension:
-                                                                data?.dimension,
-                                                        });
-                                                        setShowEditFrom(true);
-                                                    }}
-                                                    className="flex overflow-hidden hover:rotate-12 absolute -top-7 -right-7
+                                <tr className="transition-colors duration-300 hover:bg-slate-100">
+                                    <td className="h-12 px-6 text-sm font-medium stroke-slate-700 text-slate-700 bg-slate-100 border-t border-l first:border-l-0 border-slate-200">
+                                        Dimension
+                                    </td>
+                                    <td className="h-12 px-6 text-sm transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 relative">
+                                        <div className="">
+                                            {data?.dimension}
+
+                                            <div
+                                                onClick={() => {
+                                                    setEditText({
+                                                        dimension:
+                                                            data?.dimension,
+                                                    });
+                                                    setShowEditFrom(true);
+                                                }}
+                                                className="flex overflow-hidden hover:rotate-12 absolute -top-7 -right-7
                                             hover:-top-6 hover:-right-6 bg-primaryColor/70
                                     w-12 h-12 rounded-full justify-center items-center text-white hover:scale-110 duration-200 text-2xl shoeditIcon">
-                                                    <FaPencil />
-                                                </div>
+                                                <FaPencil />
                                             </div>
-                                        </td>
-                                    </tr>
-                                )}
+                                        </div>
+                                    </td>
+                                </tr>
 
                                 {data?.mainCamera && (
                                     <tr className="transition-colors duration-300 hover:bg-slate-100">
@@ -306,58 +304,55 @@ const UpdateData = () => {
                                     </tr>
                                 )}
 
-                                {data?.selfieCamera && (
-                                    <tr className="transition-colors duration-300 hover:bg-slate-100">
-                                        <td className="h-12 px-6 text-sm font-medium stroke-slate-700 text-slate-700 bg-slate-100 border-t border-l first:border-l-0 border-slate-200">
-                                            Selfie Camera
-                                        </td>
-                                        <td className="h-12 px-6 text-sm transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 relative">
-                                            <div className="">
-                                                {data?.selfieCamera}
+                                <tr className="transition-colors duration-300 hover:bg-slate-100">
+                                    <td className="h-12 px-6 text-sm font-medium stroke-slate-700 text-slate-700 bg-slate-100 border-t border-l first:border-l-0 border-slate-200">
+                                        Selfie Camera
+                                    </td>
+                                    <td className="h-12 px-6 text-sm transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 relative">
+                                        <div className="">
+                                            {data?.selfieCamera}
 
-                                                <div
-                                                    onClick={() => {
-                                                        setEditText({
-                                                            selfieCamera:
-                                                                data?.selfieCamera,
-                                                        });
-                                                        setShowEditFrom(true);
-                                                    }}
-                                                    className="flex overflow-hidden hover:rotate-12 absolute -top-7 -right-7
+                                            <div
+                                                onClick={() => {
+                                                    setEditText({
+                                                        selfieCamera:
+                                                            data?.selfieCamera,
+                                                    });
+                                                    setShowEditFrom(true);
+                                                }}
+                                                className="flex overflow-hidden hover:rotate-12 absolute -top-7 -right-7
                                             hover:-top-6 hover:-right-6 bg-primaryColor/70
                                     w-12 h-12 rounded-full justify-center items-center text-white hover:scale-110 duration-200 text-2xl shoeditIcon">
-                                                    <FaPencil />
-                                                </div>
+                                                <FaPencil />
                                             </div>
-                                        </td>
-                                    </tr>
-                                )}
+                                        </div>
+                                    </td>
+                                </tr>
 
-                                {data?.batteryInfo && (
-                                    <tr className="transition-colors duration-300 hover:bg-slate-100">
-                                        <td className="h-12 px-6 text-sm font-medium stroke-slate-700 text-slate-700 bg-slate-100 border-t border-l first:border-l-0 border-slate-200">
-                                            Battery Info
-                                        </td>
-                                        <td className="h-12 px-6 text-sm transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 relative">
-                                            <div className="">
-                                                {data?.batteryInfo}
-                                                <div
-                                                    onClick={() => {
-                                                        setEditText({
-                                                            batteryInfo:
-                                                                data?.batteryInfo,
-                                                        });
-                                                        setShowEditFrom(true);
-                                                    }}
-                                                    className="flex overflow-hidden hover:rotate-12 absolute -top-7 -right-7
+                                <tr className="transition-colors duration-300 hover:bg-slate-100">
+                                    <td className="h-12 px-6 text-sm font-medium stroke-slate-700 text-slate-700 bg-slate-100 border-t border-l first:border-l-0 border-slate-200">
+                                        Battery Info
+                                    </td>
+                                    <td className="h-12 px-6 text-sm transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500 relative">
+                                        <div className="">
+                                            {data?.batteryInfo}
+                                            <div
+                                                onClick={() => {
+                                                    setEditText({
+                                                        batteryInfo:
+                                                            data?.batteryInfo,
+                                                    });
+                                                    setShowEditFrom(true);
+                                                }}
+                                                className="flex overflow-hidden hover:rotate-12 absolute -top-7 -right-7
                                             hover:-top-6 hover:-right-6 bg-primaryColor/70
                                     w-12 h-12 rounded-full justify-center items-center text-white hover:scale-110 duration-200 text-2xl shoeditIcon">
-                                                    <FaPencil />
-                                                </div>
+                                                <FaPencil />
                                             </div>
-                                        </td>
-                                    </tr>
-                                )}
+                                        </div>
+                                    </td>
+                                </tr>
+
                                 {data?.batteryInfo && (
                                     <tr className="transition-colors duration-300 hover:bg-slate-100">
                                         <td className="h-12 px-6 text-sm font-medium stroke-slate-700 text-slate-700 bg-slate-100 border-t border-l first:border-l-0 border-slate-200">
@@ -390,27 +385,24 @@ const UpdateData = () => {
                         <div></div>
                         <div className="text-center">
                             <div className="z-20">
-                                {data?.description && (
-                                    <div className="border relative p-3 ">
-                                        <h2 className="text-2xl font-medium border-b-2 border-black">
-                                            Description
-                                        </h2>
-                                        <p>{data?.description}</p>
-                                        <div
-                                            onClick={() => {
-                                                setEditText({
-                                                    description:
-                                                        data?.description,
-                                                });
-                                                setShowEditFrom(true);
-                                            }}
-                                            className="flex overflow-hidden hover:rotate-12 absolute -top-7 -right-7
+                                <div className="border hover:bg-slate-100 duration-200 relative p-3 ">
+                                    <h2 className="text-2xl font-medium border-b-2 border-black">
+                                        Description
+                                    </h2>
+                                    <p>{data?.description}</p>
+                                    <div
+                                        onClick={() => {
+                                            setEditText({
+                                                description: data?.description,
+                                            });
+                                            setShowEditFrom(true);
+                                        }}
+                                        className="flex overflow-hidden hover:rotate-12 absolute -top-7 -right-7
                                             hover:-top-6 hover:-right-6 hover:z-30  bg-primaryColor/70
                                     w-12 h-12 rounded-full justify-center items-center text-white hover:scale-110 duration-200 text-2xl shoeditIcon">
-                                            <FaPencil />
-                                        </div>
+                                        <FaPencil />
                                     </div>
-                                )}
+                                </div>
                             </div>
 
                             <div className="flex items-center w-fit mx-auto my-10">

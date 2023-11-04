@@ -14,6 +14,7 @@ import SingleProduct from '../components/singleProduct/SingleProduct';
 import CardItems from '../components/cardItmes/CardItems';
 import UpdateData from '../components/updateData/UpdateData';
 import ErrorPage from '../pages/errorePage/ErrorPage';
+import Brand from '../pages/bradn/Brand';
 
 const router = createBrowserRouter([
     {
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
             {
                 path: '/category',
                 element: <CategorySection />,
+            },
+            {
+                path: '/brand',
+                element: <Brand />,
             },
             {
                 path: '/category/:category',
